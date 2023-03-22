@@ -57,7 +57,7 @@ const template = r'''
 
 void main() {
   test('check app.xml template', () {
-    final source = xml.Source(slides: [
+    final source = xml.Source.slides([
       xml.Slide(title: 'Slide 1'),
       xml.Slide(title: 'Slide 2'),
       xml.Slide(title: 'Slide 3'),

@@ -1,3 +1,4 @@
+import 'image.dart';
 import 'template/template.dart';
 
 class Util {
@@ -29,7 +30,7 @@ class Util {
     return true;
   }
 
-  static copyMedia(String extractPath, String imagePath) {
+  static copyMedia(ImageLibrary extractPath, String imagePath) {
     // TODO
   }
 

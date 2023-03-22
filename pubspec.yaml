@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
   json_annotation: ^4.8.0
   mustache_template: ^2.0.0
+  path: ^1.8.3
   recase: ^4.1.0
 
 dev_dependencies:

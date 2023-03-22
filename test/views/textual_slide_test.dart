@@ -88,12 +88,12 @@ void main() {
   test('check textual_slide.xml template', () {
     final source = xml.Source(
       title: 'TITLE',
-      slides: [
-        xml.Slide(
+      content: [
+        xml.Content(
           value: 'Slide 1',
           last: false,
         ),
-        xml.Slide(
+        xml.Content(
           value: 'Slide 2',
           last: true,
         ),

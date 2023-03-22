@@ -1,17 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 
 import '../context.dart';
-import '../views/textual_rel.xml.dart' as rel_xml;
-import '../views/intro_slide.xml.dart' as slide_xml;
 import 'slide.dart';
+import '../views/textual_rel.xml.dart' as rel_xml;
+import '../views/textual_slide.xml.dart' as slide_xml;
 
-class Intro extends Slide {
+class Textual extends Slide {
   final String title;
-  final String subtitile;
+  final List<String> content;
 
-  Intro({
+  Textual({
     required this.title,
-    required this.subtitile,
+    required this.content,
   });
 
   @override
@@ -26,9 +27,9 @@ class Intro extends Slide {
 
   @override
   FutureOr<void> saveSlideXml(PresentationContext context, int index) {
-    final source = slide_xml.Source(
+    final source = slide_xml.Source.content(
       title: title,
-      subtitile: subtitile,
+      content: content,
     );
     final result = slide_xml.renderString(source);
     final path = 'ppt/slides/slide$index.xml';

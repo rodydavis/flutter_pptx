@@ -40,7 +40,7 @@ const _source = r'''
     </vt:vector>
   </HeadingPairs>
   <TitlesOfParts>
-    <vt:vector size="{{vector_size}}" baseType="lpstr">
+    <vt:vector size="{{vectorSize}}" baseType="lpstr">
       <vt:lpstr>Arial</vt:lpstr>
       <vt:lpstr>Calibri</vt:lpstr>
       <vt:lpstr>Office Theme</vt:lpstr>
@@ -71,10 +71,23 @@ class Slide {
 @JsonSerializable(createFactory: false)
 class Source {
   final List<Slide> slides;
+  final int length;
+  final int vectorSize;
 
   Source({
     required this.slides,
+    required this.length,
+    required this.vectorSize,
   });
+
+  factory Source.slides(
+    List<Slide> slides,
+  ) =>
+      Source(
+        slides: slides,
+        length: slides.length,
+        vectorSize: slides.length + 3, // TODO: Validate this
+      );
 
   Map<String, dynamic> toJson() => _$SourceToJson(this);
 }

@@ -58,7 +58,7 @@ const _source = r'''
         <p:txBody>
           <a:bodyPr/>
           <a:lstStyle/>
-          {{#slides}}
+          {{#content}}
           <a:p>
             <a:r>
               <a:rPr dirty="0" lang="en-US" smtClean="0"/>
@@ -68,7 +68,7 @@ const _source = r'''
             <a:endParaRPr lang="en-US"/>
             {{/last}}
           </a:p>
-          {{/slides}}
+          {{/content}}
         </p:txBody>
       </p:sp>
     </p:spTree>
@@ -85,27 +85,39 @@ const _source = r'''
 ''';
 
 @JsonSerializable(createFactory: false)
-class Slide {
+class Content {
   final String value;
   final bool last;
 
-  Slide({
+  Content({
     required this.value,
     required this.last,
   });
 
-  Map<String, dynamic> toJson() => _$SlideToJson(this);
+  Map<String, dynamic> toJson() => _$ContentToJson(this);
 }
 
 @JsonSerializable(createFactory: false)
 class Source {
   final String title;
-  final List<Slide> slides;
+  final List<Content> content;
 
   Source({
     required this.title,
-    required this.slides,
+    required this.content,
   });
+
+  factory Source.content({
+    required String title,
+    required List<String> content,
+  }) {
+    return Source(
+      title: title,
+      content: content
+          .map((e) => Content(value: e, last: e == content.last))
+          .toList(),
+    );
+  }
 
   Map<String, dynamic> toJson() => _$SourceToJson(this);
 }

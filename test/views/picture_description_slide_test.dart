@@ -128,12 +128,12 @@ void main() {
         cx: 4,
         cy: 5,
       ),
-      slides: [
-        xml.Slide(
+      content: [
+        xml.Content(
           value: 'Slide 1',
           last: false,
         ),
-        xml.Slide(
+        xml.Content(
           value: 'Slide 2',
           last: true,
         ),

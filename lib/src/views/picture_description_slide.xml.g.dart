@@ -6,7 +6,7 @@ part of 'picture_description_slide.xml.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Map<String, dynamic> _$SlideToJson(Slide instance) => <String, dynamic>{
+Map<String, dynamic> _$ContentToJson(Content instance) => <String, dynamic>{
       'value': instance.value,
       'last': instance.last,
     };
@@ -21,5 +21,5 @@ Map<String, dynamic> _$CoordsToJson(Coords instance) => <String, dynamic>{
 Map<String, dynamic> _$SourceToJson(Source instance) => <String, dynamic>{
       'title': instance.title,
       'coords': instance.coords?.toJson(),
-      'slides': instance.slides.map((e) => e.toJson()).toList(),
+      'content': instance.content.map((e) => e.toJson()).toList(),
     };
