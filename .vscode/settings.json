@@ -1,0 +1,9 @@
+{
+    "cSpell.words": [
+        "rels"
+    ],
+    "files.exclude": {
+        "**/*.freezed.dart": true,
+        "**/*.g.dart": true,
+    },
+}

@@ -1,0 +1,9 @@
+targets:
+  $default:
+    builders:
+      json_serializable:
+        options:
+          create_factory: false
+          explicit_to_json: true
+          create_to_json: true
+          # create_per_field_to_json: true
