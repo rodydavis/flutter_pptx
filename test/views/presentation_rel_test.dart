@@ -1,4 +1,4 @@
-import 'package:flutter_pptx/views/presentation.xml.rel.dart' as xml;
+import 'package:flutter_pptx/src/views/presentation.xml.rel.dart' as xml;
 import 'package:flutter_test/flutter_test.dart';
 
 const template = r'''

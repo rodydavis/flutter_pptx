@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:recase/recase.dart';
 
 final inputDir = Directory('./template');
-final outputDir = Directory('./lib/template');
+final outputDir = Directory('./lib/src/template');
 
 void main() {
   if (!outputDir.existsSync()) {
@@ -55,7 +55,7 @@ void main() {
       relativePath = '$relativePath.dart';
       String filename = relativePath.split('.').first;
       final name = filename.snakeCase;
-      final orgFilename = relativePath.replaceAll('.dart', '');
+      final orgFilename = relativePath.substring(1).replaceAll('.dart', '');
       sb.writeln('  \'$orgFilename\': $name.template,');
     }
   }
