@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 import 'package:path/path.dart' as path;
-import '../views/pictorial_rel.xml.dart' as rel_xml;
-import '../views/pictorial_slide.xml.dart' as slide_xml;
+import '../views/pictorial/rel.xml.dart' as rel_xml;
+import '../views/pictorial/slide.xml.dart' as slide_xml;
 
 import '../classes/coords.dart';
 import '../context.dart';
@@ -45,10 +45,10 @@ class Pictorial extends Slide {
   }
 
   @override
-  FutureOr<void> save(PresentationContext context, int index) async {
+  FutureOr<void> save(PresentationContext context, int index, int notesIndex) async {
     coords ??= await defaultCoords(context);
     await context.imageLibrary.copyMedia(imagePath, context.archive);
-    await super.save(context, index);
+    await super.save(context, index, notesIndex);
   }
 
   @override
@@ -65,9 +65,10 @@ class Pictorial extends Slide {
   }
 
   @override
-  FutureOr<void> saveRelXml(PresentationContext context, int index) {
+  FutureOr<void> saveRelXml(PresentationContext context, int index, int notesIndex) {
     final source = rel_xml.Source(
       index: index,
+      notesIndex: notesIndex,
       imageName: fileName,
     );
     final result = rel_xml.renderString(source);

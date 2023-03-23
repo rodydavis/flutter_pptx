@@ -11,7 +11,8 @@ void main() {
     () async {
       final pres = Powerpoint();
       pres.addIntro('Bicycle Of the Mind', subtitile: 'created by Steve Jobs');
-      pres.addTextualSlide('Why Mac?', ['Its cool!', 'Its light!']);
+      final s = pres.addTextualSlide('Why Mac?', ['Its cool!', 'Its light!']);
+      s.setSpeakerNotes('This is a note!');
       pres.addTextualSlide('Why Iphone?', ['Its fast!', 'Its cheap!']);
       pres.addPictorialSlide('JPG Logo', 'samples/images/sample_png.png');
       pres.addTextPictureSlide(

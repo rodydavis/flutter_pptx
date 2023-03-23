@@ -1,4 +1,4 @@
-import 'package:flutter_pptx/src/views/picture_description_rels.xml.dart'
+import 'package:flutter_pptx/src/views/picture_description/rels.xml.dart'
     as xml;
 import 'package:flutter_test/flutter_test.dart';
 

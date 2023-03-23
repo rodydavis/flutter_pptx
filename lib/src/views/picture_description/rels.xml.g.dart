@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'pictorial_rel.xml.dart';
+part of 'rels.xml.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -8,5 +8,7 @@ part of 'pictorial_rel.xml.dart';
 
 Map<String, dynamic> _$SourceToJson(Source instance) => <String, dynamic>{
       'index': instance.index,
+      'notesIndex': instance.notesIndex,
       'imageName': instance.imageName,
+      'hasNotes': instance.hasNotes,
     };

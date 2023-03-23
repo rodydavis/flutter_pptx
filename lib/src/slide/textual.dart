@@ -3,8 +3,8 @@ import 'dart:async';
 
 import '../context.dart';
 import 'slide.dart';
-import '../views/textual_rel.xml.dart' as rel_xml;
-import '../views/textual_slide.xml.dart' as slide_xml;
+import '../views/textual/rel.xml.dart' as rel_xml;
+import '../views/textual/slide.xml.dart' as slide_xml;
 
 class Textual extends Slide {
   @override
@@ -18,9 +18,11 @@ class Textual extends Slide {
   });
 
   @override
-  FutureOr<void> saveRelXml(PresentationContext context, int index) {
+  FutureOr<void> saveRelXml(
+      PresentationContext context, int index, int notesIndex) {
     final source = rel_xml.Source(
       index: index,
+      notesIndex: notesIndex,
     );
     final result = rel_xml.renderString(source);
     final path = 'ppt/slides/_rels/slide$index.xml.rels';

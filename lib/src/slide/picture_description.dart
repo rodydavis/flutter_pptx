@@ -6,8 +6,8 @@ import '../classes/coords.dart';
 import '../context.dart';
 import '../util.dart';
 import 'pictorial.dart';
-import '../views/picture_description_rels.xml.dart' as rel_xml;
-import '../views/picture_description_slide.xml.dart' as slide_xml;
+import '../views/picture_description/rels.xml.dart' as rel_xml;
+import '../views/picture_description/slide.xml.dart' as slide_xml;
 
 class DescriptionPic extends Pictorial {
   final List<String> content;
@@ -52,9 +52,10 @@ class DescriptionPic extends Pictorial {
   }
 
   @override
-  FutureOr<void> saveRelXml(PresentationContext context, int index) {
+  FutureOr<void> saveRelXml(PresentationContext context, int index, int notesIndex) {
     final source = rel_xml.Source(
       index: index,
+      notesIndex: notesIndex,
       imageName: fileName,
     );
     final result = rel_xml.renderString(source);

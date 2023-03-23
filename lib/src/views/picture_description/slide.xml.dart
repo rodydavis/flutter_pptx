@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mustache_template/mustache_template.dart';
 
-part 'picture_description_slide.xml.g.dart';
+part 'slide.xml.g.dart';
 
 const _source = r'''
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>

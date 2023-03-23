@@ -30,8 +30,12 @@ import 'ppt/slideMasters/slideMaster1.xml.dart' as ppt_slide_masters_slide_maste
 import 'ppt/slideMasters/_rels/slideMaster1.xml.rels.dart' as ppt_slide_masters_rels_slide_master1;
 import 'ppt/slides/_rels/.keep.dart' as ppt_slides_rels;
 import 'ppt/theme/theme1.xml.dart' as ppt_theme_theme1;
+import 'ppt/theme/theme2.xml.dart' as ppt_theme_theme2;
+import 'ppt/commentAuthors.xml.dart' as ppt_comment_authors;
 import 'ppt/_rels/.keep.dart' as ppt_rels;
 import 'ppt/presProps.xml.dart' as ppt_pres_props;
+import 'ppt/notesMasters/notesMaster1.xml.dart' as ppt_notes_masters_notes_master1;
+import 'ppt/notesMasters/_rels/notesMaster1.xml.rels.dart' as ppt_notes_masters_rels_notes_master1;
 import 'ppt/tableStyles.xml.dart' as ppt_table_styles;
 import 'ppt/media/.keep.dart' as ppt_media;
 
@@ -65,8 +69,12 @@ final templates = {
   'ppt/slideMasters/_rels/slideMaster1.xml.rels': ppt_slide_masters_rels_slide_master1.template,
   'ppt/slides/_rels/.keep': ppt_slides_rels.template,
   'ppt/theme/theme1.xml': ppt_theme_theme1.template,
+  'ppt/theme/theme2.xml': ppt_theme_theme2.template,
+  'ppt/commentAuthors.xml': ppt_comment_authors.template,
   'ppt/_rels/.keep': ppt_rels.template,
   'ppt/presProps.xml': ppt_pres_props.template,
+  'ppt/notesMasters/notesMaster1.xml': ppt_notes_masters_notes_master1.template,
+  'ppt/notesMasters/_rels/notesMaster1.xml.rels': ppt_notes_masters_rels_notes_master1.template,
   'ppt/tableStyles.xml': ppt_table_styles.template,
   'ppt/media/.keep': ppt_media.template,
 };

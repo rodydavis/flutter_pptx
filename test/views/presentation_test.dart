@@ -132,8 +132,8 @@ void main() {
   test('check presentation.xml template', () {
     final source = xml.Source(
       slides: [
-        xml.Slide.fromIndex(1),
-        xml.Slide.fromIndex(2),
+        xml.Slide.fromIndex(1, ''),
+        xml.Slide.fromIndex(2, ''),
       ],
       layout: Layout.screen4x3(),
     );

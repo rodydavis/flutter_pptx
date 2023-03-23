@@ -6,11 +6,17 @@ part 'content_type.xml.g.dart';
 const _source = r'''
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
-  <Default ContentType="application/xml" Extension="xml"/>
-  <Default ContentType="application/vnd.openxmlformats-package.relationships+xml" Extension="rels"/>
-  {{#fileTypes}}
-  <Default ContentType="image/{{type}}" Extension="{{type}}"/>
-  {{/fileTypes}}
+  <Default Extension="xml" ContentType="application/xml"/>
+  <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+  <Default Extension="jpeg" ContentType="image/jpg"/>
+  <Default Extension="png" ContentType="image/png"/>
+  <Default Extension="bmp" ContentType="image/bmp"/>
+  <Default Extension="gif" ContentType="image/gif"/>
+  <Default Extension="tif" ContentType="image/tif"/>
+  <Default Extension="pdf" ContentType="application/pdf"/>
+  <Default Extension="mov" ContentType="application/movie"/>
+  <Default Extension="vml" ContentType="application/vnd.openxmlformats-officedocument.vmlDrawing"/>
+  <Default Extension="xlsx" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
   <Override ContentType="application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml" PartName="/ppt/presentation.xml"/>
   <Override ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideMaster+xml" PartName="/ppt/slideMasters/slideMaster1.xml"/>
   {{#slides}}
@@ -20,6 +26,7 @@ const _source = r'''
   <Override ContentType="application/vnd.openxmlformats-officedocument.presentationml.viewProps+xml" PartName="/ppt/viewProps.xml"/>
   <Override ContentType="application/vnd.openxmlformats-officedocument.theme+xml" PartName="/ppt/theme/theme1.xml"/>
   <Override ContentType="application/vnd.openxmlformats-officedocument.presentationml.tableStyles+xml" PartName="/ppt/tableStyles.xml"/>
+  <Override ContentType="application/vnd.openxmlformats-officedocument.presentationml.notesMaster+xml" PartName="/ppt/notesMasters/notesMaster1.xml"/>
   <Override ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideLayout+xml" PartName="/ppt/slideLayouts/slideLayout1.xml"/>
   <Override ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideLayout+xml" PartName="/ppt/slideLayouts/slideLayout2.xml"/>
   <Override ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideLayout+xml" PartName="/ppt/slideLayouts/slideLayout3.xml"/>

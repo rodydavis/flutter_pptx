@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'picture_description_slide.xml.dart';
+part of 'slide.xml.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

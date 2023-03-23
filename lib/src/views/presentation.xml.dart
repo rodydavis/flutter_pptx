@@ -1,10 +1,7 @@
-import 'dart:ui';
-
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mustache_template/mustache_template.dart';
 
 import '../classes/layout.dart';
-import '../util.dart';
 
 part 'presentation.xml.g.dart';
 
@@ -14,9 +11,12 @@ const _source = r'''
   <p:sldMasterIdLst>
     <p:sldMasterId id="2147483648" r:id="rId1"/>
   </p:sldMasterIdLst>
+  <p:notesMasterIdLst>
+    <p:notesMasterId r:id="rId6"/>
+  </p:notesMasterIdLst>
   <p:sldIdLst>
   {{#slides}}
-  <p:sldId id="{{id}}" r:id="rId{{rId}}"/>
+    <p:sldId id="{{id}}" r:id="rId{{rId}}"/>
   {{/slides}}
   </p:sldIdLst>
   {{#layout}}
@@ -144,16 +144,19 @@ const _source = r'''
 class Slide {
   final int id;
   final int rId;
+  final String notes;
 
   Slide({
     required this.id,
     required this.rId,
+    required this.notes,
   });
 
-  factory Slide.fromIndex(int index) {
+  factory Slide.fromIndex(int index, String notes) {
     return Slide(
       id: 255 + (index + 1),
-      rId: (index + 1) + 5,
+      rId: 6 + (index + 1),
+      notes: notes,
     );
   }
 
@@ -161,21 +164,40 @@ class Slide {
 }
 
 @JsonSerializable(createFactory: false)
+class Notes {
+  final int id;
+  final int rId;
+
+  Notes({
+    required this.id,
+    required this.rId,
+  });
+
+  factory Notes.fromIndex(int index) {
+    return Notes(
+      id: 255 + (index + 1),
+      rId: (index + 1) + 5,
+    );
+  }
+
+  Map<String, dynamic> toJson() => _$NotesToJson(this);
+}
+
+@JsonSerializable(createFactory: false)
 class Source {
   final List<Slide> slides;
+  final List<Notes> notes;
   final Layout layout;
+  final bool hasNotes;
 
   Source({
     required this.slides,
     required this.layout,
-  });
-
-  factory Source.create(int count, Layout layout) {
-    return Source(
-      slides: List.generate(count, (index) => Slide.fromIndex(index)),
-      layout: layout,
-    );
-  }
+  })  : notes = slides
+            .where((slide) => slide.notes.isNotEmpty)
+            .map((slide) => Notes.fromIndex(slide.id))
+            .toList(),
+        hasNotes = slides.any((slide) => slide.notes.isNotEmpty);
 
   Map<String, dynamic> toJson() => _$SourceToJson(this);
 }

@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+/// This file is generated, do not edit!
+/// See `bin/copy.dart` for more information.
+
+/// Path: ./template/ppt/theme/theme2.xml
+const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
 <a:theme xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
     xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" name="Office Theme">
     <a:themeElements>
@@ -1080,4 +1084,4 @@
             </a:style>
         </a:txDef>
     </a:objectDefaults>
-</a:theme>
+</a:theme>''';

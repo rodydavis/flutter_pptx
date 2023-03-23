@@ -4,8 +4,8 @@ import 'dart:async';
 import '../classes/coords.dart';
 import '../context.dart';
 import '../util.dart';
-import '../views/text_picture_split_rel.xml.dart' as rel_xml;
-import '../views/text_picture_split_slide.xml.dart' as slide_xml;
+import '../views/text_picture_split/rel.xml.dart' as rel_xml;
+import '../views/text_picture_split/slide.xml.dart' as slide_xml;
 import 'pictorial.dart';
 
 class TextPicSplit extends Pictorial {
@@ -42,9 +42,10 @@ class TextPicSplit extends Pictorial {
   }
 
   @override
-  FutureOr<void> saveRelXml(PresentationContext context, int index) {
+  FutureOr<void> saveRelXml(PresentationContext context, int index, int notesIndex) {
     final source = rel_xml.Source(
       index: index,
+      notesIndex: notesIndex,
       imageName: fileName,
     );
     final result = rel_xml.renderString(source);

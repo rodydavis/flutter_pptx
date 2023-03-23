@@ -1,24 +1,24 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mustache_template/mustache_template.dart';
 
-part 'text_picture_split_rel.xml.g.dart';
+part 'rel.xml.g.dart';
 
 const _source = r'''
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideLayout" Target="../slideLayouts/slideLayout{{index}}.xml" />
-  <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/{{imageName}}" />
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slide" Target="../slides/slide{{slideIndex}}.xml"/>
+  <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/notesMaster" Target="../notesMasters/notesMaster1.xml"/>
 </Relationships>
 ''';
 
 @JsonSerializable(createFactory: false)
 class Source {
   final int index;
-  final String imageName;
+  final int slideIndex;
 
   Source({
     required this.index,
-    required this.imageName,
+    required this.slideIndex,
   });
 
   Map<String, dynamic> toJson() => _$SourceToJson(this);
@@ -26,7 +26,7 @@ class Source {
 
 final _template = Template(
   _source.trim(),
-  name: 'text_picture_split_rel.xml',
+  name: 'notes_rel.xml',
   htmlEscapeValues: false,
 );
 

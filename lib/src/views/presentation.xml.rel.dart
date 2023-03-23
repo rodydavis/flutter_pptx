@@ -11,6 +11,7 @@ const _source = r'''
   <Relationship Id="rId3" Target="viewProps.xml" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/viewProps"/>
   <Relationship Id="rId4" Target="theme/theme1.xml" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/theme"/>
   <Relationship Id="rId5" Target="tableStyles.xml" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/tableStyles"/>
+  <Relationship Id="rId6" Target="notesMasters/notesMaster1.xml" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/notesMaster"/>
   {{#slides}}
   <Relationship Id="rId{{rId}}" Target="slides/slide{{order}}.xml" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slide"/>
   {{/slides}}
@@ -30,7 +31,7 @@ class Slide {
   factory Slide.fromIndex(int index) {
     return Slide(
       order: index + 1,
-      rId: 5 + (index + 1),
+      rId: 6 + (index + 1),
     );
   }
 

@@ -2,6 +2,7 @@ import 'classes/coords.dart';
 import 'classes/layout.dart';
 import 'context.dart';
 import 'slide/intro.dart';
+import 'slide/notes.dart';
 import 'slide/pictorial.dart';
 import 'slide/picture_description.dart';
 import 'slide/slide.dart';
@@ -23,11 +24,12 @@ class Powerpoint {
     this.layout = layout;
   }
 
-  void addSlide(Slide slide) {
+  Slide addSlide(Slide slide) {
     slides.add(slide);
+    return slide;
   }
 
-  void addIntro(
+  Slide addIntro(
     String title, {
     String? subtitile,
   }) {
@@ -41,28 +43,29 @@ class Powerpoint {
     } else {
       addSlide(slide);
     }
+    return slide;
   }
 
-  void addTextualSlide(String title, List<String> content) {
-    slides.add(Textual(
+  Slide addTextualSlide(String title, List<String> content) {
+    return addSlide(Textual(
       title: title,
       content: content,
     ));
   }
 
-  void addPictorialSlide(
+  Slide addPictorialSlide(
     String title,
     String image, {
     Coords? coords,
   }) {
-    addSlide(Pictorial(
+    return addSlide(Pictorial(
       title: title,
       imagePath: image,
       coords: coords,
     ));
   }
 
-  void addTextPictureSlide(
+  Slide addTextPictureSlide(
     String title,
     String image, {
     Coords? coords,
@@ -74,10 +77,10 @@ class Powerpoint {
       content: content,
       coords: coords,
     );
-    addSlide(slide);
+    return addSlide(slide);
   }
 
-  void addPictureDescriptionSlide(
+  Slide addPictureDescriptionSlide(
     String title,
     String image, {
     Coords? coords,
@@ -89,7 +92,7 @@ class Powerpoint {
       coords: coords,
       content: content,
     );
-    addSlide(slide);
+    return addSlide(slide);
   }
 
   List<String> get fileTypes {
@@ -134,9 +137,12 @@ class Powerpoint {
     context.archive.addFile(
       'ppt/presentation.xml',
       presentation_xml.renderString(
-        presentation_xml.Source.create(
-          slides.length,
-          layout,
+        presentation_xml.Source(
+          layout: layout,
+          slides: [
+            for (var i = 0; i < slides.length; i++)
+              presentation_xml.Slide.fromIndex(i, slides[i].notes)
+          ],
         ),
       ),
     );
@@ -150,9 +156,21 @@ class Powerpoint {
     );
 
     // Save slides
+    List<Notes> notes = [];
     for (var i = 0; i < slides.length; i++) {
       final slide = slides[i];
-      await slide.save(context, i + 1);
+      if (slide.notes.trim().isNotEmpty) {
+        notes.add(Notes(slideIndex: i, notes: slide.notes));
+      }
+    }
+    for (var i = 0; i < slides.length; i++) {
+      final slide = slides[i];
+      final notesIndex = notes.indexWhere((n) => n.slideIndex == i);
+      await slide.save(context, i + 1, notesIndex + 1);
+    }
+    for (var i = 0; i < notes.length; i++) {
+      final note = notes[i];
+      await note.save(context, i + 1, i + 1);
     }
 
     // Create .pptx file
