@@ -182,7 +182,7 @@ class Source {
 }
 
 final _template = Template(
-  _source,
+  _source.trim(),
   name: 'picture_description_slide.xml',
   htmlEscapeValues: false,
 );

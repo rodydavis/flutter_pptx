@@ -25,7 +25,7 @@ class Source {
 }
 
 final _template = Template(
-  _source,
+  _source.trim(),
   name: 'pictorial_rel.xml',
   htmlEscapeValues: false,
 );

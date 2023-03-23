@@ -2,8 +2,7 @@
 /// See `bin/copy.dart` for more information.
 
 /// Path: ./template/ppt/slideLayouts/slideLayout2.xml
-const template = r'''
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+const String template = r'''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <p:sldLayout preserve="1" type="obj" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
   <p:cSld name="Title and Content">
     <p:spTree>
@@ -167,6 +166,4 @@ const template = r'''
   <p:clrMapOvr>
     <a:masterClrMapping/>
   </p:clrMapOvr>
-</p:sldLayout>
-''';
-
+</p:sldLayout>''';

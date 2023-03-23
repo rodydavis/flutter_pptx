@@ -72,11 +72,21 @@ class Source {
     required this.slides,
   });
 
+  factory Source.create({
+    required List<String> fileTypes,
+    required int slideCount,
+  }) {
+    return Source(
+      fileTypes: fileTypes.map((e) => FileType(type: e)).toList(),
+      slides: List.generate(slideCount, (index) => Slide.fromIndex(index)),
+    );
+  }
+
   Map<String, dynamic> toJson() => _$SourceToJson(this);
 }
 
 final _template = Template(
-  _source,
+  _source.trim(),
   name: 'content_type.xml',
   htmlEscapeValues: false,
 );

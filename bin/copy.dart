@@ -20,8 +20,15 @@ void main() {
       sb.writeln('/// See `bin/copy.dart` for more information.');
       sb.writeln();
       sb.writeln('/// Path: ${file.path}');
-      sb.writeln('const template = r\'\'\'');
-      sb.writeln(content);
+      // Fix for encoding: UTF-16
+      // sb.write('const List<int> template = [');
+      //  // final bytes = content.buffer.asUint16List();
+      // for (final byte in bytes) {
+      //   sb.write(' $byte,');
+      // }
+      // sb.writeln('];');
+      sb.write('const String template = r\'\'\'');
+      sb.write(content.trim());
       sb.writeln('\'\'\';');
       sb.writeln();
 
@@ -29,7 +36,7 @@ void main() {
       relativePath = '$relativePath.dart';
       final outputFile = File(outputDir.path + relativePath);
       outputFile.createSync(recursive: true);
-      outputFile.writeAsStringSync(sb.toString());
+      outputFile.writeAsStringSync(sb.toString().trim());
     }
   }
 

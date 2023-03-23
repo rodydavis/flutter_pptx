@@ -2,8 +2,7 @@
 /// See `bin/copy.dart` for more information.
 
 /// Path: ./template/ppt/viewProps.xml
-const template = r'''
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+const String template = r'''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <p:viewPr xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
   <p:normalViewPr>
     <p:restoredLeft sz="15608"/>
@@ -34,6 +33,4 @@ const template = r'''
     </p:cViewPr>
   </p:notesTextViewPr>
   <p:gridSpacing cx="76200" cy="76200"/>
-</p:viewPr>
-''';
-
+</p:viewPr>''';

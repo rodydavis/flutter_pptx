@@ -25,7 +25,7 @@ class Source {
 }
 
 final _template = Template(
-  _source,
+  _source.trim(),
   name: 'text_picture_split_rel.xml',
   htmlEscapeValues: false,
 );

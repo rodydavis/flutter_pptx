@@ -4,7 +4,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
 
-import 'archive.dart';
+import 'compression.dart';
 
 class ImageLibrary {
   final cache = <String, ui.Image>{};
@@ -47,12 +47,12 @@ class ImageLibrary {
     }
   }
 
-  Future<void> copyMedia(String imagePath, Archive archive) async {
+  Future<void> copyMedia(String imagePath, Compression archive) async {
     final image = await getImage(imagePath);
     final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
     final buffer = bytes!.buffer;
     final data = buffer.asUint8List();
     final fileName = path.basename(imagePath);
-    archive.saveBytesFile('ppt/media/$fileName', data);
+    archive.addBinaryFile('ppt/media/$fileName', data);
   }
 }

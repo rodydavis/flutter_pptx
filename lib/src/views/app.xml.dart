@@ -93,7 +93,7 @@ class Source {
 }
 
 final _template = Template(
-  _source,
+  _source.trim(),
   name: 'app.xml',
   htmlEscapeValues: false,
 );

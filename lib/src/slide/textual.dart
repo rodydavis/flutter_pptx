@@ -7,7 +7,9 @@ import '../views/textual_rel.xml.dart' as rel_xml;
 import '../views/textual_slide.xml.dart' as slide_xml;
 
 class Textual extends Slide {
+  @override
   final String title;
+
   final List<String> content;
 
   Textual({
@@ -22,7 +24,7 @@ class Textual extends Slide {
     );
     final result = rel_xml.renderString(source);
     final path = 'ppt/slides/_rels/slide$index.xml.rels';
-    context.archive.saveStringFile(path, result);
+    context.archive.addFile(path, result);
   }
 
   @override
@@ -33,6 +35,6 @@ class Textual extends Slide {
     );
     final result = slide_xml.renderString(source);
     final path = 'ppt/slides/slide$index.xml';
-    context.archive.saveStringFile(path, result);
+    context.archive.addFile(path, result);
   }
 }

@@ -158,11 +158,17 @@ class Source {
     required this.slides,
   });
 
+  factory Source.create(int count) {
+    return Source(
+      slides: List.generate(count, (index) => Slide.fromIndex(index)),
+    );
+  }
+
   Map<String, dynamic> toJson() => _$SourceToJson(this);
 }
 
 final _template = Template(
-  _source,
+  _source.trim(),
   name: 'presentation.xml',
   htmlEscapeValues: false,
 );

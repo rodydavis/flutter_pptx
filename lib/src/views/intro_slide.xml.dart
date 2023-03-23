@@ -94,7 +94,7 @@ class Source {
 }
 
 final _template = Template(
-  _source,
+  _source.trim(),
   name: 'intro_slide.xml',
   htmlEscapeValues: false,
 );

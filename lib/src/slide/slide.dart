@@ -3,6 +3,8 @@ import 'dart:async';
 import '../context.dart';
 
 abstract class Slide {
+  String get title;
+
   FutureOr<void> save(PresentationContext context, int index) async {
     await saveRelXml(context, index);
     await saveSlideXml(context, index);

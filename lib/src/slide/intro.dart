@@ -6,7 +6,9 @@ import '../views/intro_slide.xml.dart' as slide_xml;
 import 'slide.dart';
 
 class Intro extends Slide {
+  @override
   final String title;
+
   final String subtitile;
 
   Intro({
@@ -21,7 +23,7 @@ class Intro extends Slide {
     );
     final result = rel_xml.renderString(source);
     final path = 'ppt/slides/_rels/slide$index.xml.rels';
-    context.archive.saveStringFile(path, result);
+    context.archive.addFile(path, result);
   }
 
   @override
@@ -32,6 +34,6 @@ class Intro extends Slide {
     );
     final result = slide_xml.renderString(source);
     final path = 'ppt/slides/slide$index.xml';
-    context.archive.saveStringFile(path, result);
+    context.archive.addFile(path, result);
   }
 }

@@ -22,7 +22,7 @@ class Source {
 }
 
 final _template = Template(
-  _source,
+  _source.trim(),
   name: 'textual_rel.xml',
   htmlEscapeValues: false,
 );

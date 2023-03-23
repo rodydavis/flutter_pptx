@@ -2,7 +2,4 @@
 /// See `bin/copy.dart` for more information.
 
 /// Path: ./template/ppt/media/.keep
-const template = r'''
-
-''';
-
+const String template = r'''''';

@@ -125,7 +125,7 @@ class Source {
 }
 
 final _template = Template(
-  _source,
+  _source.trim(),
   name: 'pictorial_slide.xml',
   htmlEscapeValues: false,
 );

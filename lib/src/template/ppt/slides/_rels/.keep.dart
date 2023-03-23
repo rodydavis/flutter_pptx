@@ -2,7 +2,4 @@
 /// See `bin/copy.dart` for more information.
 
 /// Path: ./template/ppt/slides/_rels/.keep
-const template = r'''
-
-''';
-
+const String template = r'''''';

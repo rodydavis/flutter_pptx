@@ -123,7 +123,7 @@ class Source {
 }
 
 final _template = Template(
-  _source,
+  _source.trim(),
   name: 'textual_slide.xml',
   htmlEscapeValues: false,
 );

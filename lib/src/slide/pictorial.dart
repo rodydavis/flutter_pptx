@@ -10,14 +10,15 @@ import '../util.dart';
 import 'slide.dart';
 
 class Pictorial extends Slide {
+  @override
   final String title;
-  final String imageName;
+
   final String imagePath;
+
   Coords? coords;
 
   Pictorial({
     required this.title,
-    required this.imageName,
     required this.imagePath,
     required this.coords,
   });
@@ -55,6 +56,10 @@ class Pictorial extends Slide {
     return path.extension(imageName).replaceAll('.', '');
   }
 
+  String get imageName {
+    return path.basename(imagePath).replaceAll('.', '');
+  }
+
   @override
   FutureOr<void> saveRelXml(PresentationContext context, int index) {
     final source = rel_xml.Source(
@@ -63,7 +68,7 @@ class Pictorial extends Slide {
     );
     final result = rel_xml.renderString(source);
     final path = 'ppt/slides/_rels/slide$index.xml.rels';
-    context.archive.saveStringFile(path, result);
+    context.archive.addFile(path, result);
   }
 
   @override
@@ -81,6 +86,6 @@ class Pictorial extends Slide {
     );
     final result = slide_xml.renderString(source);
     final path = 'ppt/slides/slide$index.xml';
-    context.archive.saveStringFile(path, result);
+    context.archive.addFile(path, result);
   }
 }

@@ -1,17 +1,8 @@
-import 'image.dart';
 import 'template/template.dart';
 
 class Util {
   static double pixleToPt(double px) {
     return px * 12700;
-  }
-
-  static renderView(
-    String templateName,
-    String path,
-    Map<String, dynamic> variables,
-  ) {
-    // TODO
   }
 
   static readTemplate(String filename) {
@@ -28,16 +19,5 @@ class Util {
       }
     }
     return true;
-  }
-
-  static copyMedia(ImageLibrary extractPath, String imagePath) {
-    // TODO
-  }
-
-  static mergeVariables(
-    Map<String, dynamic> b,
-    Map<String, dynamic> variables,
-  ) {
-    // TODO
   }
 }

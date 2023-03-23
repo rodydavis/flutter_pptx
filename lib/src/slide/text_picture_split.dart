@@ -13,7 +13,6 @@ class TextPicSplit extends Pictorial {
 
   TextPicSplit({
     required super.title,
-    required super.imageName,
     required super.imagePath,
     required super.coords,
     required this.content,
@@ -50,7 +49,7 @@ class TextPicSplit extends Pictorial {
     );
     final result = rel_xml.renderString(source);
     final path = 'ppt/slides/_rels/slide$index.xml.rels';
-    context.archive.saveStringFile(path, result);
+    context.archive.addFile(path, result);
   }
 
   @override
@@ -69,6 +68,6 @@ class TextPicSplit extends Pictorial {
     );
     final result = slide_xml.renderString(source);
     final path = 'ppt/slides/slide$index.xml';
-    context.archive.saveStringFile(path, result);
+    context.archive.addFile(path, result);
   }
 }
