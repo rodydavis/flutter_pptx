@@ -12,6 +12,7 @@ void main() {
   test('check textual_rel.xml template', () {
     final source = xml.Source(
       index: 1,
+      notesIndex: 0,
     );
 
     final result = xml.renderString(source);

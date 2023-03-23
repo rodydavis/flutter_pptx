@@ -15,6 +15,7 @@ void main() {
     final source = xml.Source(
       index: 1,
       imageName: 'IMAGE_NAME',
+      notesIndex: 0,
     );
 
     final result = xml.renderString(source);
