@@ -1,19 +1,32 @@
-import 'dart:async';
 import 'dart:convert';
-import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
+
+import 'dart:async';
+
+import 'dart:ui' as ui;
 import 'package:path/path.dart' as path;
 
-import 'compression.dart';
+import '../compression.dart';
 
 class ImageLibrary {
   final cache = <String, ui.Image>{};
 
-  Future<ui.Image> getImage(String imagePath) async {
-    final provider = getImageProvider(imagePath);
-    if (cache.containsKey(provider)) {
-      return cache[provider]!;
+  ImageProvider getImageProvider(String imagePath) {
+    if (imagePath.startsWith('data:image')) {
+      return MemoryImage(base64Decode(imagePath));
+    } else if (imagePath.startsWith('http')) {
+      return NetworkImage(imagePath);
+    } else {
+      return AssetImage(imagePath);
     }
+  }
+
+  Future<ui.Image> getImage(String imagePath) async {
+    if (cache.containsKey(imagePath)) {
+      return cache[imagePath]!;
+    }
+    final provider = getImageProvider(imagePath);
     final completer = Completer<ui.Image>();
     const config = ImageConfiguration();
     provider.resolve(config).addListener(
@@ -35,16 +48,6 @@ class ImageLibrary {
   Future<Size> getImageSize(String imagePath) async {
     final image = await getImage(imagePath);
     return Size(image.width.toDouble(), image.height.toDouble());
-  }
-
-  ImageProvider getImageProvider(String imagePath) {
-    if (imagePath.startsWith('data:image')) {
-      return MemoryImage(base64Decode(imagePath));
-    } else if (imagePath.startsWith('http')) {
-      return NetworkImage(imagePath);
-    } else {
-      return AssetImage(imagePath);
-    }
   }
 
   Future<void> copyMedia(String imagePath, Compression archive) async {

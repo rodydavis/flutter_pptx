@@ -45,7 +45,7 @@ class TextPicSplit extends Pictorial {
   FutureOr<void> saveRelXml(PresentationContext context, int index) {
     final source = rel_xml.Source(
       index: index,
-      imageName: imageName,
+      imageName: fileName,
     );
     final result = rel_xml.renderString(source);
     final path = 'ppt/slides/_rels/slide$index.xml.rels';

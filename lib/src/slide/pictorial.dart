@@ -47,24 +47,28 @@ class Pictorial extends Slide {
   @override
   FutureOr<void> save(PresentationContext context, int index) async {
     coords ??= await defaultCoords(context);
-    await context.imageLibrary.copyMedia(imageName, context.archive);
+    await context.imageLibrary.copyMedia(imagePath, context.archive);
     await super.save(context, index);
   }
 
   @override
   String? fileType() {
-    return path.extension(imageName).replaceAll('.', '');
+    return path.extension(imagePath).replaceAll('.', '');
   }
 
   String get imageName {
-    return path.basename(imagePath).replaceAll('.', '');
+    return fileName.split('.').first;
+  }
+
+  String get fileName {
+    return path.basename(imagePath);
   }
 
   @override
   FutureOr<void> saveRelXml(PresentationContext context, int index) {
     final source = rel_xml.Source(
       index: index,
-      imageName: imageName,
+      imageName: fileName,
     );
     final result = rel_xml.renderString(source);
     final path = 'ppt/slides/_rels/slide$index.xml.rels';
