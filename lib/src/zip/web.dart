@@ -7,7 +7,12 @@ List<int>? createZip(Map<String, dynamic> files) {
     final name = entry.key;
     final value = entry.value;
     if (value is List<int>) {
-      final file = ArchiveFile(name, value.length, value);
+      final file = ArchiveFile(
+        name,
+        value.length,
+        value,
+        ArchiveFile.DEFLATE,
+      );
       archive.addFile(file);
     } else if (value is String) {
       String result = value;
@@ -17,9 +22,15 @@ List<int>? createZip(Map<String, dynamic> files) {
       while (result.endsWith('\n')) {
         result = result.substring(0, result.length - 1);
       }
-      final file = ArchiveFile.string(name, result);
+      final file = ArchiveFile.string(
+        name,
+        result,
+        ArchiveFile.DEFLATE,
+      );
       archive.addFile(file);
     }
   }
-  return encoder.encode(archive);
+  return encoder.encode(
+    archive,
+  );
 }

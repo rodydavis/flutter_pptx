@@ -1,5 +1,10 @@
+import 'dart:ui';
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mustache_template/mustache_template.dart';
+
+import '../classes/layout.dart';
+import '../util.dart';
 
 part 'presentation.xml.g.dart';
 
@@ -14,7 +19,12 @@ const _source = r'''
   <p:sldId id="{{id}}" r:id="rId{{rId}}"/>
   {{/slides}}
   </p:sldIdLst>
+  {{#layout}}
+  <p:sldSz cx="{{width}}" cy="{{height}}" type="{{type}}"/>
+  {{/layout}}
+  {{^layout}}
   <p:sldSz cx="9144000" cy="6858000" type="screen4x3"/>
+  {{/layout}}
   <p:notesSz cx="6858000" cy="9144000"/>
   <p:defaultTextStyle>
     <a:defPPr>
@@ -153,14 +163,17 @@ class Slide {
 @JsonSerializable(createFactory: false)
 class Source {
   final List<Slide> slides;
+  final Layout layout;
 
   Source({
     required this.slides,
+    required this.layout,
   });
 
-  factory Source.create(int count) {
+  factory Source.create(int count, Layout layout) {
     return Source(
       slides: List.generate(count, (index) => Slide.fromIndex(index)),
+      layout: layout,
     );
   }
 

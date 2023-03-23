@@ -1,6 +1,5 @@
-import 'dart:typed_data';
-
 import 'classes/coords.dart';
+import 'classes/layout.dart';
 import 'context.dart';
 import 'slide/intro.dart';
 import 'slide/pictorial.dart';
@@ -17,7 +16,12 @@ import 'views/app.xml.dart' as app_xml;
 
 class Powerpoint {
   final context = PresentationContext.create();
+  Layout layout = Layout.screen16x9();
   List<Slide> slides = [];
+
+  void setLayout(Layout layout) {
+    this.layout = layout;
+  }
 
   void addSlide(Slide slide) {
     slides.add(slide);
@@ -132,6 +136,7 @@ class Powerpoint {
       presentation_xml.renderString(
         presentation_xml.Source.create(
           slides.length,
+          layout,
         ),
       ),
     );

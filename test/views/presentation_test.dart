@@ -1,3 +1,4 @@
+import 'package:flutter_pptx/src/classes/layout.dart';
 import 'package:flutter_pptx/src/views/presentation.xml.dart' as xml;
 import 'package:flutter_test/flutter_test.dart';
 
@@ -134,6 +135,7 @@ void main() {
         xml.Slide.fromIndex(1),
         xml.Slide.fromIndex(2),
       ],
+      layout: Layout.screen4x3(),
     );
 
     final result = xml.renderString(source);

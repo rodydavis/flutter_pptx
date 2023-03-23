@@ -13,4 +13,5 @@ Map<String, dynamic> _$SlideToJson(Slide instance) => <String, dynamic>{
 
 Map<String, dynamic> _$SourceToJson(Source instance) => <String, dynamic>{
       'slides': instance.slides.map((e) => e.toJson()).toList(),
+      'layout': instance.layout.toJson(),
     };
