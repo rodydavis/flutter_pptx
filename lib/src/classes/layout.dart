@@ -6,18 +6,11 @@ import '../util.dart';
 
 part 'layout.g.dart';
 
-enum LayoutType {
-  screen4x3,
-  screen16x9,
-  screen16x10,
-  custom,
-}
-
 @JsonSerializable(createFactory: false)
 class Layout {
-  final int width;
-  final int height;
-  final LayoutType type;
+  int width;
+  int height;
+  String type;
 
   Layout({
     required this.width,
@@ -29,7 +22,7 @@ class Layout {
     return Layout(
       width: 9144000,
       height: 6858000,
-      type: LayoutType.screen4x3,
+      type: 'screen4x3',
     );
   }
 
@@ -37,7 +30,7 @@ class Layout {
     return Layout(
       width: 9144000,
       height: 5143500,
-      type: LayoutType.screen16x9,
+      type: 'screen16x9',
     );
   }
 
@@ -45,7 +38,7 @@ class Layout {
     return Layout(
       width: 9144000,
       height: 5715000,
-      type: LayoutType.screen16x10,
+      type: 'screen16x10',
     );
   }
 
@@ -53,28 +46,15 @@ class Layout {
     return Layout(
       width: 12192000,
       height: 6858000,
-      type: LayoutType.custom,
+      type: 'custom',
     );
   }
 
-  factory Layout.fromType(LayoutType type) {
-    switch (type) {
-      case LayoutType.screen4x3:
-        return Layout.screen4x3();
-      case LayoutType.screen16x9:
-        return Layout.screen16x9();
-      case LayoutType.screen16x10:
-        return Layout.screen16x10();
-      case LayoutType.custom:
-        return Layout.layoutWide();
-    }
-  }
-
-  factory Layout.fromSize(Size size) {
+  factory Layout.custom(Size size) {
     return Layout(
       width: Util.pixleToPt(size.width).round(),
       height: Util.pixleToPt(size.height).round(),
-      type: LayoutType.custom,
+      type: 'custom',
     );
   }
 

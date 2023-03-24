@@ -1,9 +1,9 @@
 /// This file is generated, do not edit!
 /// See `bin/copy.dart` for more information.
 
-import '[Content_Types].xml.dart' as _content_types;
 import 'docProps/app.xml.mustache.dart' as doc_props_app;
 import 'docProps/core.xml.mustache.dart' as doc_props_core;
+import '[Content_Types].xml.mustache.dart' as _content_types;
 import '_rels/.rels.dart' as rels;
 import 'ppt/viewProps.xml.dart' as ppt_view_props;
 import 'ppt/slideLayouts/slideLayout9.xml.dart' as ppt_slide_layouts_slide_layout9;
@@ -60,7 +60,6 @@ import 'ppt/notesSlides/notesSlide4.xml.dart' as ppt_notes_slides_notes_slide4;
 import 'ppt/notesSlides/notesSlide1.xml.dart' as ppt_notes_slides_notes_slide1;
 import 'ppt/notesSlides/notesSlide3.xml.dart' as ppt_notes_slides_notes_slide3;
 import 'ppt/notesSlides/notesSlide2.xml.dart' as ppt_notes_slides_notes_slide2;
-import 'ppt/presentation.xml.dart' as ppt_presentation;
 import 'ppt/slideMasters/slideMaster1.xml.dart' as ppt_slide_masters_slide_master1;
 import 'ppt/slideMasters/_rels/slideMaster1.xml.rels.dart' as ppt_slide_masters_rels_slide_master1;
 import 'ppt/slides/slide3.xml.dart' as ppt_slides_slide3;
@@ -99,6 +98,7 @@ import 'ppt/theme/theme1.xml.dart' as ppt_theme_theme1;
 import 'ppt/theme/theme2.xml.dart' as ppt_theme_theme2;
 import 'ppt/commentAuthors.xml.dart' as ppt_comment_authors;
 import 'ppt/_rels/presentation.xml.rels.dart' as ppt_rels_presentation;
+import 'ppt/presentation.xml.mustache.dart' as ppt_presentation;
 import 'ppt/presProps.xml.dart' as ppt_pres_props;
 import 'ppt/notesMasters/notesMaster1.xml.dart' as ppt_notes_masters_notes_master1;
 import 'ppt/notesMasters/_rels/notesMaster1.xml.rels.dart' as ppt_notes_masters_rels_notes_master1;
@@ -106,9 +106,9 @@ import 'ppt/tableStyles.xml.dart' as ppt_table_styles;
 import 'ppt/media/image1.png.dart' as ppt_media_image1;
 
 final templates = {
-  '[Content_Types].xml': _content_types.template,
   'docProps/app.xml.mustache': doc_props_app.template,
   'docProps/core.xml.mustache': doc_props_core.template,
+  '[Content_Types].xml.mustache': _content_types.template,
   '_rels/.rels': rels.template,
   'ppt/viewProps.xml': ppt_view_props.template,
   'ppt/slideLayouts/slideLayout9.xml': ppt_slide_layouts_slide_layout9.template,
@@ -165,7 +165,6 @@ final templates = {
   'ppt/notesSlides/notesSlide1.xml': ppt_notes_slides_notes_slide1.template,
   'ppt/notesSlides/notesSlide3.xml': ppt_notes_slides_notes_slide3.template,
   'ppt/notesSlides/notesSlide2.xml': ppt_notes_slides_notes_slide2.template,
-  'ppt/presentation.xml': ppt_presentation.template,
   'ppt/slideMasters/slideMaster1.xml': ppt_slide_masters_slide_master1.template,
   'ppt/slideMasters/_rels/slideMaster1.xml.rels': ppt_slide_masters_rels_slide_master1.template,
   'ppt/slides/slide3.xml': ppt_slides_slide3.template,
@@ -204,6 +203,7 @@ final templates = {
   'ppt/theme/theme2.xml': ppt_theme_theme2.template,
   'ppt/commentAuthors.xml': ppt_comment_authors.template,
   'ppt/_rels/presentation.xml.rels': ppt_rels_presentation.template,
+  'ppt/presentation.xml.mustache': ppt_presentation.template,
   'ppt/presProps.xml': ppt_pres_props.template,
   'ppt/notesMasters/notesMaster1.xml': ppt_notes_masters_notes_master1.template,
   'ppt/notesMasters/_rels/notesMaster1.xml.rels': ppt_notes_masters_rels_notes_master1.template,

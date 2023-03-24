@@ -1,25 +1,23 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mustache_template/mustache_template.dart';
 
-import '../template/docProps/app.xml.mustache.dart';
+import '../template/[Content_Types].xml.mustache.dart';
+import 'notes.dart';
 import 'slide.dart';
 
-part 'app.g.dart';
+part 'content_type.g.dart';
 
 @JsonSerializable(createFactory: false)
-class App {
-  String? company;
-  int length;
-  int size;
+class ContentType {
   List<Slide> slides;
+  List<Notes> notes;
 
-  App({
-    this.company,
+  ContentType({
+    this.notes = const [],
     this.slides = const [],
-  })  : length = slides.length,
-        size = slides.length + 5;
+  });
 
-  Map<String, dynamic> toJson() => _$AppToJson(this);
+  Map<String, dynamic> toJson() => _$ContentTypeToJson(this);
 
   @override
   String toString() {

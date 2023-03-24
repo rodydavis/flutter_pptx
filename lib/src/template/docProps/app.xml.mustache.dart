@@ -42,9 +42,9 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8" standalone="yes
             <vt:lpstr>Arial</vt:lpstr>
             <vt:lpstr>Calibri</vt:lpstr>
             <vt:lpstr>Office Theme</vt:lpstr>
-            {{#slideTitles}}
-            <vt:lpstr>{{.}}</vt:lpstr>
-            {{/slideTitles}}
+            {{#slides}}
+            <vt:lpstr>{{title}}</vt:lpstr>
+            {{/slides}}
         </vt:vector>
     </TitlesOfParts>
     {{#company}}

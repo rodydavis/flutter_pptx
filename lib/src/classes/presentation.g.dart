@@ -1,14 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app.dart';
+part of 'presentation.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Map<String, dynamic> _$AppToJson(App instance) => <String, dynamic>{
-      'company': instance.company,
-      'length': instance.length,
-      'size': instance.size,
+Map<String, dynamic> _$PresentationToJson(Presentation instance) =>
+    <String, dynamic>{
+      'layout': instance.layout.toJson(),
       'slides': instance.slides.map((e) => e.toJson()).toList(),
     };

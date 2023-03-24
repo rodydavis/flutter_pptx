@@ -8,11 +8,11 @@ part 'core.g.dart';
 
 @JsonSerializable(createFactory: false)
 class Core {
-  final String? title;
-  final String? subject;
-  final String? author;
-  final String? revision;
-  final String? date;
+  String? title;
+  String? subject;
+  String? author;
+  String? revision;
+  String? date;
 
   Core({
     this.title,

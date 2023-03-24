@@ -1,9 +1,11 @@
 import 'dart:convert';
 
 import 'classes/app.dart';
+import 'classes/content_type.dart';
 import 'classes/coords.dart';
 import 'classes/core.dart';
 import 'classes/layout.dart';
+import 'classes/presentation.dart';
 import 'context.dart';
 import 'slide/intro.dart';
 import 'slide/notes.dart';
@@ -18,6 +20,8 @@ import 'views/content_type.xml.dart' as content_type_xml;
 import 'views/presentation.xml.rel.dart' as presentation_xml_rel;
 import 'views/presentation.xml.dart' as presentation_xml;
 import 'views/app.xml.dart' as app_xml;
+import 'classes/slide.dart' as s;
+import 'classes/notes.dart' as n;
 
 class Powerpoint {
   final context = PresentationContext.create();
@@ -129,9 +133,117 @@ class Powerpoint {
     context.archive.removeWhere((path, _) => path.endsWith('.keep'));
     context.archive.removeWhere((path, _) => path.endsWith('.mustache'));
 
+    final slides = <s.Slide>[
+      s.Slide(title: 'Slide 1')
+        ..index = 0
+        ..isLast = false
+        ..id = 256
+        ..rId = 8,
+      s.Slide(title: 'Slide 2')
+        ..index = 1
+        ..isLast = false
+        ..id = 257
+        ..rId = 9,
+      s.Slide(title: 'Slide 3')
+        ..index = 2
+        ..isLast = false
+        ..id = 258
+        ..rId = 10,
+      s.Slide(title: 'Slide 4')
+        ..index = 3
+        ..isLast = false
+        ..id = 259
+        ..rId = 11,
+      s.Slide(title: 'Slide 5')
+        ..index = 4
+        ..isLast = false
+        ..id = 260
+        ..rId = 12,
+      s.Slide(title: 'Slide 6')
+        ..index = 5
+        ..isLast = false
+        ..id = 261
+        ..rId = 13,
+      s.Slide(title: 'Slide 7')
+        ..index = 6
+        ..isLast = false
+        ..id = 262
+        ..rId = 14,
+      s.Slide(title: 'Slide 8')
+        ..index = 7
+        ..isLast = false
+        ..id = 263
+        ..rId = 15,
+      s.Slide(title: 'Slide 9')
+        ..index = 8
+        ..isLast = false
+        ..id = 264
+        ..rId = 16,
+      s.Slide(title: 'Slide 10')
+        ..index = 9
+        ..isLast = false
+        ..id = 265
+        ..rId = 17,
+      s.Slide(title: 'Slide 11')
+        ..index = 10
+        ..isLast = false
+        ..id = 266
+        ..rId = 18,
+      s.Slide(title: 'Slide 12')
+        ..index = 11
+        ..isLast = false
+        ..id = 267
+        ..rId = 19,
+      s.Slide(title: 'Slide 13')
+        ..index = 12
+        ..isLast = false
+        ..id = 268
+        ..rId = 20,
+      s.Slide(title: 'Slide 14')
+        ..index = 13
+        ..isLast = false
+        ..id = 269
+        ..rId = 21,
+      s.Slide(title: 'Slide 15')
+        ..index = 14
+        ..isLast = false
+        ..id = 270
+        ..rId = 22,
+      s.Slide(title: 'Slide 16')
+        ..index = 15
+        ..isLast = true
+        ..id = 271
+        ..rId = 23,
+    ];
+
+    final notes = <n.Notes>[];
+
+    for (var i = 0; i <= 12; i++) {
+      final note = n.Notes(notes: 'SPEAKER NOTES');
+      note.index = i;
+      note.isLast = i == 12;
+      note.id = 256 + i;
+      note.rId = 8 + i;
+      notes.add(note);
+    }
+
     final files = <String, Object>{
-      'docProps/app.xml': App(),
+      'docProps/app.xml': App(
+        slides: slides,
+      ),
       'docProps/core.xml': Core(),
+      'ppt/presentation.xml': Presentation(
+        layout: Layout(
+          type: 'custom',
+          width: 24384000,
+          height: 13716000,
+        ),
+        slides: slides,
+      ),
+      '[Content_Types].xml': ContentType(
+        notes: notes,
+        slides: slides,
+      ),
     };
 
     for (final entry in files.entries) {

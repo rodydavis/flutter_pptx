@@ -11,24 +11,13 @@
         <p:notesMasterId r:id="rId7"/>
     </p:notesMasterIdLst>
     <p:sldIdLst>
-        <p:sldId id="256" r:id="rId8"/>
-        <p:sldId id="257" r:id="rId9"/>
-        <p:sldId id="258" r:id="rId10"/>
-        <p:sldId id="259" r:id="rId11"/>
-        <p:sldId id="260" r:id="rId12"/>
-        <p:sldId id="261" r:id="rId13"/>
-        <p:sldId id="262" r:id="rId14"/>
-        <p:sldId id="263" r:id="rId15"/>
-        <p:sldId id="264" r:id="rId16"/>
-        <p:sldId id="265" r:id="rId17"/>
-        <p:sldId id="266" r:id="rId18"/>
-        <p:sldId id="267" r:id="rId19"/>
-        <p:sldId id="268" r:id="rId20"/>
-        <p:sldId id="269" r:id="rId21"/>
-        <p:sldId id="270" r:id="rId22"/>
-        <p:sldId id="271" r:id="rId23"/>
+    {{#slides}}
+        <p:sldId id="{{id}}" r:id="rId{{rId}}"/>
+    {{/slides}}
     </p:sldIdLst>
-    <p:sldSz cx="24384000" cy="13716000"/>
+    {{#layout}}
+    <p:sldSz cx="{{width}}" cy="{{height}}" type="{{type}}"/>
+    {{/layout}}         
     <p:notesSz cx="6858000" cy="9144000"/>
     <p:defaultTextStyle>
         <a:defPPr marL="0" marR="0" indent="0" algn="l" defTabSz="914400" rtl="0" fontAlgn="auto" latinLnBrk="1" hangingPunct="0">

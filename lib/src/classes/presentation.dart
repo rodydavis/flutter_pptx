@@ -1,25 +1,23 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mustache_template/mustache_template.dart';
 
-import '../template/docProps/app.xml.mustache.dart';
+import '../template/ppt/presentation.xml.mustache.dart';
+import 'layout.dart';
 import 'slide.dart';
 
-part 'app.g.dart';
+part 'presentation.g.dart';
 
 @JsonSerializable(createFactory: false)
-class App {
-  String? company;
-  int length;
-  int size;
+class Presentation {
+  Layout layout;
   List<Slide> slides;
 
-  App({
-    this.company,
-    this.slides = const [],
-  })  : length = slides.length,
-        size = slides.length + 5;
+  Presentation({
+    required this.layout,
+    required this.slides,
+  });
 
-  Map<String, dynamic> toJson() => _$AppToJson(this);
+  Map<String, dynamic> toJson() => _$PresentationToJson(this);
 
   @override
   String toString() {
