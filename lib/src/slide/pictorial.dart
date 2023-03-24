@@ -45,7 +45,8 @@ class Pictorial extends Slide {
   }
 
   @override
-  FutureOr<void> save(PresentationContext context, int index, int notesIndex) async {
+  FutureOr<void> save(
+      PresentationContext context, int index, int notesIndex) async {
     coords ??= await defaultCoords(context);
     await context.imageLibrary.copyMedia(imagePath, context.archive);
     await super.save(context, index, notesIndex);
@@ -65,7 +66,8 @@ class Pictorial extends Slide {
   }
 
   @override
-  FutureOr<void> saveRelXml(PresentationContext context, int index, int notesIndex) {
+  FutureOr<void> saveRelXml(
+      PresentationContext context, int index, int notesIndex) {
     final source = rel_xml.Source(
       index: index,
       notesIndex: notesIndex,

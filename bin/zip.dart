@@ -4,11 +4,13 @@ import 'package:archive/archive_io.dart';
 
 void main() {
   final decoder = ZipDecoder();
-  final file = File('./samples/pptx/sample_notes.pptx');
+  // final file = File('./samples/pptx/sample_notes.pptx');
+  const name = 'classic_white_all';
+  final file = File('/Users/rodydavis/Desktop/templates/$name.pptx');
   final bytes = file.readAsBytesSync();
   final archive = decoder.decodeBytes(bytes);
   final files = archive.files.toList();
-  final outputDir = Directory('./build/temp');
+  final outputDir = Directory('./build/$name');
   for (final entry in files) {
     print(entry.name);
     if (entry.isFile) {

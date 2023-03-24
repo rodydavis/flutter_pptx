@@ -2,7 +2,8 @@
 /// See `bin/copy.dart` for more information.
 
 /// Path: ./template/ppt/presProps.xml
-const String template = r'''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+const String template =
+    r'''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <p:presentationPr xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
   <p:extLst>
     <p:ext uri="{E76CE94A-603C-4142-B9EB-6D1370010A27}">

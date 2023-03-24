@@ -42,7 +42,8 @@ class TextPicSplit extends Pictorial {
   }
 
   @override
-  FutureOr<void> saveRelXml(PresentationContext context, int index, int notesIndex) {
+  FutureOr<void> saveRelXml(
+      PresentationContext context, int index, int notesIndex) {
     final source = rel_xml.Source(
       index: index,
       notesIndex: notesIndex,

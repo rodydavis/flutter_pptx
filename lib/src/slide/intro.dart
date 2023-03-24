@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter_pptx/src/classes/slide_template.dart';
+
 import '../context.dart';
 import '../views/textual/rel.xml.dart' as rel_xml;
 import '../views/intro_slide.xml.dart' as slide_xml;
@@ -17,8 +19,14 @@ class Intro extends Slide {
   });
 
   @override
+  SlideTemplate get template => SlideTemplate.titleSlide();
+
+  @override
   FutureOr<void> saveRelXml(
-      PresentationContext context, int index, int notesIndex) {
+    PresentationContext context,
+    int index,
+    int notesIndex,
+  ) {
     final source = rel_xml.Source(
       index: index,
       notesIndex: notesIndex,
@@ -29,7 +37,10 @@ class Intro extends Slide {
   }
 
   @override
-  FutureOr<void> saveSlideXml(PresentationContext context, int index) {
+  FutureOr<void> saveSlideXml(
+    PresentationContext context,
+    int index,
+  ) {
     final source = slide_xml.Source(
       title: title,
       subtitile: subtitile,
