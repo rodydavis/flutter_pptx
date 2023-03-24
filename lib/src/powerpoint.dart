@@ -133,88 +133,19 @@ class Powerpoint {
     context.archive.removeWhere((path, _) => path.endsWith('.keep'));
     context.archive.removeWhere((path, _) => path.endsWith('.mustache'));
 
-    final slides = <s.Slide>[
-      s.Slide(title: 'Slide 1')
-        ..index = 0
-        ..isLast = false
-        ..id = 256
-        ..rId = 8,
-      s.Slide(title: 'Slide 2')
-        ..index = 1
-        ..isLast = false
-        ..id = 257
-        ..rId = 9,
-      s.Slide(title: 'Slide 3')
-        ..index = 2
-        ..isLast = false
-        ..id = 258
-        ..rId = 10,
-      s.Slide(title: 'Slide 4')
-        ..index = 3
-        ..isLast = false
-        ..id = 259
-        ..rId = 11,
-      s.Slide(title: 'Slide 5')
-        ..index = 4
-        ..isLast = false
-        ..id = 260
-        ..rId = 12,
-      s.Slide(title: 'Slide 6')
-        ..index = 5
-        ..isLast = false
-        ..id = 261
-        ..rId = 13,
-      s.Slide(title: 'Slide 7')
-        ..index = 6
-        ..isLast = false
-        ..id = 262
-        ..rId = 14,
-      s.Slide(title: 'Slide 8')
-        ..index = 7
-        ..isLast = false
-        ..id = 263
-        ..rId = 15,
-      s.Slide(title: 'Slide 9')
-        ..index = 8
-        ..isLast = false
-        ..id = 264
-        ..rId = 16,
-      s.Slide(title: 'Slide 10')
-        ..index = 9
-        ..isLast = false
-        ..id = 265
-        ..rId = 17,
-      s.Slide(title: 'Slide 11')
-        ..index = 10
-        ..isLast = false
-        ..id = 266
-        ..rId = 18,
-      s.Slide(title: 'Slide 12')
-        ..index = 11
-        ..isLast = false
-        ..id = 267
-        ..rId = 19,
-      s.Slide(title: 'Slide 13')
-        ..index = 12
-        ..isLast = false
-        ..id = 268
-        ..rId = 20,
-      s.Slide(title: 'Slide 14')
-        ..index = 13
-        ..isLast = false
-        ..id = 269
-        ..rId = 21,
-      s.Slide(title: 'Slide 15')
-        ..index = 14
-        ..isLast = false
-        ..id = 270
-        ..rId = 22,
-      s.Slide(title: 'Slide 16')
-        ..index = 15
-        ..isLast = true
-        ..id = 271
-        ..rId = 23,
-    ];
+    int rId = 7;
+    int id = 255;
+
+    final slides = <s.Slide>[];
+
+    for (var i = 0; i < 16; i++) {
+      final slide = s.Slide(title: 'Slide $i');
+      slide.index = i;
+      slide.isLast = i == 15;
+      slide.id = ++id;
+      slide.rId = ++rId;
+      slides.add(slide);
+    }
 
     final notes = <n.Notes>[];
 
@@ -222,8 +153,8 @@ class Powerpoint {
       final note = n.Notes(notes: 'SPEAKER NOTES');
       note.index = i;
       note.isLast = i == 12;
-      note.id = 256 + i;
-      note.rId = 8 + i;
+      note.id = ++id;
+      note.rId = ++rId;
       notes.add(note);
     }
 
