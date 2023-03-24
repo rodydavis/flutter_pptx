@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:recase/recase.dart';
@@ -8,13 +9,15 @@ final outputDir = Directory('./lib/src/template');
 void main() {
   if (!outputDir.existsSync()) {
     outputDir.createSync(recursive: true);
+  } else {
+    outputDir.deleteSync(recursive: true);
+    outputDir.createSync(recursive: true);
   }
 
   final files = inputDir.listSync(recursive: true);
   for (final file in files) {
     if (file is File) {
       // outputFile.writeAsStringSync(file.readAsStringSync());
-      final content = file.readAsStringSync();
       final sb = StringBuffer();
       sb.writeln('/// This file is generated, do not edit!');
       sb.writeln('/// See `bin/copy.dart` for more information.');
@@ -28,7 +31,15 @@ void main() {
       // }
       // sb.writeln('];');
       sb.write('const String template = r\'\'\'');
-      sb.write(content.trim());
+      if (file.path.endsWith('.png')) {
+        // Base 64 string
+        final bytes = file.readAsBytesSync();
+        final base64 = base64Encode(bytes);
+        sb.write(base64);
+      } else {
+        final content = file.readAsStringSync();
+        sb.write(content.trim());
+      }
       sb.writeln('\'\'\';');
       sb.writeln();
 
@@ -50,7 +61,10 @@ void main() {
       String relativePath = file.path.substring(inputDir.path.length);
       relativePath = '$relativePath.dart';
       final filename = relativePath.split('.').first;
-      final name = filename.snakeCase;
+      String name = filename.snakeCase;
+      // Remove brackets
+      name = name.replaceAll('[', '');
+      name = name.replaceAll(']', '');
       sb.writeln('import \'${relativePath.substring(1)}\' as $name;');
     }
   }
@@ -61,8 +75,11 @@ void main() {
       String relativePath = file.path.substring(inputDir.path.length);
       relativePath = '$relativePath.dart';
       String filename = relativePath.split('.').first;
-      final name = filename.snakeCase;
       final orgFilename = relativePath.substring(1).replaceAll('.dart', '');
+      String name = filename.snakeCase;
+      // Remove brackets
+      name = name.replaceAll('[', '');
+      name = name.replaceAll(']', '');
       sb.writeln('  \'$orgFilename\': $name.template,');
     }
   }

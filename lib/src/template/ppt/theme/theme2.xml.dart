@@ -4,9 +4,9 @@
 /// Path: ./template/ppt/theme/theme2.xml
 const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
 <a:theme xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
-    xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" name="Office Theme">
+    xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" name="23_ClassicWhite">
     <a:themeElements>
-        <a:clrScheme name="Office Theme">
+        <a:clrScheme name="23_ClassicWhite">
             <a:dk1>
                 <a:srgbClr val="000000"/>
             </a:dk1>
@@ -20,22 +20,22 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                 <a:srgbClr val="535353"/>
             </a:lt2>
             <a:accent1>
-                <a:srgbClr val="4F81BD"/>
+                <a:srgbClr val="3E74D1"/>
             </a:accent1>
             <a:accent2>
-                <a:srgbClr val="C0504D"/>
+                <a:srgbClr val="33C5B9"/>
             </a:accent2>
             <a:accent3>
-                <a:srgbClr val="9BBB59"/>
+                <a:srgbClr val="45B53C"/>
             </a:accent3>
             <a:accent4>
-                <a:srgbClr val="8064A2"/>
+                <a:srgbClr val="FFBD16"/>
             </a:accent4>
             <a:accent5>
-                <a:srgbClr val="4BACC6"/>
+                <a:srgbClr val="E22146"/>
             </a:accent5>
             <a:accent6>
-                <a:srgbClr val="F79646"/>
+                <a:srgbClr val="836BB7"/>
             </a:accent6>
             <a:hlink>
                 <a:srgbClr val="0000FF"/>
@@ -44,19 +44,19 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                 <a:srgbClr val="FF00FF"/>
             </a:folHlink>
         </a:clrScheme>
-        <a:fontScheme name="Office Theme">
+        <a:fontScheme name="23_ClassicWhite">
             <a:majorFont>
+                <a:latin typeface="Helvetica Neue"/>
+                <a:ea typeface="Helvetica Neue"/>
+                <a:cs typeface="Helvetica Neue"/>
+            </a:majorFont>
+            <a:minorFont>
                 <a:latin typeface="Helvetica"/>
                 <a:ea typeface="Helvetica"/>
                 <a:cs typeface="Helvetica"/>
-            </a:majorFont>
-            <a:minorFont>
-                <a:latin typeface="Calibri"/>
-                <a:ea typeface="Calibri"/>
-                <a:cs typeface="Calibri"/>
             </a:minorFont>
         </a:fontScheme>
-        <a:fmtScheme name="Office Theme">
+        <a:fmtScheme name="23_ClassicWhite">
             <a:fillStyleLst>
                 <a:solidFill>
                     <a:schemeClr val="phClr"/>
@@ -129,31 +129,13 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </a:lnStyleLst>
             <a:effectStyleLst>
                 <a:effectStyle>
-                    <a:effectLst>
-                        <a:outerShdw sx="100000" sy="100000" kx="0" ky="0" algn="b" rotWithShape="0" blurRad="38100" dist="23000" dir="5400000">
-                            <a:srgbClr val="000000">
-                                <a:alpha val="35000"/>
-                            </a:srgbClr>
-                        </a:outerShdw>
-                    </a:effectLst>
+                    <a:effectLst/>
                 </a:effectStyle>
                 <a:effectStyle>
-                    <a:effectLst>
-                        <a:outerShdw sx="100000" sy="100000" kx="0" ky="0" algn="b" rotWithShape="0" blurRad="38100" dist="23000" dir="5400000">
-                            <a:srgbClr val="000000">
-                                <a:alpha val="35000"/>
-                            </a:srgbClr>
-                        </a:outerShdw>
-                    </a:effectLst>
+                    <a:effectLst/>
                 </a:effectStyle>
                 <a:effectStyle>
-                    <a:effectLst>
-                        <a:outerShdw sx="100000" sy="100000" kx="0" ky="0" algn="b" rotWithShape="0" blurRad="38100" dist="20000" dir="5400000">
-                            <a:srgbClr val="000000">
-                                <a:alpha val="38000"/>
-                            </a:srgbClr>
-                        </a:outerShdw>
-                    </a:effectLst>
+                    <a:effectLst/>
                 </a:effectStyle>
             </a:effectStyleLst>
             <a:bgFillStyleLst>
@@ -221,22 +203,16 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                     <a:prstDash val="solid"/>
                     <a:round/>
                 </a:ln>
-                <a:effectLst>
-                    <a:outerShdw sx="100000" sy="100000" kx="0" ky="0" algn="b" rotWithShape="0" blurRad="38100" dist="23000" dir="5400000">
-                        <a:srgbClr val="000000">
-                            <a:alpha val="35000"/>
-                        </a:srgbClr>
-                    </a:outerShdw>
-                </a:effectLst>
+                <a:effectLst/>
                 <a:sp3d/>
             </a:spPr>
-            <a:bodyPr rot="0" spcFirstLastPara="1" vertOverflow="overflow" horzOverflow="overflow" vert="horz" wrap="square" lIns="45719" tIns="45719" rIns="45719" bIns="45719" numCol="1" spcCol="38100" rtlCol="0" anchor="ctr" upright="0">
+            <a:bodyPr rot="0" spcFirstLastPara="1" vertOverflow="overflow" horzOverflow="overflow" vert="horz" wrap="square" lIns="50800" tIns="50800" rIns="50800" bIns="50800" numCol="1" spcCol="38100" rtlCol="0" anchor="ctr" upright="0">
                 <a:spAutoFit/>
             </a:bodyPr>
             <a:lstStyle>
-                <a:defPPr marL="0" marR="0" indent="0" algn="l" defTabSz="914400" rtl="0" fontAlgn="auto" latinLnBrk="0" hangingPunct="0">
+                <a:defPPr marL="0" marR="0" indent="0" algn="ctr" defTabSz="2438400" rtl="0" fontAlgn="auto" latinLnBrk="0" hangingPunct="0">
                     <a:lnSpc>
-                        <a:spcPct val="100000"/>
+                        <a:spcPct val="90000"/>
                     </a:lnSpc>
                     <a:spcBef>
                         <a:spcPts val="0"/>
@@ -249,7 +225,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                     <a:buFontTx/>
                     <a:buNone/>
                     <a:tabLst/>
-                    <a:defRPr b="0" baseline="0" cap="none" i="0" spc="0" strike="noStrike" sz="1800" u="none" kumimoji="0" normalizeH="0">
+                    <a:defRPr b="0" baseline="0" cap="none" i="0" spc="0" strike="noStrike" sz="2400" u="none" kumimoji="0" normalizeH="0">
                         <a:ln>
                             <a:noFill/>
                         </a:ln>
@@ -258,10 +234,10 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                         </a:solidFill>
                         <a:effectLst/>
                         <a:uFillTx/>
-                        <a:latin typeface="+mn-lt"/>
-                        <a:ea typeface="+mn-ea"/>
-                        <a:cs typeface="+mn-cs"/>
-                        <a:sym typeface="Calibri"/>
+                        <a:latin typeface="Canela Bold"/>
+                        <a:ea typeface="Canela Bold"/>
+                        <a:cs typeface="Canela Bold"/>
+                        <a:sym typeface="Canela Bold"/>
                     </a:defRPr>
                 </a:defPPr>
                 <a:lvl1pPr marL="0" marR="0" indent="0" algn="l" defTabSz="914400" rtl="0" fontAlgn="auto" latinLnBrk="1" hangingPunct="0">
@@ -516,13 +492,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                     <a:prstDash val="solid"/>
                     <a:round/>
                 </a:ln>
-                <a:effectLst>
-                    <a:outerShdw sx="100000" sy="100000" kx="0" ky="0" algn="b" rotWithShape="0" blurRad="38100" dist="20000" dir="5400000">
-                        <a:srgbClr val="000000">
-                            <a:alpha val="38000"/>
-                        </a:srgbClr>
-                    </a:outerShdw>
-                </a:effectLst>
+                <a:effectLst/>
                 <a:sp3d/>
             </a:spPr>
             <a:bodyPr rot="0" spcFirstLastPara="1" vertOverflow="overflow" horzOverflow="overflow" vert="horz" wrap="square" lIns="91439" tIns="45719" rIns="91439" bIns="45719" numCol="1" spcCol="38100" rtlCol="0" anchor="t" upright="0">
@@ -807,13 +777,13 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                 <a:effectLst/>
                 <a:sp3d/>
             </a:spPr>
-            <a:bodyPr rot="0" spcFirstLastPara="1" vertOverflow="overflow" horzOverflow="overflow" vert="horz" wrap="square" lIns="45719" tIns="45719" rIns="45719" bIns="45719" numCol="1" spcCol="38100" rtlCol="0" anchor="t" upright="0">
+            <a:bodyPr rot="0" spcFirstLastPara="1" vertOverflow="overflow" horzOverflow="overflow" vert="horz" wrap="square" lIns="50800" tIns="50800" rIns="50800" bIns="50800" numCol="1" spcCol="38100" rtlCol="0" anchor="ctr" upright="0">
                 <a:spAutoFit/>
             </a:bodyPr>
             <a:lstStyle>
-                <a:defPPr marL="0" marR="0" indent="0" algn="l" defTabSz="914400" rtl="0" fontAlgn="auto" latinLnBrk="0" hangingPunct="0">
+                <a:defPPr marL="0" marR="0" indent="0" algn="ctr" defTabSz="2438400" rtl="0" fontAlgn="auto" latinLnBrk="0" hangingPunct="0">
                     <a:lnSpc>
-                        <a:spcPct val="100000"/>
+                        <a:spcPct val="90000"/>
                     </a:lnSpc>
                     <a:spcBef>
                         <a:spcPts val="0"/>
@@ -826,7 +796,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                     <a:buFontTx/>
                     <a:buNone/>
                     <a:tabLst/>
-                    <a:defRPr b="0" baseline="0" cap="none" i="0" spc="0" strike="noStrike" sz="1800" u="none" kumimoji="0" normalizeH="0">
+                    <a:defRPr b="0" baseline="0" cap="none" i="0" spc="0" strike="noStrike" sz="2400" u="none" kumimoji="0" normalizeH="0">
                         <a:ln>
                             <a:noFill/>
                         </a:ln>
@@ -835,10 +805,10 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                         </a:solidFill>
                         <a:effectLst/>
                         <a:uFillTx/>
-                        <a:latin typeface="+mn-lt"/>
-                        <a:ea typeface="+mn-ea"/>
-                        <a:cs typeface="+mn-cs"/>
-                        <a:sym typeface="Calibri"/>
+                        <a:latin typeface="Canela Bold"/>
+                        <a:ea typeface="Canela Bold"/>
+                        <a:cs typeface="Canela Bold"/>
+                        <a:sym typeface="Canela Bold"/>
                     </a:defRPr>
                 </a:defPPr>
                 <a:lvl1pPr marL="0" marR="0" indent="0" algn="l" defTabSz="914400" rtl="0" fontAlgn="auto" latinLnBrk="1" hangingPunct="0">

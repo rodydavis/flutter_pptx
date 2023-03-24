@@ -2,12 +2,13 @@
 /// See `bin/copy.dart` for more information.
 
 /// Path: ./template/ppt/slideLayouts/slideLayout7.xml
-const String template =
-    r'''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
 <p:sldLayout xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
     xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
-    xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" type="blank" preserve="1">
-    <p:cSld name="Blank">
+    xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main"
+    xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"
+    xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main" type="tx" showMasterSp="1" showMasterPhAnim="1">
+    <p:cSld name="Section">
         <p:spTree>
             <p:nvGrpSpPr>
                 <p:cNvPr id="1" name=""/>
@@ -24,68 +25,59 @@ const String template =
             </p:grpSpPr>
             <p:sp>
                 <p:nvSpPr>
-                    <p:cNvPr id="2" name="Date Placeholder 1"/>
-                    <p:cNvSpPr>
-                        <a:spLocks noGrp="1"/>
-                    </p:cNvSpPr>
+                    <p:cNvPr id="71" name="Section Title"/>
+                    <p:cNvSpPr txBox="1"/>
                     <p:nvPr>
-                        <p:ph type="dt" sz="half" idx="10"/>
+                        <p:ph type="title" hasCustomPrompt="1"/>
                     </p:nvPr>
                 </p:nvSpPr>
-                <p:spPr/>
+                <p:spPr>
+                    <a:xfrm>
+                        <a:off x="1219200" y="3242269"/>
+                        <a:ext cx="21945600" cy="6604002"/>
+                    </a:xfrm>
+                    <a:prstGeom prst="rect">
+                        <a:avLst/>
+                    </a:prstGeom>
+                </p:spPr>
                 <p:txBody>
-                    <a:bodyPr/>
-                    <a:lstStyle/>
+                    <a:bodyPr anchor="ctr"/>
+                    <a:lstStyle>
+                        <a:lvl1pPr>
+                            <a:defRPr spc="0" sz="12800"/>
+                        </a:lvl1pPr>
+                    </a:lstStyle>
                     <a:p>
-                        <a:fld id="{1D8BD707-D9CF-40AE-B4C6-C98DA3205C09}" type="datetimeFigureOut">
-                            <a:rPr lang="en-US" smtClean="0"/>
-                            <a:pPr/>
-                            <a:t>7/14/15</a:t>
-                        </a:fld>
-                        <a:endParaRPr lang="en-US"/>
+                        <a:pPr/>
+                        <a:r>
+                            <a:t>Section Title</a:t>
+                        </a:r>
                     </a:p>
                 </p:txBody>
             </p:sp>
             <p:sp>
                 <p:nvSpPr>
-                    <p:cNvPr id="3" name="Footer Placeholder 2"/>
-                    <p:cNvSpPr>
-                        <a:spLocks noGrp="1"/>
-                    </p:cNvSpPr>
+                    <p:cNvPr id="72" name="Slide Number"/>
+                    <p:cNvSpPr txBox="1"/>
                     <p:nvPr>
-                        <p:ph type="ftr" sz="quarter" idx="11"/>
+                        <p:ph type="sldNum" sz="quarter" idx="2"/>
                     </p:nvPr>
                 </p:nvSpPr>
-                <p:spPr/>
+                <p:spPr>
+                    <a:xfrm>
+                        <a:off x="12001499" y="12700001"/>
+                        <a:ext cx="388621" cy="429261"/>
+                    </a:xfrm>
+                    <a:prstGeom prst="rect">
+                        <a:avLst/>
+                    </a:prstGeom>
+                </p:spPr>
                 <p:txBody>
                     <a:bodyPr/>
                     <a:lstStyle/>
                     <a:p>
-                        <a:endParaRPr lang="en-US"/>
-                    </a:p>
-                </p:txBody>
-            </p:sp>
-            <p:sp>
-                <p:nvSpPr>
-                    <p:cNvPr id="4" name="Slide Number Placeholder 3"/>
-                    <p:cNvSpPr>
-                        <a:spLocks noGrp="1"/>
-                    </p:cNvSpPr>
-                    <p:nvPr>
-                        <p:ph type="sldNum" sz="quarter" idx="12"/>
-                    </p:nvPr>
-                </p:nvSpPr>
-                <p:spPr/>
-                <p:txBody>
-                    <a:bodyPr/>
-                    <a:lstStyle/>
-                    <a:p>
-                        <a:fld id="{B6F15528-21DE-4FAA-801E-634DDDAF4B2B}" type="slidenum">
-                            <a:rPr lang="en-US" smtClean="0"/>
-                            <a:pPr/>
-                            <a:t>‹#›</a:t>
-                        </a:fld>
-                        <a:endParaRPr lang="en-US"/>
+                        <a:pPr/>
+                        <a:fld id="{86CB4B4D-7CA3-9044-876B-883B54F8677D}" type="slidenum"/>
                     </a:p>
                 </p:txBody>
             </p:sp>
@@ -94,4 +86,5 @@ const String template =
     <p:clrMapOvr>
         <a:masterClrMapping/>
     </p:clrMapOvr>
+    <p:transition xmlns:p14="http://schemas.microsoft.com/office/powerpoint/2010/main" spd="med" advClick="1"/>
 </p:sldLayout>''';

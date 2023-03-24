@@ -1,4 +1,8 @@
+import 'dart:convert';
+
+import 'classes/app.dart';
 import 'classes/coords.dart';
+import 'classes/core.dart';
 import 'classes/layout.dart';
 import 'context.dart';
 import 'slide/intro.dart';
@@ -110,68 +114,87 @@ class Powerpoint {
     // Copy template to temp path
     for (final entry in templates.entries) {
       // final utf16 = Uint16List.fromList(entry.value);
-      context.archive.addFile(entry.key, entry.value.trim());
-    }
-
-    // Remove keep files
-    context.archive.removeWhere((path, _) => path.endsWith('.keep'));
-
-    // Render/save generic stuff
-    context.archive.addFile(
-      '[Content_Types].xml',
-      content_type_xml.renderString(
-        content_type_xml.Source.create(
-          fileTypes: fileTypes,
-          slideCount: slides.length,
-        ),
-      ),
-    );
-    context.archive.addFile(
-      'ppt/_rels/presentation.xml.rels',
-      presentation_xml_rel.renderString(
-        presentation_xml_rel.Source.create(
-          slides.length,
-        ),
-      ),
-    );
-    context.archive.addFile(
-      'ppt/presentation.xml',
-      presentation_xml.renderString(
-        presentation_xml.Source(
-          layout: layout,
-          slides: [
-            for (var i = 0; i < slides.length; i++)
-              presentation_xml.Slide.fromIndex(i, slides[i].notes)
-          ],
-        ),
-      ),
-    );
-    context.archive.addFile(
-      'docProps/app.xml',
-      app_xml.renderString(
-        app_xml.Source.slides(
-          slides.map((e) => app_xml.Slide(title: e.title)).toList(),
-        ),
-      ),
-    );
-
-    // Save slides
-    List<Notes> notes = [];
-    for (var i = 0; i < slides.length; i++) {
-      final slide = slides[i];
-      if (slide.notes.trim().isNotEmpty) {
-        notes.add(Notes(slideIndex: i, notes: slide.notes));
+      final name = entry.key;
+      if (name.contains('.png')) {
+        // Base64 decode
+        final bytes = base64Decode(entry.value);
+        context.archive.addBinaryFile(name, bytes);
+      } else {
+        final result = entry.value.trim();
+        context.archive.addFile(entry.key, result);
       }
     }
-    for (var i = 0; i < slides.length; i++) {
-      final slide = slides[i];
-      final notesIndex = notes.indexWhere((n) => n.slideIndex == i);
-      await slide.save(context, i + 1, notesIndex + 1);
+
+    // Remove templates and keep files
+    context.archive.removeWhere((path, _) => path.endsWith('.keep'));
+    context.archive.removeWhere((path, _) => path.endsWith('.mustache'));
+
+    final files = <String, Object>{
+      'docProps/app.xml': App(),
+      'docProps/core.xml': Core(),
+    };
+
+    for (final entry in files.entries) {
+      final str = entry.value.toString();
+      context.archive.addFile(entry.key, str);
     }
-    for (var i = 0; i < notes.length; i++) {
-      final note = notes[i];
-      await note.save(context, i + 1, i + 1);
-    }
+
+    // // Render/save generic stuff
+    // context.archive.addFile(
+    //   '[Content_Types].xml',
+    //   content_type_xml.renderString(
+    //     content_type_xml.Source.create(
+    //       fileTypes: fileTypes,
+    //       slideCount: slides.length,
+    //     ),
+    //   ),
+    // );
+    // context.archive.addFile(
+    //   'ppt/_rels/presentation.xml.rels',
+    //   presentation_xml_rel.renderString(
+    //     presentation_xml_rel.Source.create(
+    //       slides.length,
+    //     ),
+    //   ),
+    // );
+    // context.archive.addFile(
+    //   'ppt/presentation.xml',
+    //   presentation_xml.renderString(
+    //     presentation_xml.Source(
+    //       layout: layout,
+    //       slides: [
+    //         for (var i = 0; i < slides.length; i++)
+    //           presentation_xml.Slide.fromIndex(i, slides[i].notes)
+    //       ],
+    //     ),
+    //   ),
+    // );
+    // context.archive.addFile(
+    //   'docProps/app.xml',
+    //   app_xml.renderString(
+    //     app_xml.Source.slides(
+    //       slides.map((e) => app_xml.Slide(title: e.title)).toList(),
+    //     ),
+    //   ),
+    // );
+
+    // // Save slides
+    // List<Notes> notes = [];
+    // for (var i = 0; i < slides.length; i++) {
+    //   final slide = slides[i];
+    //   if (slide.notes.trim().isNotEmpty) {
+    //     notes.add(Notes(slideIndex: i, notes: slide.notes));
+    //   }
+    // }
+    // for (var i = 0; i < slides.length; i++) {
+    //   final slide = slides[i];
+    //   final notesIndex = notes.indexWhere((n) => n.slideIndex == i);
+    //   await slide.save(context, i + 1, notesIndex + 1);
+    // }
+    // for (var i = 0; i < notes.length; i++) {
+    //   final note = notes[i];
+    //   await note.save(context, i + 1, i + 1);
+    // }
 
     // Create .pptx file
     return context.archive.toBytes();

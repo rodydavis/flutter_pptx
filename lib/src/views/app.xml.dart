@@ -49,7 +49,7 @@ const _source = r'''
       {{/slides}}
     </vt:vector>
   </TitlesOfParts>
-  <Company></Company>
+  {{#company}}<Company>{{company}}</Company>{{/company}}
   <LinksUpToDate>false</LinksUpToDate>
   <SharedDoc>false</SharedDoc>
   <HyperlinksChanged>false</HyperlinksChanged>
