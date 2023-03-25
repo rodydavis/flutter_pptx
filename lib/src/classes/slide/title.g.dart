@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'slide.dart';
+part of 'title.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Map<String, dynamic> _$SlideToJson(Slide instance) => <String, dynamic>{
+Map<String, dynamic> _$SlideTitleToJson(SlideTitle instance) =>
+    <String, dynamic>{
       'index': instance.index,
       'isLast': instance.isLast,
       'rId': instance.rId,
@@ -16,5 +17,9 @@ Map<String, dynamic> _$SlideToJson(Slide instance) => <String, dynamic>{
       'title': instance.title,
       'slideNumber': instance.slideNumber,
       'speakerNotes': instance.speakerNotes,
+      'author': instance.author,
       'layoutId': instance.layoutId,
+      'id1': instance.id1,
+      'id2': instance.id2,
+      'id3': instance.id3,
     };

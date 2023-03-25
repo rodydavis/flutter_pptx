@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:mustache_template/mustache_template.dart';
 
 import '../template/ppt/presentation.xml.mustache.dart';
+import '../template/ppt/_rels/presentation.xml.rels.mustache.dart' as rel;
 import 'layout.dart';
 import 'slide.dart';
 
@@ -18,6 +19,11 @@ class Presentation {
   });
 
   Map<String, dynamic> toJson() => _$PresentationToJson(this);
+
+  String createRel() {
+    final source = Template(rel.template);
+    return source.renderString(toJson());
+  }
 
   @override
   String toString() {
