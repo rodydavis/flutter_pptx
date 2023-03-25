@@ -2,34 +2,36 @@ import 'dart:convert';
 
 import 'classes/app.dart';
 import 'classes/content_type.dart';
-import 'classes/coords.dart';
 import 'classes/core.dart';
 import 'classes/layout.dart';
+import 'classes/notes.dart';
 import 'classes/notes_rel.dart';
 import 'classes/presentation.dart';
-import 'classes/slide/title.dart';
+import 'classes/slide.dart';
 import 'classes/slide_rel.dart';
+import 'classes/slide_templates/title.dart';
 import 'context.dart';
-import 'slide/intro.dart';
-import 'slide/notes.dart';
-import 'slide/pictorial.dart';
-import 'slide/picture_description.dart';
-import 'slide/slide.dart';
-import 'slide/text_picture_split.dart';
-import 'slide/textual.dart';
 import 'template/template.dart';
-
-import 'views/content_type.xml.dart' as content_type_xml;
-import 'views/presentation.xml.rel.dart' as presentation_xml_rel;
-import 'views/presentation.xml.dart' as presentation_xml;
-import 'views/app.xml.dart' as app_xml;
-import 'classes/slide.dart' as s;
-import 'classes/notes.dart' as n;
 
 class Powerpoint {
   final context = PresentationContext.create();
-  Layout layout = Layout.screen16x9();
-  List<Slide> slides = [];
+  Layout layout = Layout(
+    type: 'custom',
+    width: 24384000,
+    height: 13716000,
+  );
+  final slides = <Slide>[];
+
+  bool _showSlideNumber = false;
+  bool get showSlideNumber => _showSlideNumber;
+  set showSlideNumber(bool value) {
+    _showSlideNumber = value;
+    for (var slide in slides) {
+      if (slide is SlideTitle) {
+        slide.slideNumber = _showSlideNumber;
+      }
+    }
+  }
 
   void setLayout(Layout layout) {
     this.layout = layout;
@@ -40,82 +42,73 @@ class Powerpoint {
     return slide;
   }
 
-  Slide addIntro(
+  Slide addTitle(
     String title, {
-    String? subtitile,
+    String? author,
   }) {
-    final slide = Intro(
-      title: title,
-      subtitile: subtitile ?? '', // TODO: make this optional
-    );
-    final idx = slides.indexWhere((s) => s is Intro);
-    if (idx != -1) {
-      slides[idx] = slide;
-    } else {
-      addSlide(slide);
-    }
-    return slide;
-  }
-
-  Slide addTextualSlide(String title, List<String> content) {
-    return addSlide(Textual(
-      title: title,
-      content: content,
-    ));
-  }
-
-  Slide addPictorialSlide(
-    String title,
-    String image, {
-    Coords? coords,
-  }) {
-    return addSlide(Pictorial(
-      title: title,
-      imagePath: image,
-      coords: coords,
-    ));
-  }
-
-  Slide addTextPictureSlide(
-    String title,
-    String image, {
-    Coords? coords,
-    List<String> content = const [],
-  }) {
-    final slide = TextPicSplit(
-      title: title,
-      imagePath: image,
-      content: content,
-      coords: coords,
-    );
+    final slide = SlideTitle(title: title, author: author);
     return addSlide(slide);
   }
 
-  Slide addPictureDescriptionSlide(
-    String title,
-    String image, {
-    Coords? coords,
-    List<String> content = const [],
-  }) {
-    final slide = DescriptionPic(
-      title: title,
-      imagePath: image,
-      coords: coords,
-      content: content,
-    );
-    return addSlide(slide);
-  }
+  // Slide addTextualSlide(String title, List<String> content) {
+  //   return addSlide(Textual(
+  //     title: title,
+  //     content: content,
+  //   ));
+  // }
 
-  List<String> get fileTypes {
-    final types = <String>[];
-    for (final slide in slides) {
-      final type = slide.fileType();
-      if (type != null && !types.contains(type)) {
-        types.add(type);
-      }
-    }
-    return types;
-  }
+  // Slide addPictorialSlide(
+  //   String title,
+  //   String image, {
+  //   Coords? coords,
+  // }) {
+  //   return addSlide(Pictorial(
+  //     title: title,
+  //     imagePath: image,
+  //     coords: coords,
+  //   ));
+  // }
+
+  // Slide addTextPictureSlide(
+  //   String title,
+  //   String image, {
+  //   Coords? coords,
+  //   List<String> content = const [],
+  // }) {
+  //   final slide = TextPicSplit(
+  //     title: title,
+  //     imagePath: image,
+  //     content: content,
+  //     coords: coords,
+  //   );
+  //   return addSlide(slide);
+  // }
+
+  // Slide addPictureDescriptionSlide(
+  //   String title,
+  //   String image, {
+  //   Coords? coords,
+  //   List<String> content = const [],
+  // }) {
+  //   final slide = DescriptionPic(
+  //     title: title,
+  //     imagePath: image,
+  //     coords: coords,
+  //     content: content,
+  //   );
+  //   return addSlide(slide);
+  // }
+
+  // List<String> get fileTypes {
+  //   final types = <String>[];
+  //   for (final slide in slides) {
+  //     final type = slide.fileType();
+  //     if (type != null && !types.contains(type)) {
+  //       types.add(type);
+  //     }
+  //   }
+  //   return types;
+  // }
 
   Future<List<int>?> save() async {
     // Copy template to temp path
@@ -141,28 +134,7 @@ class Powerpoint {
     int offset = 150;
 
     final files = <String, Object>{};
-
-    final slides = <s.Slide>[];
-    final notes = <n.Notes>[];
-
-    const count = 50;
-    for (var i = 0; i <= count; i++) {
-      final item = SlideTitle(
-        title: 'Slide $i',
-        speakerNotes: 'SPEAKER NOTES',
-      );
-      slides.add(item);
-
-      n.Notes? note;
-
-      if (item.speakerNotes.isNotEmpty) {
-        note = n.Notes(
-          notes: item.speakerNotes,
-          slideIndex: i,
-        );
-        notes.add(note);
-      }
-    }
+    final notes = <Notes>[];
 
     for (var i = 0; i < slides.length; i++) {
       final item = slides[i];
@@ -172,11 +144,21 @@ class Powerpoint {
       item.rId = ++rId;
       offset = item.createIds(offset);
 
+      Notes? note;
+
+      if (item.speakerNotes.isNotEmpty) {
+        note = Notes(
+          notes: item.speakerNotes,
+          slideIndex: i,
+        );
+        notes.add(note);
+      }
+
       files['ppt/slides/slide${item.order}.xml'] = item;
 
       final rel = SlideRel(
         layoutId: item.layoutId,
-        notes: [],
+        notes: [if (note != null) note],
         images: [],
       );
       files['ppt/slides/_rels/slide${item.order}.xml.rels'] = rel;
@@ -190,25 +172,15 @@ class Powerpoint {
       note.rId = ++rId;
       offset = note.createIds(offset);
 
-      final slide = slides[note.slideIndex];
-      final slideItem =
-          files['ppt/slides/_rels/slide${slide.order}.xml.rels'] as SlideRel;
-      final slideNotes = slideItem.notes.toList();
-      slideNotes.add(note);
-      slideItem.notes = slideNotes;
-
       files['ppt/notesSlides/notesSlide${note.order}.xml'] = note;
 
+      final slide = slides[note.slideIndex];
       final rel = NotesRel(slideOrder: slide.order);
       files['ppt/notesSlides/_rels/notesSlide${note.order}.xml.rels'] = rel;
     }
 
     final pres = Presentation(
-      layout: Layout(
-        type: 'custom',
-        width: 24384000,
-        height: 13716000,
-      ),
+      layout: layout,
       slides: slides,
     );
 
@@ -224,22 +196,6 @@ class Powerpoint {
         slides: slides,
       ),
     });
-
-    // for (var i = 0; i < slides.length; i++) {
-    //   final item = SlideTitle(title: 'Slide $i');
-    //   offset = item.createIds(offset);
-    //   item.index = i;
-    //   item.isLast = i == 15;
-    //   item.id = ++id;
-    //   item.rId = ++rId;
-    //   files['ppt/slides/slide${item.order}.xml'] = item;
-    //   final rel = SlideRel(
-    //     layoutId: item.layoutId,
-    //     notes: [],
-    //     images: [],
-    //   );
-    //   files['ppt/slides/_rels/slide${item.order}.xml.rels'] = rel;
-    // }
 
     for (final entry in files.entries) {
       final str = entry.value.toString();

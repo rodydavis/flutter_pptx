@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_pptx/flutter_pptx.dart';
 
@@ -11,16 +12,31 @@ void main() {
     () async {
       final pres = Powerpoint();
 
+      const count = 50;
+      for (var i = 0; i <= count; i++) {
+        final slide = pres.addTitle('Slide $i');
+        slide.speakerNotes = 'This is a note!';
+      }
+
+      pres.showSlideNumber = true;
+
       final bytes = await pres.save();
       if (bytes != null) {
         // Save to directory
+        final dir = Directory('./build/pptx');
+        if (!await dir.exists()) {
+          await dir.create(recursive: true);
+        } else {
+          await dir.delete(recursive: true);
+          await dir.create(recursive: true);
+        }
         for (final entry in pres.context.archive.files.entries) {
           final name = entry.key;
           final value = entry.value;
           if (value is List<int>) {
-            await saveFile('./build/pptx/$name', bytes: value);
+            await saveFile('${dir.path}/$name', bytes: value);
           } else if (value is String) {
-            await saveFile('./build/pptx/$name', string: value);
+            await saveFile('${dir.path}/$name', string: value);
           }
         }
 
