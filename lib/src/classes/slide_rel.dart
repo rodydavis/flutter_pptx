@@ -12,7 +12,7 @@ part 'slide_rel.g.dart';
 class SlideRel {
   int layoutId;
   List<Notes> notes;
-  List<Images> images;
+  List<ImageReference> images;
 
   SlideRel({
     required this.layoutId,
@@ -25,10 +25,10 @@ class SlideRel {
   @override
   String toString() {
     var localRId = 1;
-    for (final item in notes) {
+    for (var item in notes) {
       item.localRId = ++localRId;
     }
-    for (final item in images) {
+    for (var item in images) {
       item.localRId = ++localRId;
     }
     final source = Template(template);

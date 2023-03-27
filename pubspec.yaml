@@ -10,8 +10,10 @@ environment:
 dependencies:
   archive: ^3.3.6
   collection: ^1.17.0
+  file: ^6.1.4
   flutter:
     sdk: flutter
+  http: ^0.13.5
   json_annotation: ^4.8.0
   mustache_template: ^2.0.0
   path: ^1.8.3

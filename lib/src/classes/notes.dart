@@ -4,17 +4,15 @@ import 'package:mustache_template/mustache_template.dart';
 
 import '../template/ppt/notesSlides/notesSlide.xml.mustache.dart';
 import 'base.dart';
-import 'slide.dart';
 
 part 'notes.g.dart';
 
 @JsonSerializable(createFactory: false)
 class Notes extends Base {
   String notes;
+  int slideIndex;
 
   late int id1, id2;
-
-  int slideIndex;
 
   int createIds(int offset) {
     int idx = offset;

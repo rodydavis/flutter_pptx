@@ -6,11 +6,24 @@ import 'base.dart';
 part 'images.g.dart';
 
 @JsonSerializable(createFactory: false)
-class Images extends Base {
+class ImageReference extends Base {
   String path;
+  String name;
+  String? description;
 
-  Images({required this.path});
+  ImageReference({
+    required this.path,
+    required this.name,
+    this.description,
+  });
+
+  bool get isNetwork => path.startsWith('http');
+  bool get isMemory => path.startsWith('data:');
+  bool get isAsset => path.startsWith('asset:');
+  bool get isFile => path.startsWith('/') || path.startsWith('.');
+
+  String get ext => path.split('.').last;
 
   @override
-  Map<String, dynamic> toJson() => _$ImagesToJson(this);
+  Map<String, dynamic> toJson() => _$ImageReferenceToJson(this);
 }

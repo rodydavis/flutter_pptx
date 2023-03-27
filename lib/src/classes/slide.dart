@@ -22,6 +22,8 @@ class Slide extends Base {
     return offset;
   }
 
+  bool get hasNotes => speakerNotes.trim().isNotEmpty;
+
   @override
   Map<String, dynamic> toJson() => _$SlideToJson(this);
 }

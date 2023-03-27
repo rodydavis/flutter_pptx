@@ -9,6 +9,6 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
     <Relationship Id="rId{{localRId}}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/notesSlide" Target="../notesSlides/notesSlide{{order}}.xml"/>
     {{/notes}}
     {{#images}}
-    <Relationship Id="rId{{localRId}}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/image{{order}}.png"/>
+    <Relationship Id="rId{{localRId}}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/image{{order}}.{{ext}}"/>
     {{/images}}
 </Relationships>''';

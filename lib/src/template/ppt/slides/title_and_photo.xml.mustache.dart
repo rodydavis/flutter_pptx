@@ -25,7 +25,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:grpSpPr>
             <p:pic>
                 <p:nvPicPr>
-                    <p:cNvPr id="{{id1}}" name="{{imageName}}" descr="{{imageDescription}}"/>
+                    <p:cNvPr id="{{id1}}" name="{{image.name}}" descr="{{image.description}}"/>
                     <p:cNvPicPr>
                         <a:picLocks noChangeAspect="1"/>
                     </p:cNvPicPr>
@@ -34,7 +34,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                     </p:nvPr>
                 </p:nvPicPr>
                 <p:blipFill>
-                    <a:blip r:embed="rId3">
+                    <a:blip r:embed="rId{{imageId}}">
                         <a:extLst/>
                     </a:blip>
                     <a:stretch>

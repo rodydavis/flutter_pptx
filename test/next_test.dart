@@ -12,11 +12,32 @@ void main() {
     () async {
       final pres = Powerpoint();
 
-      const count = 50;
-      for (var i = 0; i <= count; i++) {
-        final slide = pres.addTitle('Slide $i');
-        slide.speakerNotes = 'This is a note!';
-      }
+      // const count = 50;
+      // for (var i = 0; i <= count; i++) {
+      //   final slide = pres.addTitle(title: 'Slide $i');
+      //   slide.speakerNotes = 'This is a note!';
+      // }
+
+      pres.addTitleAndPhoto(
+        title: 'Slide one',
+        imagePath: './samples/images/sample_gif.gif',
+        imageName: 'Sample Gif',
+        notes: 'This is a note!',
+      );
+
+      pres.addTitleAndPhoto(
+        title: 'Slide two',
+        imagePath: './samples/images/sample_jpg.jpg',
+        imageName: 'Sample Jpg',
+        notes: 'This is a note!',
+      );
+
+      pres.addTitleAndPhoto(
+        title: 'Slide three',
+        imagePath: './samples/images/sample_png.png',
+        imageName: 'Sample Png',
+        notes: 'This is a note!',
+      );
 
       pres.showSlideNumber = true;
 
