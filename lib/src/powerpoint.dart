@@ -11,7 +11,9 @@ import 'classes/notes_rel.dart';
 import 'classes/presentation.dart';
 import 'classes/slide.dart';
 import 'classes/slide_rel.dart';
+import 'classes/text_value.dart';
 import 'slides/title.dart';
+import 'slides/title_and_bullets.dart';
 import 'slides/title_and_photo.dart';
 import 'context.dart';
 import 'slides/title_and_photo_alt.dart';
@@ -61,8 +63,8 @@ class Powerpoint {
   }) =>
       addSlide(
         SlideTitle(
-          title: title,
-          author: author,
+          title: TextValue.normal(title),
+          author: TextValue.normal(author),
         ),
         notes: notes,
         showSlideNumber: showSlideNumber,
@@ -81,14 +83,14 @@ class Powerpoint {
     final imgName = imageName ?? imagePath.split('/').last.split('.').first;
     return addSlide(
       SlideTitleAndPhoto(
-        title: title,
-        subtitle: subtitle,
+        title: TextValue.normal(title),
+        subtitle: TextValue.normal(subtitle),
         image: ImageReference(
           path: imagePath,
           name: imgName,
           description: imageDescription ?? imgName,
         ),
-        author: author,
+        author: TextValue.normal(author),
       ),
       notes: notes,
       showSlideNumber: showSlideNumber,
@@ -108,14 +110,34 @@ class Powerpoint {
     final imgName = imageName ?? imagePath.split('/').last.split('.').first;
     return addSlide(
       SlideTitleAndPhotoAlt(
-        title: title,
-        subtitle: subtitle,
+        title: TextValue.normal(title),
+        subtitle: TextValue.normal(subtitle),
         image: ImageReference(
           path: imagePath,
           name: imgName,
           description: imageDescription ?? imgName,
         ),
-        author: author,
+        author: TextValue.normal(author),
+      ),
+      notes: notes,
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addTitleAndBullets({
+    required String title,
+    required List<String> bullets,
+    String? author,
+    String? subtitle,
+    String? notes,
+    bool? showSlideNumber,
+  }) {
+    return addSlide(
+      TitleAndBullets(
+        title: TextValue.normal(title),
+        subtitle: TextValue.normal(subtitle),
+        bullets: bullets.map((e) => TextValue.normal(e)).toList(),
+        author: TextValue.normal(author),
       ),
       notes: notes,
       showSlideNumber: showSlideNumber,

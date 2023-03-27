@@ -1,7 +1,7 @@
 /// This file is generated, do not edit!
 /// See `bin/copy.dart` for more information.
 
-/// Path: ./template/ppt/slides/title_and_photo_alt.xml.mustache
+/// Path: ./template/ppt/slides/title_and_bullets.xml.mustache
 const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
 <p:sld xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
     xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
@@ -47,42 +47,48 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                     </a:p>
                 </p:txBody>
             </p:sp>
-            <p:pic>
-                <p:nvPicPr>
-                    <p:cNvPr id="{{id2}}" name="{{image.name}}" descr="{{image.description}}"/>
-                    <p:cNvPicPr>
-                        <a:picLocks noChangeAspect="1"/>
-                    </p:cNvPicPr>
-                    <p:nvPr>
-                        <p:ph type="pic" idx="21"/>
-                    </p:nvPr>
-                </p:nvPicPr>
-                <p:blipFill>
-                    <a:blip r:embed="rId{{imageId}}">
-                        <a:extLst/>
-                    </a:blip>
-                    <a:stretch>
-                        <a:fillRect/>
-                    </a:stretch>
-                </p:blipFill>
-                <p:spPr>
-                    <a:prstGeom prst="rect">
-                        <a:avLst/>
-                    </a:prstGeom>
-                </p:spPr>
-            </p:pic>
             <p:sp>
                 <p:nvSpPr>
-                    <p:cNvPr id="{{id3}}" name="SLIDE SUBTITLE"/>
+                    <p:cNvPr id="{{id2}}" name="SLIDE BULLET A…"/>
                     <p:cNvSpPr txBox="1"/>
                     <p:nvPr>
-                        <p:ph type="body" sz="quarter" idx="1"/>
+                        <p:ph type="body" idx="1"/>
                     </p:nvPr>
                 </p:nvSpPr>
                 <p:spPr>
                     <a:prstGeom prst="rect">
                         <a:avLst/>
                     </a:prstGeom>
+                </p:spPr>
+                <p:txBody>
+                    <a:bodyPr/>
+                    <a:lstStyle/>
+                    {{#bullets}}
+                    <a:p>
+                        <a:pPr/>
+                        {{>text-value}}
+                    </a:p>
+                    {{/bullets}}
+                </p:txBody>
+            </p:sp>
+            <p:sp>
+                <p:nvSpPr>
+                    <p:cNvPr id="{{id3}}" name="Slide Subtitle"/>
+                    <p:cNvSpPr txBox="1"/>
+                    <p:nvPr>
+                        <p:ph type="body" idx="21"/>
+                    </p:nvPr>
+                </p:nvSpPr>
+                <p:spPr>
+                    <a:prstGeom prst="rect">
+                        <a:avLst/>
+                    </a:prstGeom>
+                    <a:extLst>
+                        <a:ext uri="{C572A759-6A51-4108-AA02-DFA0A04FC94B}">
+                            <ma14:wrappingTextBoxFlag val="1"
+                                xmlns:ma14="http://schemas.microsoft.com/office/mac/drawingml/2011/main"/>
+                        </a:ext>
+                    </a:extLst>
                 </p:spPr>
                 <p:txBody>
                     <a:bodyPr/>

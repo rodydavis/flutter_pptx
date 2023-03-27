@@ -12,30 +12,33 @@ void main() {
     () async {
       final pres = Powerpoint();
 
-      // const count = 50;
-      // for (var i = 0; i <= count; i++) {
-      //   final slide = pres.addTitle(title: 'Slide $i');
-      //   slide.speakerNotes = 'This is a note!';
-      // }
-
-      pres.addTitleAndPhotoAlt(
+      pres.addTitle(
         title: 'Slide one',
+        notes: 'This is a note!',
+      );
+
+      pres.addTitleAndPhoto(
+        title: 'Slide two',
         imagePath: './samples/images/sample_gif.gif',
         imageName: 'Sample Gif',
         notes: 'This is a note!',
       );
 
       pres.addTitleAndPhotoAlt(
-        title: 'Slide two',
+        title: 'Slide three',
         imagePath: './samples/images/sample_jpg.jpg',
         imageName: 'Sample Jpg',
         notes: 'This is a note!',
       );
 
-      pres.addTitleAndPhotoAlt(
+      pres.addTitleAndBullets(
         title: 'Slide three',
-        imagePath: './samples/images/sample_png.png',
-        imageName: 'Sample Png',
+        bullets: [
+          'Bullet 1',
+          'Bullet 2',
+          'Bullet 3',
+          'Bullet 4',
+        ],
         notes: 'This is a note!',
       );
 

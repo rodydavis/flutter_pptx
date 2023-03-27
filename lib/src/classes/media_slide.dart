@@ -3,7 +3,7 @@ import 'images.dart';
 
 abstract class MediaSlide extends Slide {
   MediaSlide({
-    required super.title,
+    required super.name,
     super.speakerNotes,
     super.slideNumber,
   });

@@ -66,9 +66,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                     <a:p>
                         <a:pPr/>
                         {{#title}}
-                        <a:r>
-                            <a:t>{{title}}</a:t>
-                        </a:r>
+                        {{>text-value}}
                         {{/title}}
                     </a:p>
                 </p:txBody>
@@ -92,9 +90,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                     <a:p>
                         <a:pPr/>
                         {{#subtitle}}
-                        <a:r>
-                            <a:t>{{subtitle}}</a:t>
-                        </a:r>
+                        {{>text-value}}
                         {{/subtitle}}
                     </a:p>
                 </p:txBody>
@@ -126,47 +122,12 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                     <a:p>
                         <a:pPr/>
                         {{#author}}
-                        <a:r>
-                            <a:t>{{author}}</a:t>
-                        </a:r>
+                        {{>text-value}}
                         {{/author}}
                     </a:p>
                 </p:txBody>
             </p:sp>
-            {{#slideNumber}}
-            <p:sp>
-                <p:nvSpPr>
-                    <p:cNvPr id="{{id5}}" name="Slide Number"/>
-                    <p:cNvSpPr txBox="1"/>
-                    <p:nvPr>
-                        <p:ph type="sldNum" sz="quarter" idx="2"/>
-                    </p:nvPr>
-                </p:nvSpPr>
-                <p:spPr>
-                    <a:xfrm>
-                        <a:off x="12064491" y="12700001"/>
-                        <a:ext cx="255017" cy="429261"/>
-                    </a:xfrm>
-                    <a:prstGeom prst="rect">
-                        <a:avLst/>
-                    </a:prstGeom>
-                    <a:extLst>
-                        <a:ext uri="{C572A759-6A51-4108-AA02-DFA0A04FC94B}">
-                            <ma14:wrappingTextBoxFlag val="1"
-                                xmlns:ma14="http://schemas.microsoft.com/office/mac/drawingml/2011/main"/>
-                        </a:ext>
-                    </a:extLst>
-                </p:spPr>
-                <p:txBody>
-                    <a:bodyPr/>
-                    <a:lstStyle/>
-                    <a:p>
-                        <a:pPr/>
-                        <a:fld id="{86CB4B4D-7CA3-9044-876B-883B54F8677D}" type="slidenum"/>
-                    </a:p>
-                </p:txBody>
-            </p:sp>
-            {{/slideNumber}}
+            {{>speaker-notes}}
         </p:spTree>
     </p:cSld>
     <p:clrMapOvr>
