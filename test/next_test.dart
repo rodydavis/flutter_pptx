@@ -18,21 +18,21 @@ void main() {
       //   slide.speakerNotes = 'This is a note!';
       // }
 
-      pres.addTitleAndPhoto(
+      pres.addTitleAndPhotoAlt(
         title: 'Slide one',
         imagePath: './samples/images/sample_gif.gif',
         imageName: 'Sample Gif',
         notes: 'This is a note!',
       );
 
-      pres.addTitleAndPhoto(
+      pres.addTitleAndPhotoAlt(
         title: 'Slide two',
         imagePath: './samples/images/sample_jpg.jpg',
         imageName: 'Sample Jpg',
         notes: 'This is a note!',
       );
 
-      pres.addTitleAndPhoto(
+      pres.addTitleAndPhotoAlt(
         title: 'Slide three',
         imagePath: './samples/images/sample_png.png',
         imageName: 'Sample Png',

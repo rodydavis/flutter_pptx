@@ -14,6 +14,7 @@ import 'classes/slide_rel.dart';
 import 'slides/title.dart';
 import 'slides/title_and_photo.dart';
 import 'context.dart';
+import 'slides/title_and_photo_alt.dart';
 import 'template/template.dart';
 
 class Powerpoint {
@@ -80,6 +81,33 @@ class Powerpoint {
     final imgName = imageName ?? imagePath.split('/').last.split('.').first;
     return addSlide(
       SlideTitleAndPhoto(
+        title: title,
+        subtitle: subtitle,
+        image: ImageReference(
+          path: imagePath,
+          name: imgName,
+          description: imageDescription ?? imgName,
+        ),
+        author: author,
+      ),
+      notes: notes,
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addTitleAndPhotoAlt({
+    required String title,
+    required String imagePath,
+    String? imageName,
+    String? imageDescription,
+    String? author,
+    String? subtitle,
+    String? notes,
+    bool? showSlideNumber,
+  }) {
+    final imgName = imageName ?? imagePath.split('/').last.split('.').first;
+    return addSlide(
+      SlideTitleAndPhotoAlt(
         title: title,
         subtitle: subtitle,
         image: ImageReference(

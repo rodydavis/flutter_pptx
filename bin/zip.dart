@@ -5,7 +5,7 @@ import 'package:archive/archive_io.dart';
 void main() {
   final decoder = ZipDecoder();
   // final file = File('./samples/pptx/sample_notes.pptx');
-  const name = 'temp';
+  const name = 'slides_template_luxe';
   final file = File('/Users/rodydavis/Desktop/templates/$name.pptx');
   final bytes = file.readAsBytesSync();
   final archive = decoder.decodeBytes(bytes);
