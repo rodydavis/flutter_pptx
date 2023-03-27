@@ -31,7 +31,7 @@ class TextValue {
     required this.values,
   });
 
-  factory TextValue.normal(
+  factory TextValue.uniform(
     String? value, {
     bool isBold = false,
     bool isItalic = false,

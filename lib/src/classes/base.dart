@@ -5,10 +5,10 @@ part 'base.g.dart';
 
 @JsonSerializable(createFactory: false)
 class Base {
-  late int index;
-  late bool isLast;
-  late int rId;
-  late int id;
+  int index = -1;
+  bool isLast = false;
+  int rId = -1;
+  int id = -1;
   int get order => index + 1;
   int? localRId;
 

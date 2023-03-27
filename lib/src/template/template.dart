@@ -44,6 +44,7 @@ import 'ppt/slides/title.xml.mustache.dart' as ppt_slides_title;
 import 'ppt/slides/bullets.xml.mustache.dart' as ppt_slides_bullets;
 import 'ppt/slides/title_and_bullets.xml.mustache.dart' as ppt_slides_title_and_bullets;
 import 'ppt/slides/title_and_photo_alt.xml.mustache.dart' as ppt_slides_title_and_photo_alt;
+import 'ppt/slides/title_bullets_and_photo.xml.mustache.dart' as ppt_slides_title_bullets_and_photo;
 import 'ppt/slides/_rels/slide.xml.rels.mustache.dart' as ppt_slides_rels_slide;
 import 'ppt/slides/title_and_photo.xml.mustache.dart' as ppt_slides_title_and_photo;
 import 'ppt/theme/theme1.xml.dart' as ppt_theme_theme1;
@@ -101,6 +102,7 @@ final templates = {
   'ppt/slides/bullets.xml.mustache': ppt_slides_bullets.template,
   'ppt/slides/title_and_bullets.xml.mustache': ppt_slides_title_and_bullets.template,
   'ppt/slides/title_and_photo_alt.xml.mustache': ppt_slides_title_and_photo_alt.template,
+  'ppt/slides/title_bullets_and_photo.xml.mustache': ppt_slides_title_bullets_and_photo.template,
   'ppt/slides/_rels/slide.xml.rels.mustache': ppt_slides_rels_slide.template,
   'ppt/slides/title_and_photo.xml.mustache': ppt_slides_title_and_photo.template,
   'ppt/theme/theme1.xml': ppt_theme_theme1.template,

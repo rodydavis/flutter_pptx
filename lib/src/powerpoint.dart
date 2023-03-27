@@ -18,6 +18,7 @@ import 'slides/title_and_bullets.dart';
 import 'slides/title_and_photo.dart';
 import 'context.dart';
 import 'slides/title_and_photo_alt.dart';
+import 'slides/title_bullets_and_photo.dart';
 import 'template/template.dart';
 
 class Powerpoint {
@@ -64,8 +65,8 @@ class Powerpoint {
   }) =>
       addSlide(
         SlideTitle(
-          title: TextValue.normal(title),
-          author: TextValue.normal(author),
+          title: TextValue.uniform(title),
+          author: TextValue.uniform(author),
         ),
         notes: notes,
         showSlideNumber: showSlideNumber,
@@ -84,14 +85,14 @@ class Powerpoint {
     final imgName = imageName ?? imagePath.split('/').last.split('.').first;
     return addSlide(
       SlideTitleAndPhoto(
-        title: TextValue.normal(title),
-        subtitle: TextValue.normal(subtitle),
+        title: TextValue.uniform(title),
+        subtitle: TextValue.uniform(subtitle),
         image: ImageReference(
           path: imagePath,
           name: imgName,
           description: imageDescription ?? imgName,
         ),
-        author: TextValue.normal(author),
+        author: TextValue.uniform(author),
       ),
       notes: notes,
       showSlideNumber: showSlideNumber,
@@ -111,14 +112,14 @@ class Powerpoint {
     final imgName = imageName ?? imagePath.split('/').last.split('.').first;
     return addSlide(
       SlideTitleAndPhotoAlt(
-        title: TextValue.normal(title),
-        subtitle: TextValue.normal(subtitle),
+        title: TextValue.uniform(title),
+        subtitle: TextValue.uniform(subtitle),
+        author: TextValue.uniform(author),
         image: ImageReference(
           path: imagePath,
           name: imgName,
           description: imageDescription ?? imgName,
         ),
-        author: TextValue.normal(author),
       ),
       notes: notes,
       showSlideNumber: showSlideNumber,
@@ -135,10 +136,10 @@ class Powerpoint {
   }) {
     return addSlide(
       TitleAndBullets(
-        title: TextValue.normal(title),
-        subtitle: TextValue.normal(subtitle),
-        bullets: bullets.map((e) => TextValue.normal(e)).toList(),
-        author: TextValue.normal(author),
+        title: TextValue.uniform(title),
+        subtitle: TextValue.uniform(subtitle),
+        bullets: bullets.map((e) => TextValue.uniform(e)).toList(),
+        author: TextValue.uniform(author),
       ),
       notes: notes,
       showSlideNumber: showSlideNumber,
@@ -152,7 +153,37 @@ class Powerpoint {
   }) {
     return addSlide(
       Bullets(
-        bullets: bullets.map((e) => TextValue.normal(e)).toList(),
+        bullets: bullets.map((e) => TextValue.uniform(e)).toList(),
+      ),
+      notes: notes,
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addSlideTitleBulletsAndPhoto({
+    required String title,
+    required List<String> bullets,
+    required String imagePath,
+    String? imageName,
+    String? imageDescription,
+    TextValue? notes,
+    String? author,
+    String? subtitle,
+    bool? showSlideNumber,
+  }) {
+    return addSlide(
+      SlideTitleBulletsAndPhoto(
+        title: TextValue.uniform(title),
+        subtitle: TextValue.uniform(subtitle),
+        author: TextValue.uniform(author),
+        bullets: bullets.map((e) => TextValue.uniform(e)).toList(),
+        image: ImageReference(
+          path: imagePath,
+          name: imageName ?? imagePath.split('/').last.split('.').first,
+          description: imageDescription ??
+              imageName ??
+              imagePath.split('/').last.split('.').first,
+        ),
       ),
       notes: notes,
       showSlideNumber: showSlideNumber,

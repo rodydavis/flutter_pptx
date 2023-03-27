@@ -40,7 +40,7 @@ void main() {
           'Bullet 4',
         ],
         // notes: 'This is a note!',
-        notes: TextValue.normal('This is a note!'),
+        notes: TextValue.uniform('This is a note!'),
       );
 
       pres.addBullets(
@@ -57,6 +57,18 @@ void main() {
           TextItem('a ', isUnderline: true),
           TextItem('note!'),
         ]),
+      );
+
+      pres.addSlideTitleBulletsAndPhoto(
+        title: 'Slide five',
+        imagePath: './samples/images/sample_jpg.jpg',
+        imageName: 'Sample Jpg',
+        bullets: [
+          'Bullet 1',
+          'Bullet 2',
+          'Bullet 3',
+          'Bullet 4',
+        ],
       );
 
       pres.showSlideNumber = true;
