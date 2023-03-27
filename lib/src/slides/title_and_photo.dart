@@ -3,6 +3,7 @@ import 'package:mustache_template/mustache_template.dart';
 
 import '../classes/images.dart';
 import '../classes/media_slide.dart';
+import '../classes/slide.dart';
 import '../classes/text_value.dart';
 import '../template/ppt/slides/title_and_photo.xml.mustache.dart';
 
@@ -29,7 +30,7 @@ class SlideTitleAndPhoto extends MediaSlide {
   List<ImageReference> get images => [image];
 
   @override
-  final int layoutId = 2;
+  int get layoutId => 2;
 
   int get imageId => hasNotes ? 3 : 2;
 

@@ -58,9 +58,9 @@
                     <a:lstStyle/>
                     <a:p>
                         <a:pPr/>
-                        <a:r>
-                            <a:t>{{notes}}</a:t>
-                        </a:r>
+                        {{#notes}}
+                        {{>text-value}}
+                        {{/notes}}
                     </a:p>
                 </p:txBody>
             </p:sp>

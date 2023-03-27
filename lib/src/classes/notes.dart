@@ -4,12 +4,14 @@ import 'package:mustache_template/mustache_template.dart';
 
 import '../template/ppt/notesSlides/notesSlide.xml.mustache.dart';
 import 'base.dart';
+import 'slide.dart';
+import 'text_value.dart';
 
 part 'notes.g.dart';
 
 @JsonSerializable(createFactory: false)
 class Notes extends Base {
-  String notes;
+  TextValue notes;
   int slideIndex;
 
   late int id1, id2;
@@ -31,7 +33,10 @@ class Notes extends Base {
 
   @override
   String toString() {
-    final source = Template(template);
+    final source = Template(
+      template,
+      partialResolver: resolvePartials,
+    );
     return source.renderString(toJson());
   }
 }

@@ -4,13 +4,14 @@ import 'package:mustache_template/mustache_template.dart';
 import '../classes/slide.dart';
 import '../classes/text_value.dart';
 import '../template/ppt/slides/title_and_bullets.xml.mustache.dart';
+import 'bullets.dart';
 
 part 'title_and_bullets.g.dart';
 
 @JsonSerializable(createFactory: false)
-class TitleAndBullets extends Slide {
+class TitleAndBullets extends Bullets {
   TitleAndBullets({
-    required this.bullets,
+    required super.bullets,
     super.name = 'Title and Bullets',
     this.title,
     this.subtitle,
@@ -19,18 +20,18 @@ class TitleAndBullets extends Slide {
     this.author,
   });
 
-  List<TextValue> bullets;
   TextValue? title;
   TextValue? author;
   TextValue? subtitle;
 
   @override
-  final int layoutId = 4;
+  int get layoutId => 4;
 
-  int get imageId => hasNotes ? 3 : 2;
-
+  @override
+  @override
   late int id1, id2, id3, id4;
 
+  @override
   int get notesId => id4;
 
   @override

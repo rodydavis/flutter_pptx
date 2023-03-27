@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mustache_template/mustache_template.dart';
 
+import 'slide.dart';
 import 'text_value.dart';
 
 part 'speaker_notes.g.dart';
@@ -18,7 +19,10 @@ class SpeakerNotes {
   Map<String, dynamic> toJson() => _$SpeakerNotesToJson(this);
 }
 
-final slideNotesTemplate = Template(slideNotes);
+final slideNotesTemplate = Template(
+  slideNotes,
+  partialResolver: resolvePartials,
+);
 
 const slideNotes = r'''
 {{#slideNumber}}

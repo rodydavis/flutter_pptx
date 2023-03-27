@@ -62,9 +62,9 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                     <a:lstStyle/>
                     <a:p>
                         <a:pPr/>
-                        <a:r>
-                            <a:t>{{notes}}</a:t>
-                        </a:r>
+                        {{#notes}}
+                        {{>text-value}}
+                        {{/notes}}
                     </a:p>
                 </p:txBody>
             </p:sp>

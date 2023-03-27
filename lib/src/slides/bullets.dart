@@ -1,43 +1,40 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mustache_template/mustache_template.dart';
-import '../classes/text_value.dart';
-import '../template/ppt/slides/title.xml.mustache.dart';
 
 import '../classes/slide.dart';
+import '../classes/text_value.dart';
+import '../template/ppt/slides/bullets.xml.mustache.dart';
 
-part 'title.g.dart';
+part 'bullets.g.dart';
 
 @JsonSerializable(createFactory: false)
-class SlideTitle extends Slide {
-  SlideTitle({
-    super.name = 'Title',
-    this.title,
-    super.slideNumber,
+class Bullets extends Slide {
+  Bullets({
+    required this.bullets,
+    super.name = 'Bullets',
     super.speakerNotes,
-    this.author,
+    super.slideNumber,
   });
 
-  TextValue? title;
-  TextValue? author;
+  List<TextValue> bullets;
+
+  late int id1, id2;
+
+  int get notesId => id2;
 
   @override
-  int get layoutId => 1;
-
-  late int id1, id2, id3;
-
-  int get notesId => id3;
+  int get layoutId => 5;
 
   @override
   int createIds(int offset) {
     int idx = offset;
     id1 = ++idx;
     id2 = ++idx;
-    id3 = ++idx;
     return idx;
   }
 
   @override
-  Map<String, dynamic> toJson() => _$SlideTitleToJson(this);
+  Map<String, dynamic> toJson() => _$BulletsToJson(this);
 
   @override
   String toString() {

@@ -36,35 +36,12 @@ import 'ppt/slideLayouts/slideLayout6.xml.dart' as ppt_slide_layouts_slide_layou
 import 'ppt/slideLayouts/slideLayout10.xml.dart' as ppt_slide_layouts_slide_layout10;
 import 'ppt/slideLayouts/slideLayout11.xml.dart' as ppt_slide_layouts_slide_layout11;
 import 'ppt/slideLayouts/slideLayout7.xml.dart' as ppt_slide_layouts_slide_layout7;
-import 'ppt/notesSlides/notesSlide9.xml.dart' as ppt_notes_slides_notes_slide9;
 import 'ppt/notesSlides/notesSlide.xml.mustache.dart' as ppt_notes_slides_notes_slide;
-import 'ppt/notesSlides/notesSlide8.xml.dart' as ppt_notes_slides_notes_slide8;
-import 'ppt/notesSlides/notesSlide10.xml.dart' as ppt_notes_slides_notes_slide10;
-import 'ppt/notesSlides/notesSlide11.xml.dart' as ppt_notes_slides_notes_slide11;
-import 'ppt/notesSlides/notesSlide12.xml.dart' as ppt_notes_slides_notes_slide12;
-import 'ppt/notesSlides/_rels/notesSlide11.xml.rels.dart' as ppt_notes_slides_rels_notes_slide11;
-import 'ppt/notesSlides/_rels/notesSlide10.xml.rels.dart' as ppt_notes_slides_rels_notes_slide10;
 import 'ppt/notesSlides/_rels/noteSlide.xml.rels.mustache.dart' as ppt_notes_slides_rels_note_slide;
-import 'ppt/notesSlides/_rels/notesSlide5.xml.rels.dart' as ppt_notes_slides_rels_notes_slide5;
-import 'ppt/notesSlides/_rels/notesSlide4.xml.rels.dart' as ppt_notes_slides_rels_notes_slide4;
-import 'ppt/notesSlides/_rels/notesSlide8.xml.rels.dart' as ppt_notes_slides_rels_notes_slide8;
-import 'ppt/notesSlides/_rels/notesSlide9.xml.rels.dart' as ppt_notes_slides_rels_notes_slide9;
-import 'ppt/notesSlides/_rels/notesSlide2.xml.rels.dart' as ppt_notes_slides_rels_notes_slide2;
-import 'ppt/notesSlides/_rels/notesSlide3.xml.rels.dart' as ppt_notes_slides_rels_notes_slide3;
-import 'ppt/notesSlides/_rels/notesSlide6.xml.rels.dart' as ppt_notes_slides_rels_notes_slide6;
-import 'ppt/notesSlides/_rels/notesSlide7.xml.rels.dart' as ppt_notes_slides_rels_notes_slide7;
-import 'ppt/notesSlides/_rels/notesSlide12.xml.rels.dart' as ppt_notes_slides_rels_notes_slide12;
-import 'ppt/notesSlides/_rels/notesSlide1.xml.rels.dart' as ppt_notes_slides_rels_notes_slide1;
-import 'ppt/notesSlides/notesSlide6.xml.dart' as ppt_notes_slides_notes_slide6;
-import 'ppt/notesSlides/notesSlide7.xml.dart' as ppt_notes_slides_notes_slide7;
-import 'ppt/notesSlides/notesSlide5.xml.dart' as ppt_notes_slides_notes_slide5;
-import 'ppt/notesSlides/notesSlide4.xml.dart' as ppt_notes_slides_notes_slide4;
-import 'ppt/notesSlides/notesSlide1.xml.dart' as ppt_notes_slides_notes_slide1;
-import 'ppt/notesSlides/notesSlide3.xml.dart' as ppt_notes_slides_notes_slide3;
-import 'ppt/notesSlides/notesSlide2.xml.dart' as ppt_notes_slides_notes_slide2;
 import 'ppt/slideMasters/slideMaster1.xml.dart' as ppt_slide_masters_slide_master1;
 import 'ppt/slideMasters/_rels/slideMaster1.xml.rels.dart' as ppt_slide_masters_rels_slide_master1;
 import 'ppt/slides/title.xml.mustache.dart' as ppt_slides_title;
+import 'ppt/slides/bullets.xml.mustache.dart' as ppt_slides_bullets;
 import 'ppt/slides/title_and_bullets.xml.mustache.dart' as ppt_slides_title_and_bullets;
 import 'ppt/slides/title_and_photo_alt.xml.mustache.dart' as ppt_slides_title_and_photo_alt;
 import 'ppt/slides/_rels/slide.xml.rels.mustache.dart' as ppt_slides_rels_slide;
@@ -116,35 +93,12 @@ final templates = {
   'ppt/slideLayouts/slideLayout10.xml': ppt_slide_layouts_slide_layout10.template,
   'ppt/slideLayouts/slideLayout11.xml': ppt_slide_layouts_slide_layout11.template,
   'ppt/slideLayouts/slideLayout7.xml': ppt_slide_layouts_slide_layout7.template,
-  'ppt/notesSlides/notesSlide9.xml': ppt_notes_slides_notes_slide9.template,
   'ppt/notesSlides/notesSlide.xml.mustache': ppt_notes_slides_notes_slide.template,
-  'ppt/notesSlides/notesSlide8.xml': ppt_notes_slides_notes_slide8.template,
-  'ppt/notesSlides/notesSlide10.xml': ppt_notes_slides_notes_slide10.template,
-  'ppt/notesSlides/notesSlide11.xml': ppt_notes_slides_notes_slide11.template,
-  'ppt/notesSlides/notesSlide12.xml': ppt_notes_slides_notes_slide12.template,
-  'ppt/notesSlides/_rels/notesSlide11.xml.rels': ppt_notes_slides_rels_notes_slide11.template,
-  'ppt/notesSlides/_rels/notesSlide10.xml.rels': ppt_notes_slides_rels_notes_slide10.template,
   'ppt/notesSlides/_rels/noteSlide.xml.rels.mustache': ppt_notes_slides_rels_note_slide.template,
-  'ppt/notesSlides/_rels/notesSlide5.xml.rels': ppt_notes_slides_rels_notes_slide5.template,
-  'ppt/notesSlides/_rels/notesSlide4.xml.rels': ppt_notes_slides_rels_notes_slide4.template,
-  'ppt/notesSlides/_rels/notesSlide8.xml.rels': ppt_notes_slides_rels_notes_slide8.template,
-  'ppt/notesSlides/_rels/notesSlide9.xml.rels': ppt_notes_slides_rels_notes_slide9.template,
-  'ppt/notesSlides/_rels/notesSlide2.xml.rels': ppt_notes_slides_rels_notes_slide2.template,
-  'ppt/notesSlides/_rels/notesSlide3.xml.rels': ppt_notes_slides_rels_notes_slide3.template,
-  'ppt/notesSlides/_rels/notesSlide6.xml.rels': ppt_notes_slides_rels_notes_slide6.template,
-  'ppt/notesSlides/_rels/notesSlide7.xml.rels': ppt_notes_slides_rels_notes_slide7.template,
-  'ppt/notesSlides/_rels/notesSlide12.xml.rels': ppt_notes_slides_rels_notes_slide12.template,
-  'ppt/notesSlides/_rels/notesSlide1.xml.rels': ppt_notes_slides_rels_notes_slide1.template,
-  'ppt/notesSlides/notesSlide6.xml': ppt_notes_slides_notes_slide6.template,
-  'ppt/notesSlides/notesSlide7.xml': ppt_notes_slides_notes_slide7.template,
-  'ppt/notesSlides/notesSlide5.xml': ppt_notes_slides_notes_slide5.template,
-  'ppt/notesSlides/notesSlide4.xml': ppt_notes_slides_notes_slide4.template,
-  'ppt/notesSlides/notesSlide1.xml': ppt_notes_slides_notes_slide1.template,
-  'ppt/notesSlides/notesSlide3.xml': ppt_notes_slides_notes_slide3.template,
-  'ppt/notesSlides/notesSlide2.xml': ppt_notes_slides_notes_slide2.template,
   'ppt/slideMasters/slideMaster1.xml': ppt_slide_masters_slide_master1.template,
   'ppt/slideMasters/_rels/slideMaster1.xml.rels': ppt_slide_masters_rels_slide_master1.template,
   'ppt/slides/title.xml.mustache': ppt_slides_title.template,
+  'ppt/slides/bullets.xml.mustache': ppt_slides_bullets.template,
   'ppt/slides/title_and_bullets.xml.mustache': ppt_slides_title_and_bullets.template,
   'ppt/slides/title_and_photo_alt.xml.mustache': ppt_slides_title_and_photo_alt.template,
   'ppt/slides/_rels/slide.xml.rels.mustache': ppt_slides_rels_slide.template,

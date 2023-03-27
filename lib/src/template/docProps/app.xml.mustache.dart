@@ -43,7 +43,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8" standalone="yes
             <vt:lpstr>Calibri</vt:lpstr>
             <vt:lpstr>Office Theme</vt:lpstr>
             {{#slides}}
-            <vt:lpstr>{{title}}</vt:lpstr>
+            <vt:lpstr>{{name}}</vt:lpstr>
             {{/slides}}
         </vt:vector>
     </TitlesOfParts>

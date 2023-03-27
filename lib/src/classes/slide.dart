@@ -12,12 +12,12 @@ part 'slide.g.dart';
 class Slide extends Base {
   String name;
   bool slideNumber;
-  String speakerNotes;
+  TextValue? speakerNotes;
   int layoutId = -1;
 
   Slide({
     required this.name,
-    this.speakerNotes = '',
+    this.speakerNotes,
     this.slideNumber = false,
   });
 
@@ -25,15 +25,15 @@ class Slide extends Base {
     return offset;
   }
 
-  bool get hasNotes => speakerNotes.trim().isNotEmpty;
+  bool get hasNotes => speakerNotes != null;
 
   @override
   Map<String, dynamic> toJson() => _$SlideToJson(this);
+}
 
-  Template? resolvePartials(String value) {
-    if (value.isEmpty) return null;
-    if (value == 'speaker-notes') return slideNotesTemplate;
-    if (value == 'text-value') return textValueTemplate;
-    return null;
-  }
+Template? resolvePartials(String value) {
+  if (value.isEmpty) return null;
+  if (value == 'speaker-notes') return slideNotesTemplate;
+  if (value == 'text-value') return textValueTemplate;
+  return null;
 }

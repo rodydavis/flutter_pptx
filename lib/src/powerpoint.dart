@@ -12,6 +12,7 @@ import 'classes/presentation.dart';
 import 'classes/slide.dart';
 import 'classes/slide_rel.dart';
 import 'classes/text_value.dart';
+import 'slides/bullets.dart';
 import 'slides/title.dart';
 import 'slides/title_and_bullets.dart';
 import 'slides/title_and_photo.dart';
@@ -46,7 +47,7 @@ class Powerpoint {
 
   Slide addSlide(
     Slide slide, {
-    String? notes,
+    TextValue? notes,
     bool? showSlideNumber,
   }) {
     slide.speakerNotes = notes ?? slide.speakerNotes;
@@ -58,7 +59,7 @@ class Powerpoint {
   Slide addTitle({
     required String title,
     String? author,
-    String? notes,
+    TextValue? notes,
     bool? showSlideNumber,
   }) =>
       addSlide(
@@ -77,7 +78,7 @@ class Powerpoint {
     String? imageDescription,
     String? author,
     String? subtitle,
-    String? notes,
+    TextValue? notes,
     bool? showSlideNumber,
   }) {
     final imgName = imageName ?? imagePath.split('/').last.split('.').first;
@@ -104,7 +105,7 @@ class Powerpoint {
     String? imageDescription,
     String? author,
     String? subtitle,
-    String? notes,
+    TextValue? notes,
     bool? showSlideNumber,
   }) {
     final imgName = imageName ?? imagePath.split('/').last.split('.').first;
@@ -129,7 +130,7 @@ class Powerpoint {
     required List<String> bullets,
     String? author,
     String? subtitle,
-    String? notes,
+    TextValue? notes,
     bool? showSlideNumber,
   }) {
     return addSlide(
@@ -138,6 +139,20 @@ class Powerpoint {
         subtitle: TextValue.normal(subtitle),
         bullets: bullets.map((e) => TextValue.normal(e)).toList(),
         author: TextValue.normal(author),
+      ),
+      notes: notes,
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addBullets({
+    required List<String> bullets,
+    TextValue? notes,
+    bool? showSlideNumber,
+  }) {
+    return addSlide(
+      Bullets(
+        bullets: bullets.map((e) => TextValue.normal(e)).toList(),
       ),
       notes: notes,
       showSlideNumber: showSlideNumber,
@@ -206,9 +221,9 @@ class Powerpoint {
         }
       }
 
-      if (item.speakerNotes.isNotEmpty) {
+      if (item.hasNotes) {
         note = Notes(
-          notes: item.speakerNotes,
+          notes: item.speakerNotes!,
           slideIndex: i,
         );
         notes.add(note);

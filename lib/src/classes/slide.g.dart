@@ -15,7 +15,7 @@ Map<String, dynamic> _$SlideToJson(Slide instance) => <String, dynamic>{
       'localRId': instance.localRId,
       'name': instance.name,
       'slideNumber': instance.slideNumber,
-      'speakerNotes': instance.speakerNotes,
+      'speakerNotes': instance.speakerNotes?.toJson(),
       'layoutId': instance.layoutId,
       'hasNotes': instance.hasNotes,
     };

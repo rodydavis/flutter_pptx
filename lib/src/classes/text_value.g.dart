@@ -6,6 +6,15 @@ part of 'text_value.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Map<String, dynamic> _$TextValueToJson(TextValue instance) => <String, dynamic>{
+Map<String, dynamic> _$TextItemToJson(TextItem instance) => <String, dynamic>{
       'value': instance.value,
+      'isBold': instance.isBold,
+      'isItalic': instance.isItalic,
+      'isUnderline': instance.isUnderline,
+      'isStrikeThrough': instance.isStrikeThrough,
+      'isStylized': instance.isStylized,
+    };
+
+Map<String, dynamic> _$TextValueToJson(TextValue instance) => <String, dynamic>{
+      'values': instance.values.map((e) => e.toJson()).toList(),
     };
