@@ -10,12 +10,12 @@ part 'photo.g.dart';
 class SlidePhoto extends Slide {
   SlidePhoto({
     super.name = 'Photo',
-    required this.image,
+    this.image,
     super.speakerNotes,
     super.slideNumber,
   });
 
-  ImageReference image;
+  ImageReference? image;
 
   @override
   int get layoutId => 14;

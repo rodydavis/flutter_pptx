@@ -11,7 +11,7 @@ part 'title_and_photo_alt.g.dart';
 class SlideTitleAndPhotoAlt extends Slide {
   SlideTitleAndPhotoAlt({
     super.name = 'Title and Photo Alt',
-    required this.image,
+    this.image,
     this.title,
     this.subtitle,
     super.speakerNotes,
@@ -19,7 +19,7 @@ class SlideTitleAndPhotoAlt extends Slide {
     this.author,
   });
 
-  ImageReference image;
+  ImageReference? image;
   TextValue? title;
   TextValue? author;
   TextValue? subtitle;

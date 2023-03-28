@@ -1,5 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:json_annotation/json_annotation.dart';
+import 'dart:ui' as ui;
 
 import 'base.dart';
 
@@ -16,6 +20,34 @@ class ImageReference extends Base {
     required this.name,
     this.description,
   });
+
+  static Future<ImageReference> fromImage(
+    ui.Image image, {
+    String name = 'image',
+    String? description,
+  }) async {
+    final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+    final buffer = bytes!.buffer;
+    final data = buffer.asUint8List();
+    return fromBytes(
+      data,
+      name: name,
+      description: description,
+    );
+  }
+
+  static ImageReference fromBytes(
+    Uint8List bytes, {
+    String name = 'image',
+    String? description,
+  }) {
+    final base64 = base64Encode(bytes);
+    return ImageReference(
+      path: 'data:image/png;base64,$base64',
+      name: '$name.png',
+      description: description ?? name,
+    );
+  }
 
   bool get isNetwork => path.startsWith('http');
   bool get isMemory => path.startsWith('data:');

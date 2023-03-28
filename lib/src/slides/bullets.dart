@@ -9,7 +9,7 @@ part 'bullets.g.dart';
 @JsonSerializable(createFactory: false)
 class Bullets extends Slide {
   Bullets({
-    required this.bullets,
+    this.bullets = const [],
     super.name = 'Bullets',
     super.speakerNotes,
     super.slideNumber,

@@ -20,7 +20,7 @@ Map<String, dynamic> _$SlideTitleAndPhotoToJson(SlideTitleAndPhoto instance) =>
       'notesId': instance.notesId,
       'background': instance.background.toJson(),
       'hasNotes': instance.hasNotes,
-      'image': instance.image.toJson(),
+      'image': instance.image?.toJson(),
       'title': instance.title?.toJson(),
       'author': instance.author?.toJson(),
       'subtitle': instance.subtitle?.toJson(),

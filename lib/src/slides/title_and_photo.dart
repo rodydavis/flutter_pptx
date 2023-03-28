@@ -12,14 +12,14 @@ class SlideTitleAndPhoto extends Slide {
   SlideTitleAndPhoto({
     super.name = 'Title and Photo',
     this.title,
-    required this.image,
+    this.image,
     this.subtitle,
     super.speakerNotes,
     super.slideNumber,
     this.author,
   });
 
-  ImageReference image;
+  ImageReference? image;
   TextValue? title;
   TextValue? author;
   TextValue? subtitle;

@@ -12,8 +12,8 @@ class SlideTitleBulletsAndPhoto extends Slide {
   SlideTitleBulletsAndPhoto({
     super.name = 'Title, Bullets and Photo',
     this.title,
-    required this.image,
-    required this.bullets,
+    this.image,
+    this.bullets = const [],
     this.subtitle,
     super.speakerNotes,
     super.slideNumber,
@@ -21,7 +21,7 @@ class SlideTitleBulletsAndPhoto extends Slide {
   });
 
   List<TextValue> bullets;
-  ImageReference image;
+  ImageReference? image;
   TextValue? title;
   TextValue? author;
   TextValue? subtitle;

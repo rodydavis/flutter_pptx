@@ -114,3 +114,13 @@ const _singleLine = r'''
 </a:r>
 {{/values}}
 ''';
+
+extension TextValueUtils on String {
+  TextValue toTextValue() {
+    return TextValue.uniform(this);
+  }
+
+  TextValueLine toTextLine() {
+    return TextValueLine(values: [TextItem(this)]);
+  }
+}

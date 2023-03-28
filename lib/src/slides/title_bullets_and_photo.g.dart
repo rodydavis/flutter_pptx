@@ -22,7 +22,7 @@ Map<String, dynamic> _$SlideTitleBulletsAndPhotoToJson(
       'background': instance.background.toJson(),
       'hasNotes': instance.hasNotes,
       'bullets': instance.bullets.map((e) => e.toJson()).toList(),
-      'image': instance.image.toJson(),
+      'image': instance.image?.toJson(),
       'title': instance.title?.toJson(),
       'author': instance.author?.toJson(),
       'subtitle': instance.subtitle?.toJson(),

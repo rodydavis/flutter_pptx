@@ -17,39 +17,43 @@ void main() {
     () async {
       final pres = Powerpoint();
 
-      pres.addTitle(
-        title: 'Slide one',
+      pres.addTitleSlide(
+        title: 'Slide one'.toTextValue(),
       );
 
-      pres.addTitleAndPhoto(
-        title: 'Slide two',
-        imagePath: './samples/images/sample_gif.gif',
-        imageName: 'Sample Gif',
+      pres.addTitleAndPhotoSlide(
+        title: 'Slide two'.toTextValue(),
+        image: ImageReference(
+          path: './samples/images/sample_gif.gif',
+          name: 'Sample Gif',
+        ),
       );
 
-      pres.addTitleAndPhotoAlt(
-        title: 'Slide three',
-        imagePath: './samples/images/sample_jpg.jpg',
-        imageName: 'Sample Jpg',
+      pres.addTitleAndPhotoAltSlide(
+        title: 'Slide three'.toTextValue(),
+        image: ImageReference(
+          path: './samples/images/sample_jpg.jpg',
+          name: 'Sample Jpg',
+        ),
       );
 
-      pres.addTitleAndBullets(
-        title: 'Slide three',
+      pres.addTitleAndBulletsSlide(
+        title: 'Slide three'.toTextValue(),
         bullets: [
           'Bullet 1',
           'Bullet 2',
           'Bullet 3',
           'Bullet 4',
-        ],
+        ].map((e) => e.toTextValue()).toList(),
       )..speakerNotes = TextValue.uniform('This is a note!');
 
-      pres.addBullets(
+      pres.addBulletsSlide(
         bullets: [
           'Bullet 1',
           'Bullet 2',
           'Bullet 3',
           'Bullet 4',
-        ],
+        ].map((e) => e.toTextValue()).toList(),
       )..speakerNotes = TextValue.singleLine([
           TextItem('This '),
           TextItem('is ', isBold: true),
@@ -57,20 +61,22 @@ void main() {
           TextItem('note!'),
         ]);
 
-      pres.addSlideTitleBulletsAndPhoto(
-        title: 'Slide five',
-        imagePath: './samples/images/sample_jpg.jpg',
-        imageName: 'Sample Jpg',
+      pres.addTitleBulletsAndPhotoSlide(
+        title: 'Slide five'.toTextValue(),
+        image: ImageReference(
+          path: './samples/images/sample_jpg.jpg',
+          name: 'Sample Jpg',
+        ),
         bullets: [
           'Bullet 1',
           'Bullet 2',
           'Bullet 3',
           'Bullet 4',
-        ],
+        ].map((e) => e.toTextValue()).toList(),
       );
 
-      pres.addSection(
-        section: 'Section 1',
+      pres.addSectionSlide(
+        section: 'Section 1'.toTextValue(),
       )..speakerNotes = TextValue.multiLine([
           TextValueLine(values: [
             TextItem('This '),
@@ -86,52 +92,64 @@ void main() {
           ]),
         ]);
 
-      pres.addSlideTitleOnly(
-        title: 'Title 1',
-        subtitle: 'Subtitle 1',
+      pres.addTitleOnlySlide(
+        title: 'Title 1'.toTextValue(),
+        subtitle: 'Subtitle 1'.toTextValue(),
       );
 
-      pres.addSlideAgenda(
-        title: 'Title 1',
-        subtitle: 'Subtitle 1',
-        topics: 'Topics 1',
+      pres.addAgendaSlide(
+        title: 'Title 1'.toTextValue(),
+        subtitle: 'Subtitle 1'.toTextValue(),
+        topics: 'Topics 1'.toTextValue(),
       );
 
-      pres.addSlideStatement(
-        statement: 'Statement 1',
+      pres.addStatementSlide(
+        statement: 'Statement 1'.toTextValue(),
       );
 
-      pres.addBigFact(
-        fact: 'Title 1',
-        information: 'Fact 1',
+      pres.addBigFactSlide(
+        fact: 'Title 1'.toTextLine(),
+        information: 'Fact 1'.toTextValue(),
       );
 
-      pres.addSlideQuote(
-        quote: 'Quote 1',
-        attribution: 'Attribution 1',
+      pres.addQuoteSlide(
+        quote: 'Quote 1'.toTextLine(),
+        attribution: 'Attribution 1'.toTextValue(),
       );
 
-      pres.addSlidePhoto3Up(
-        image1Path: './samples/images/sample_gif.gif',
-        image2Path: './samples/images/sample_jpg.jpg',
-        image3Path: './samples/images/sample_png.png',
+      pres.addPhoto3UpSlide(
+        image1: ImageReference(
+          path: './samples/images/sample_gif.gif',
+          name: 'Sample Gif',
+        ),
+        image2: ImageReference(
+          path: './samples/images/sample_jpg.jpg',
+          name: 'Sample Jpg',
+        ),
+        image3: ImageReference(
+          path: './samples/images/sample_png.png',
+          name: 'Sample Png',
+        ),
       );
 
-      pres.addSlidePhoto(
-        imagePath: './samples/images/sample_gif.gif',
+      pres.addPhotoSlide(
+        image: ImageReference(
+          path: './samples/images/sample_gif.gif',
+          name: 'Sample Gif',
+        ),
       );
 
-      pres.addSlideBlank();
+      pres.addBlankSlide();
 
-      pres.addSlideBlank()..background.color = '000000';
+      pres.addBlankSlide()..background.color = '000000';
 
-      pres.addSlideBlank()
+      pres.addBlankSlide()
         ..background.image = ImageReference(
           path: './samples/images/sample_gif.gif',
           name: 'Sample Gif',
         );
 
-      await pres.addSlideWidget(BaseWidget(
+      await pres.addWidgetSlide(BaseWidget(
         child: Center(
           child: Container(
               padding: const EdgeInsets.all(30.0),

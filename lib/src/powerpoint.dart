@@ -71,264 +71,192 @@ class Powerpoint {
     return slide;
   }
 
-  Slide addTitle({
-    required String title,
-    String? author,
+  Slide addTitleSlide({
+    TextValue? title,
+    TextValue? author,
   }) =>
       addSlide(
         SlideTitle(
-          title: TextValue.uniform(title),
-          author: TextValue.uniform(author),
+          title: title,
+          author: author,
         ),
         showSlideNumber: showSlideNumber,
       );
 
-  Slide addTitleAndPhoto({
-    required String title,
-    required String imagePath,
-    String? imageName,
-    String? imageDescription,
-    String? author,
-    String? subtitle,
-  }) {
-    final imgName = imageName ?? imagePath.split('/').last.split('.').first;
-    return addSlide(
-      SlideTitleAndPhoto(
-        title: TextValue.uniform(title),
-        subtitle: TextValue.uniform(subtitle),
-        image: ImageReference(
-          path: imagePath,
-          name: imgName,
-          description: imageDescription ?? imgName,
+  Slide addTitleAndPhotoSlide({
+    TextValue? title,
+    ImageReference? image,
+    TextValue? author,
+    TextValue? subtitle,
+  }) =>
+      addSlide(
+        SlideTitleAndPhoto(
+          title: title,
+          subtitle: subtitle,
+          image: image,
+          author: author,
         ),
-        author: TextValue.uniform(author),
-      ),
-      showSlideNumber: showSlideNumber,
-    );
-  }
+        showSlideNumber: showSlideNumber,
+      );
 
-  Slide addTitleAndPhotoAlt({
-    required String title,
-    required String imagePath,
-    String? imageName,
-    String? imageDescription,
-    String? author,
-    String? subtitle,
+  Slide addTitleAndPhotoAltSlide({
+    ImageReference? image,
+    TextValue? title,
+    TextValue? author,
+    TextValue? subtitle,
   }) {
-    final imgName = imageName ?? imagePath.split('/').last.split('.').first;
     return addSlide(
       SlideTitleAndPhotoAlt(
-        title: TextValue.uniform(title),
-        subtitle: TextValue.uniform(subtitle),
-        author: TextValue.uniform(author),
-        image: ImageReference(
-          path: imagePath,
-          name: imgName,
-          description: imageDescription ?? imgName,
+        title: title,
+        subtitle: subtitle,
+        author: author,
+        image: image,
+      ),
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addTitleAndBulletsSlide({
+    TextValue? title,
+    List<TextValue> bullets = const [],
+    TextValue? author,
+    TextValue? subtitle,
+  }) =>
+      addSlide(
+        TitleAndBullets(
+          bullets: bullets,
+          title: title,
+          subtitle: subtitle,
+          author: author,
         ),
-      ),
-      showSlideNumber: showSlideNumber,
-    );
-  }
+        showSlideNumber: showSlideNumber,
+      );
 
-  Slide addTitleAndBullets({
-    required String title,
-    required List<String> bullets,
-    String? author,
-    String? subtitle,
-  }) {
-    return addSlide(
-      TitleAndBullets(
-        title: TextValue.uniform(title),
-        subtitle: TextValue.uniform(subtitle),
-        bullets: bullets.map((e) => TextValue.uniform(e)).toList(),
-        author: TextValue.uniform(author),
-      ),
-      showSlideNumber: showSlideNumber,
-    );
-  }
+  Slide addBulletsSlide({
+    List<TextValue> bullets = const [],
+  }) =>
+      addSlide(
+        Bullets(
+          bullets: bullets,
+        ),
+        showSlideNumber: showSlideNumber,
+      );
 
-  Slide addBullets({
-    required List<String> bullets,
-  }) {
-    return addSlide(
-      Bullets(
-        bullets: bullets.map((e) => TextValue.uniform(e)).toList(),
-      ),
-      showSlideNumber: showSlideNumber,
-    );
-  }
-
-  Slide addSlideTitleBulletsAndPhoto({
-    required String title,
-    required List<String> bullets,
-    required String imagePath,
-    String? imageName,
-    String? imageDescription,
+  Slide addTitleBulletsAndPhotoSlide({
+    TextValue? title,
+    List<TextValue> bullets = const [],
+    ImageReference? image,
     TextValue? notes,
-    String? author,
-    String? subtitle,
+    TextValue? author,
+    TextValue? subtitle,
     bool? showSlideNumber,
-  }) {
-    return addSlide(
-      SlideTitleBulletsAndPhoto(
-        title: TextValue.uniform(title),
-        subtitle: TextValue.uniform(subtitle),
-        author: TextValue.uniform(author),
-        bullets: bullets.map((e) => TextValue.uniform(e)).toList(),
-        image: ImageReference(
-          path: imagePath,
-          name: imageName ?? imagePath.split('/').last.split('.').first,
-          description: imageDescription ??
-              imageName ??
-              imagePath.split('/').last.split('.').first,
+  }) =>
+      addSlide(
+        SlideTitleBulletsAndPhoto(
+          title: title,
+          subtitle: subtitle,
+          author: author,
+          bullets: bullets,
+          image: image,
         ),
-      ),
-      showSlideNumber: showSlideNumber,
-    );
-  }
+        showSlideNumber: showSlideNumber,
+      );
 
-  Slide addSection({
-    required String section,
-  }) {
-    return addSlide(
-      SlideSection(
-        section: TextValue.uniform(section),
-      ),
-      showSlideNumber: showSlideNumber,
-    );
-  }
-
-  Slide addSlideTitleOnly({
-    required String title,
-    String? subtitle,
-  }) {
-    return addSlide(
-      SlideTitleOnly(
-        title: TextValue.uniform(title),
-        subtitle: TextValue.uniform(subtitle),
-      ),
-      showSlideNumber: showSlideNumber,
-    );
-  }
-
-  Slide addSlideAgenda({
-    required String title,
-    String? subtitle,
-    String? topics,
-  }) {
-    return addSlide(
-      SlideAgenda(
-        title: TextValue.uniform(title),
-        subtitle: TextValue.uniform(subtitle),
-        topics: TextValue.uniform(topics),
-      ),
-      showSlideNumber: showSlideNumber,
-    );
-  }
-
-  Slide addSlideStatement({
-    required String statement,
-  }) {
-    return addSlide(
-      SlideStatement(
-        statement: TextValue.uniform(statement),
-      ),
-      showSlideNumber: showSlideNumber,
-    );
-  }
-
-  Slide addBigFact({
-    required String fact,
-    String? information,
-  }) {
-    return addSlide(
-      SlideBigFact(
-        fact: TextValueLine(values: [TextItem(fact)]),
-        information: TextValue.uniform(information),
-      ),
-      showSlideNumber: showSlideNumber,
-    );
-  }
-
-  Slide addSlideQuote({
-    required String quote,
-    String? attribution,
-  }) {
-    return addSlide(
-      SlideQuote(
-        quote: TextValueLine(values: [TextItem(quote)]),
-        attribution: TextValue.uniform(attribution),
-      ),
-      showSlideNumber: showSlideNumber,
-    );
-  }
-
-  Slide addSlidePhoto3Up({
-    String? image1Path,
-    String? image1Name,
-    String? image1Description,
-    String? image2Path,
-    String? image2Name,
-    String? image2Description,
-    String? image3Path,
-    String? image3Name,
-    String? image3Description,
-  }) {
-    return addSlide(
-      SlidePhoto3Up(
-        image1: image1Path == null
-            ? null
-            : ImageReference(
-                path: image1Path,
-                name: image1Name ?? image1Path.split('/').last.split('.').first,
-                description: image1Description ??
-                    image1Name ??
-                    image1Path.split('/').last.split('.').first,
-              ),
-        image2: image2Path == null
-            ? null
-            : ImageReference(
-                path: image2Path,
-                name: image2Name ?? image2Path.split('/').last.split('.').first,
-                description: image2Description ??
-                    image2Name ??
-                    image2Path.split('/').last.split('.').first,
-              ),
-        image3: image3Path == null
-            ? null
-            : ImageReference(
-                path: image3Path,
-                name: image3Name ?? image3Path.split('/').last.split('.').first,
-                description: image3Description ??
-                    image3Name ??
-                    image3Path.split('/').last.split('.').first,
-              ),
-      ),
-      showSlideNumber: showSlideNumber,
-    );
-  }
-
-  Slide addSlidePhoto({
-    required String imagePath,
-    String? imageName,
-    String? imageDescription,
-  }) {
-    return addSlide(
-      SlidePhoto(
-        image: ImageReference(
-          path: imagePath,
-          name: imageName ?? imagePath.split('/').last.split('.').first,
-          description: imageDescription ??
-              imageName ??
-              imagePath.split('/').last.split('.').first,
+  Slide addSectionSlide({
+    TextValue? section,
+  }) =>
+      addSlide(
+        SlideSection(
+          section: section,
         ),
-      ),
-      showSlideNumber: showSlideNumber,
-    );
-  }
+        showSlideNumber: showSlideNumber,
+      );
 
-  Future<Slide> addSlideWidget(
+  Slide addTitleOnlySlide({
+    TextValue? title,
+    TextValue? subtitle,
+  }) =>
+      addSlide(
+        SlideTitleOnly(
+          title: title,
+          subtitle: subtitle,
+        ),
+        showSlideNumber: showSlideNumber,
+      );
+
+  Slide addAgendaSlide({
+    TextValue? title,
+    TextValue? subtitle,
+    TextValue? topics,
+  }) =>
+      addSlide(
+        SlideAgenda(
+          title: title,
+          subtitle: subtitle,
+          topics: topics,
+        ),
+        showSlideNumber: showSlideNumber,
+      );
+
+  Slide addStatementSlide({
+    TextValue? statement,
+  }) =>
+      addSlide(
+        SlideStatement(
+          statement: statement,
+        ),
+        showSlideNumber: showSlideNumber,
+      );
+
+  Slide addBigFactSlide({
+    TextValueLine? fact,
+    TextValue? information,
+  }) =>
+      addSlide(
+        SlideBigFact(
+          fact: fact,
+          information: information,
+        ),
+        showSlideNumber: showSlideNumber,
+      );
+
+  Slide addQuoteSlide({
+    TextValueLine? quote,
+    TextValue? attribution,
+  }) =>
+      addSlide(
+        SlideQuote(
+          quote: quote,
+          attribution: attribution,
+        ),
+        showSlideNumber: showSlideNumber,
+      );
+
+  Slide addPhoto3UpSlide({
+    ImageReference? image1,
+    ImageReference? image2,
+    ImageReference? image3,
+  }) =>
+      addSlide(
+        SlidePhoto3Up(
+          image1: image1,
+          image2: image2,
+          image3: image3,
+        ),
+        showSlideNumber: showSlideNumber,
+      );
+
+  Slide addPhotoSlide({
+    ImageReference? image,
+  }) =>
+      addSlide(
+        SlidePhoto(
+          image: image,
+        ),
+        showSlideNumber: showSlideNumber,
+      );
+
+  Future<Slide> addWidgetSlide(
     Widget child, {
     Duration delay = const Duration(seconds: 1),
     double? pixelRatio,
@@ -342,9 +270,8 @@ class Powerpoint {
           context: context,
           targetSize: targetSize ?? layout.size,
         );
-    final base64Data = base64Encode(bytes);
-    final image = ImageReference(
-      path: 'data:image/png;base64,$base64Data',
+    final image = ImageReference.fromBytes(
+      bytes,
       name: 'widget',
       description: 'image created from a widget',
     );
@@ -354,7 +281,7 @@ class Powerpoint {
     );
   }
 
-  Slide addSlideBlank() {
+  Slide addBlankSlide() {
     return addSlide(
       SlideBlank(),
       showSlideNumber: showSlideNumber,
@@ -396,18 +323,26 @@ class Powerpoint {
       }
 
       if (statement != null) {
-        items.add(addSlideStatement(statement: statement));
+        items.add(addStatementSlide(
+          statement: statement.toTextValue(),
+        ));
       } else if (quote != null) {
-        items.add(addSlideQuote(quote: quote, attribution: attribution));
+        items.add(addQuoteSlide(
+          quote: quote.toTextLine(),
+          attribution: attribution?.toTextValue(),
+        ));
       } else if (fact != null) {
-        items.add(addBigFact(fact: fact, information: information));
+        items.add(addBigFactSlide(
+          fact: fact.toTextLine(),
+          information: information?.toTextValue(),
+        ));
       } else if (title != null) {
-        items.add(addSlideAgenda(
-          title: title,
-          subtitle: subtitle,
+        items.add(addAgendaSlide(
+          title: title.toTextValue(),
+          subtitle: subtitle?.toTextValue(),
         ));
       } else {
-        items.add(addSlideBlank());
+        items.add(addBlankSlide());
       }
     }
     return items;
