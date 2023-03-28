@@ -442,6 +442,7 @@ class Powerpoint {
       '[Content_Types].xml': ContentType(
         notes: arc.notes,
         slides: slides,
+        comments: arc.comments,
       ).toString(),
     });
 

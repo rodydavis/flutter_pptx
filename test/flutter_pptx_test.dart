@@ -128,6 +128,12 @@ void main() {
 
       pres.addSlideBlank()..background.color = '000000';
 
+      pres.addSlideBlank()
+        ..background.image = ImageReference(
+          path: './samples/images/sample_gif.gif',
+          name: 'Sample Gif',
+        );
+
       pres.showSlideNumber = true;
 
       final bytes = await pres.save();

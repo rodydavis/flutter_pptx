@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 
+import 'comments.dart';
 import 'images.dart';
 import 'notes.dart';
 import 'slide.dart';
@@ -11,6 +12,7 @@ class Arc {
   int offset = 150;
   List<Notes> notes = [];
   List<ImageReference> images = [];
+  List<Comments> comments = [];
 
   void init(List<Slide> slides) {
     for (var i = 0; i < slides.length; i++) {

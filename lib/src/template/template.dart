@@ -5,6 +5,7 @@ import 'docProps/app.xml.mustache.dart' as doc_props_app;
 import 'docProps/core.xml.mustache.dart' as doc_props_core;
 import '[Content_Types].xml.mustache.dart' as _content_types;
 import '_rels/.rels.dart' as rels;
+import 'ppt/comments/comment.xml.mustache.dart' as ppt_comments_comment;
 import 'ppt/viewProps.xml.dart' as ppt_view_props;
 import 'ppt/slideLayouts/slideLayout9.xml.dart' as ppt_slide_layouts_slide_layout9;
 import 'ppt/slideLayouts/slideLayout8.xml.dart' as ppt_slide_layouts_slide_layout8;
@@ -72,6 +73,7 @@ final templates = {
   'docProps/core.xml.mustache': doc_props_core.template,
   '[Content_Types].xml.mustache': _content_types.template,
   '_rels/.rels': rels.template,
+  'ppt/comments/comment.xml.mustache': ppt_comments_comment.template,
   'ppt/viewProps.xml': ppt_view_props.template,
   'ppt/slideLayouts/slideLayout9.xml': ppt_slide_layouts_slide_layout9.template,
   'ppt/slideLayouts/slideLayout8.xml': ppt_slide_layouts_slide_layout8.template,

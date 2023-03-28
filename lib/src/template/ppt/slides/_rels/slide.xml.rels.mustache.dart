@@ -11,4 +11,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
     {{#images}}
     <Relationship Id="rId{{localRId}}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/image{{order}}.{{ext}}"/>
     {{/images}}
+    {{#comments}}
+    <Relationship Id="rId{{localRId}}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/comments" Target="../comments/comment{{order}}.xml"/>
+    {{/comments}}
 </Relationships>''';

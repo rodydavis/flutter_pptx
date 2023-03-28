@@ -25,11 +25,14 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
     <Override PartName="/ppt/slideMasters/slideMaster1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideMaster+xml"/>
     <Override PartName="/ppt/theme/theme1.xml" ContentType="application/vnd.openxmlformats-officedocument.theme+xml"/>
     <Override PartName="/ppt/notesMasters/notesMaster1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.notesMaster+xml"/>
+    <Override PartName="/ppt/theme/theme2.xml" ContentType="application/vnd.openxmlformats-officedocument.theme+xml"/>
     {{#slides}}
     <Override PartName="/ppt/slides/slide{{order}}.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slide+xml"/>
     {{/slides}}
-    <Override PartName="/ppt/theme/theme2.xml" ContentType="application/vnd.openxmlformats-officedocument.theme+xml"/>
     {{#notes}}
     <Override PartName="/ppt/notesSlides/notesSlide{{order}}.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.notesSlide+xml"/>
     {{/notes}}
+    {{#comments}}
+    <Override PartName="/ppt/comments/comment{{order}}.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.comments+xml"/>
+    {{/comments}}
 </Types>''';

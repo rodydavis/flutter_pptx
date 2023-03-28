@@ -55,6 +55,7 @@ abstract class Slide extends Base {
     final data = {
       'notes': localNotes.map((e) => e.toJson()).toList(),
       'images': localImages.map((e) => e.toJson()).toList(),
+      'comments': [],
       'layoutId': layoutId,
       'notesId': notesId,
     };
