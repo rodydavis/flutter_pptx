@@ -24,6 +24,7 @@ class SlidePhoto3Up extends Slide {
 
   @override
   Map<int, ImageReference?> get imageRefs => {
+        ...super.imageRefs,
         1: image1,
         2: image2,
         3: image3,

@@ -9,6 +9,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
     xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"
     xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main" showMasterSp="1" showMasterPhAnim="1">
     <p:cSld>
+        {{>slide-background}}
         <p:spTree>
             <p:nvGrpSpPr>
                 <p:cNvPr id="1" name=""/>
@@ -25,7 +26,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:grpSpPr>
             <p:pic>
                 <p:nvPicPr>
-                    <p:cNvPr id="{{new-id}}" name="Sea against sky at sunset 2" descr="Sea against sky at sunset 2"/>
+                    <p:cNvPr id="{{new-id}}" name="{{image1.name}}" descr="{{image1.description}}"/>
                     <p:cNvPicPr>
                         <a:picLocks noChangeAspect="1"/>
                     </p:cNvPicPr>
@@ -49,7 +50,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:pic>
             <p:pic>
                 <p:nvPicPr>
-                    <p:cNvPr id="{{new-id}}" name="Sea against sky at sunset 1" descr="Sea against sky at sunset 1"/>
+                    <p:cNvPr id="{{new-id}}" name="{{image2.name}}" descr="{{image2.description}}"/>
                     <p:cNvPicPr>
                         <a:picLocks noChangeAspect="1"/>
                     </p:cNvPicPr>
@@ -73,7 +74,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:pic>
             <p:pic>
                 <p:nvPicPr>
-                    <p:cNvPr id="{{new-id}}" name="Beach and sea at sunset" descr="Beach and sea at sunset"/>
+                    <p:cNvPr id="{{new-id}}" name="{{image3.name}}" descr="{{image3.description}}"/>
                     <p:cNvPicPr>
                         <a:picLocks noChangeAspect="1"/>
                     </p:cNvPicPr>

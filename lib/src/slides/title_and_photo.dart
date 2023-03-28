@@ -28,7 +28,7 @@ class SlideTitleAndPhoto extends Slide {
   int get layoutId => 2;
 
   @override
-  Map<int, ImageReference?> get imageRefs => {1: image};
+  Map<int, ImageReference?> get imageRefs => {...super.imageRefs, 1: image};
 
   @override
   Map<String, dynamic> toJson() => _$SlideTitleAndPhotoToJson(this);

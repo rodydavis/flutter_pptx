@@ -6,6 +6,7 @@ import 'package:mustache_template/mustache_template.dart';
 import '../template/ppt/slides/_rels/slide.xml.rels.mustache.dart';
 
 import 'arc.dart';
+import 'background.dart';
 import 'base.dart';
 import 'images.dart';
 import 'speaker_notes.dart';
@@ -20,6 +21,7 @@ abstract class Slide extends Base {
   TextValue? speakerNotes;
   int layoutId = -1;
   int notesId = -1;
+  var background = SlideBackground();
 
   Slide({
     required this.name,
@@ -29,7 +31,7 @@ abstract class Slide extends Base {
 
   bool get hasNotes => speakerNotes != null;
 
-  Map<int, ImageReference?> get imageRefs => {};
+  Map<int, ImageReference?> get imageRefs => {0: background.image};
 
   @override
   Map<String, dynamic> toJson() => _$SlideToJson(this);
@@ -77,7 +79,6 @@ abstract class Slide extends Base {
       ...generateLocalIds(arc),
       ...lambdaResolver(arc, slide: this),
     };
-
     return template.renderString(args);
   }
 
@@ -94,6 +95,7 @@ abstract class Slide extends Base {
 
 Template? resolvePartials(String value) {
   if (value.isEmpty) return null;
+  if (value == 'slide-background') return backgroundTemplate;
   if (value == 'speaker-notes') return slideNotesTemplate;
   if (value == 'text-value') return multiLineTemplate;
   if (value == 'text-line') return singleLineTemplate;

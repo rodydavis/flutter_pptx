@@ -12,7 +12,9 @@ import 'classes/slide.dart';
 import 'classes/text_value.dart';
 import 'slides/agenda.dart';
 import 'slides/big_fact.dart';
+import 'slides/blank.dart';
 import 'slides/bullets.dart';
+import 'slides/photo.dart';
 import 'slides/photo_3_up.dart';
 import 'slides/quote.dart';
 import 'slides/section.dart';
@@ -338,6 +340,39 @@ class Powerpoint {
                     image3Path.split('/').last.split('.').first,
               ),
       ),
+      notes: notes,
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addSlidePhoto({
+    required String imagePath,
+    String? imageName,
+    String? imageDescription,
+    TextValue? notes,
+    bool? showSlideNumber,
+  }) {
+    return addSlide(
+      SlidePhoto(
+        image: ImageReference(
+          path: imagePath,
+          name: imageName ?? imagePath.split('/').last.split('.').first,
+          description: imageDescription ??
+              imageName ??
+              imagePath.split('/').last.split('.').first,
+        ),
+      ),
+      notes: notes,
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addSlideBlank({
+    TextValue? notes,
+    bool? showSlideNumber,
+  }) {
+    return addSlide(
+      SlideBlank(),
       notes: notes,
       showSlideNumber: showSlideNumber,
     );

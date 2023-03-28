@@ -18,6 +18,7 @@ Map<String, dynamic> _$SlidePhoto3UpToJson(SlidePhoto3Up instance) =>
       'slideNumber': instance.slideNumber,
       'speakerNotes': instance.speakerNotes?.toJson(),
       'notesId': instance.notesId,
+      'background': instance.background.toJson(),
       'hasNotes': instance.hasNotes,
       'image1': instance.image1?.toJson(),
       'image2': instance.image2?.toJson(),

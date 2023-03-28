@@ -9,6 +9,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
     xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"
     xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main" showMasterSp="1" showMasterPhAnim="1">
     <p:cSld>
+        {{>slide-background}}
         <p:spTree>
             <p:nvGrpSpPr>
                 <p:cNvPr id="1" name=""/>
