@@ -19,6 +19,8 @@ Map<String, dynamic> _$SlideStatementToJson(SlideStatement instance) =>
       'speakerNotes': instance.speakerNotes?.toJson(),
       'notesId': instance.notesId,
       'hasNotes': instance.hasNotes,
+      'imageRefs':
+          instance.imageRefs.map((k, e) => MapEntry(k.toString(), e?.toJson())),
       'statement': instance.statement?.toJson(),
       'layoutId': instance.layoutId,
       'source': instance.source,

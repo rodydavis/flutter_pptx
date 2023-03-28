@@ -19,6 +19,8 @@ Map<String, dynamic> _$SlideQuoteToJson(SlideQuote instance) =>
       'speakerNotes': instance.speakerNotes?.toJson(),
       'notesId': instance.notesId,
       'hasNotes': instance.hasNotes,
+      'imageRefs':
+          instance.imageRefs.map((k, e) => MapEntry(k.toString(), e?.toJson())),
       'attribution': instance.attribution?.toJson(),
       'quote': instance.quote?.toJson(),
       'layoutId': instance.layoutId,

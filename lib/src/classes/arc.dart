@@ -1,5 +1,6 @@
+import 'package:collection/collection.dart';
+
 import 'images.dart';
-import 'media_slide.dart';
 import 'notes.dart';
 import 'slide.dart';
 
@@ -22,15 +23,14 @@ class Arc {
           slideIndex: i,
         ));
       }
-      if (slide is MediaSlide) {
-        final images = slide.images;
-        for (var j = 0; j < images.length; j++) {
-          final image = images[j];
-          final existingIdx = this.images.indexWhere((e) {
-            return e.path == image.path;
-          });
-          if (existingIdx == -1) this.images.add(image);
-        }
+      final images = slide.imageRefs.values.toList();
+      for (var j = 0; j < images.length; j++) {
+        final image = images[j];
+        if (image == null) continue;
+        final existingIdx = this.images.indexWhere((e) {
+          return e.path == image.path;
+        });
+        if (existingIdx == -1) this.images.add(image);
       }
     }
     for (var i = 0; i < notes.length; i++) {
@@ -51,12 +51,10 @@ class Arc {
   }
 
   List<ImageReference> getImagesForSlide(Slide slide) {
-    if (slide is MediaSlide) {
-      return images
-          .where((e) => slide.images.map((e) => e.path).contains(e.path))
-          .toList();
-    }
-    return [];
+    final related = slide.imageRefs.values.whereNotNull().toList();
+    return images
+        .where((e) => related.map((r) => r.path).contains(e.path))
+        .toList();
   }
 
   List<Notes> getNotesForSlide(Slide slide) {

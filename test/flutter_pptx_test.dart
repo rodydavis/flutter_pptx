@@ -195,6 +195,12 @@ void main() {
         attribution: 'Attribution 1',
       );
 
+      pres.addSlidePhoto3Up(
+        image1Path: './samples/images/sample_gif.gif',
+        image2Path: './samples/images/sample_jpg.jpg',
+        image3Path: './samples/images/sample_png.png',
+      );
+
       pres.showSlideNumber = true;
 
       final bytes = await pres.save();

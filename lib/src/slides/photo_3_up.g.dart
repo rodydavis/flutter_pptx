@@ -1,13 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'title_and_photo_alt.dart';
+part of 'photo_3_up.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Map<String, dynamic> _$SlideTitleAndPhotoAltToJson(
-        SlideTitleAndPhotoAlt instance) =>
+Map<String, dynamic> _$SlidePhoto3UpToJson(SlidePhoto3Up instance) =>
     <String, dynamic>{
       'index': instance.index,
       'isLast': instance.isLast,
@@ -20,10 +19,9 @@ Map<String, dynamic> _$SlideTitleAndPhotoAltToJson(
       'speakerNotes': instance.speakerNotes?.toJson(),
       'notesId': instance.notesId,
       'hasNotes': instance.hasNotes,
-      'image': instance.image.toJson(),
-      'title': instance.title?.toJson(),
-      'author': instance.author?.toJson(),
-      'subtitle': instance.subtitle?.toJson(),
+      'image1': instance.image1?.toJson(),
+      'image2': instance.image2?.toJson(),
+      'image3': instance.image3?.toJson(),
       'layoutId': instance.layoutId,
       'imageRefs':
           instance.imageRefs.map((k, e) => MapEntry(k.toString(), e?.toJson())),

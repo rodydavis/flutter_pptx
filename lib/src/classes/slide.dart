@@ -1,11 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:collection/collection.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mustache_template/mustache_template.dart';
 import '../template/ppt/slides/_rels/slide.xml.rels.mustache.dart';
 
 import 'arc.dart';
 import 'base.dart';
+import 'images.dart';
 import 'speaker_notes.dart';
 import 'text_value.dart';
 
@@ -27,6 +29,8 @@ abstract class Slide extends Base {
 
   bool get hasNotes => speakerNotes != null;
 
+  Map<int, ImageReference?> get imageRefs => {};
+
   @override
   Map<String, dynamic> toJson() => _$SlideToJson(this);
 
@@ -46,16 +50,21 @@ abstract class Slide extends Base {
     if (localNotes.isNotEmpty) {
       notesId = arc.notes.first.localRId!;
     }
-    return {
+    final data = {
       'notes': localNotes.map((e) => e.toJson()).toList(),
       'images': localImages.map((e) => e.toJson()).toList(),
       'layoutId': layoutId,
       'notesId': notesId,
-      for (var i = 0; i < localImages.length; i++)
-        'imageId${i + 1}': localImages[i].localRId,
-      for (var i = 0; i < localNotes.length; i++)
-        'notesId${i + 1}': localNotes[i].localRId,
     };
+    for (final entry in imageRefs.entries) {
+      final image = entry.value;
+      final match = localImages.firstWhereOrNull((e) => e.path == image?.path);
+      data['imageId${entry.key}'] = match?.localRId ?? 1;
+    }
+    for (var i = 0; i < localNotes.length; i++) {
+      data['notesId${i + 1}'] = localNotes[i].localRId!;
+    }
+    return data;
   }
 
   String renderTemplate(Arc arc) {

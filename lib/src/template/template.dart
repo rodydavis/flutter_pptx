@@ -44,6 +44,7 @@ import 'ppt/slides/agenda.xml.mustache.dart' as ppt_slides_agenda;
 import 'ppt/slides/statement.xml.mustache.dart' as ppt_slides_statement;
 import 'ppt/slides/title.xml.mustache.dart' as ppt_slides_title;
 import 'ppt/slides/bullets.xml.mustache.dart' as ppt_slides_bullets;
+import 'ppt/slides/photo_3_up.xml.mustache.dart' as ppt_slides_photo_3_up;
 import 'ppt/slides/title_and_bullets.xml.mustache.dart' as ppt_slides_title_and_bullets;
 import 'ppt/slides/title_and_photo_alt.xml.mustache.dart' as ppt_slides_title_and_photo_alt;
 import 'ppt/slides/big_fact.xml.mustache.dart' as ppt_slides_big_fact;
@@ -108,6 +109,7 @@ final templates = {
   'ppt/slides/statement.xml.mustache': ppt_slides_statement.template,
   'ppt/slides/title.xml.mustache': ppt_slides_title.template,
   'ppt/slides/bullets.xml.mustache': ppt_slides_bullets.template,
+  'ppt/slides/photo_3_up.xml.mustache': ppt_slides_photo_3_up.template,
   'ppt/slides/title_and_bullets.xml.mustache': ppt_slides_title_and_bullets.template,
   'ppt/slides/title_and_photo_alt.xml.mustache': ppt_slides_title_and_photo_alt.template,
   'ppt/slides/big_fact.xml.mustache': ppt_slides_big_fact.template,

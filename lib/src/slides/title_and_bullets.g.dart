@@ -19,6 +19,8 @@ Map<String, dynamic> _$TitleAndBulletsToJson(TitleAndBullets instance) =>
       'speakerNotes': instance.speakerNotes?.toJson(),
       'notesId': instance.notesId,
       'hasNotes': instance.hasNotes,
+      'imageRefs':
+          instance.imageRefs.map((k, e) => MapEntry(k.toString(), e?.toJson())),
       'bullets': instance.bullets.map((e) => e.toJson()).toList(),
       'title': instance.title?.toJson(),
       'author': instance.author?.toJson(),

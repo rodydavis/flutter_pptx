@@ -1,15 +1,14 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../classes/arc.dart';
 import '../classes/images.dart';
-import '../classes/media_slide.dart';
+import '../classes/slide.dart';
 import '../classes/text_value.dart';
 import '../template/ppt/slides/title_bullets_and_photo.xml.mustache.dart';
 
 part 'title_bullets_and_photo.g.dart';
 
 @JsonSerializable(createFactory: false)
-class SlideTitleBulletsAndPhoto extends MediaSlide {
+class SlideTitleBulletsAndPhoto extends Slide {
   SlideTitleBulletsAndPhoto({
     super.name = 'Title, Bullets and Photo',
     this.title,
@@ -28,10 +27,10 @@ class SlideTitleBulletsAndPhoto extends MediaSlide {
   TextValue? subtitle;
 
   @override
-  List<ImageReference> get images => [image];
+  int get layoutId => 6;
 
   @override
-  int get layoutId => 6;
+  Map<int, ImageReference?> get imageRefs => {1: image};
 
   @override
   Map<String, dynamic> toJson() => _$SlideTitleBulletsAndPhotoToJson(this);

@@ -13,6 +13,7 @@ import 'classes/text_value.dart';
 import 'slides/agenda.dart';
 import 'slides/big_fact.dart';
 import 'slides/bullets.dart';
+import 'slides/photo_3_up.dart';
 import 'slides/quote.dart';
 import 'slides/section.dart';
 import 'slides/statement.dart';
@@ -36,7 +37,6 @@ class Powerpoint {
   final slides = <Slide>[];
 
   bool _showSlideNumber = false;
-
   bool get showSlideNumber => _showSlideNumber;
   set showSlideNumber(bool value) {
     _showSlideNumber = value;
@@ -46,6 +46,12 @@ class Powerpoint {
       }
     }
   }
+
+  String? company;
+  String? title;
+  String? subject;
+  String? author;
+  String? revision;
 
   void setLayout(Layout layout) {
     this.layout = layout;
@@ -289,6 +295,54 @@ class Powerpoint {
     );
   }
 
+  Slide addSlidePhoto3Up({
+    String? image1Path,
+    String? image1Name,
+    String? image1Description,
+    String? image2Path,
+    String? image2Name,
+    String? image2Description,
+    String? image3Path,
+    String? image3Name,
+    String? image3Description,
+    TextValue? notes,
+    bool? showSlideNumber,
+  }) {
+    return addSlide(
+      SlidePhoto3Up(
+        image1: image1Path == null
+            ? null
+            : ImageReference(
+                path: image1Path,
+                name: image1Name ?? image1Path.split('/').last.split('.').first,
+                description: image1Description ??
+                    image1Name ??
+                    image1Path.split('/').last.split('.').first,
+              ),
+        image2: image2Path == null
+            ? null
+            : ImageReference(
+                path: image2Path,
+                name: image2Name ?? image2Path.split('/').last.split('.').first,
+                description: image2Description ??
+                    image2Name ??
+                    image2Path.split('/').last.split('.').first,
+              ),
+        image3: image3Path == null
+            ? null
+            : ImageReference(
+                path: image3Path,
+                name: image3Name ?? image3Path.split('/').last.split('.').first,
+                description: image3Description ??
+                    image3Name ??
+                    image3Path.split('/').last.split('.').first,
+              ),
+      ),
+      notes: notes,
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
   Future<List<int>?> save() async {
     final arc = Arc();
 
@@ -338,12 +392,22 @@ class Powerpoint {
     );
 
     files.addAll({
-      'docProps/app.xml': App(slides: slides).toString(),
-      'docProps/core.xml': Core().toString(),
+      'docProps/app.xml': App(
+        slides: slides,
+        company: company,
+      ).toString(),
+      'docProps/core.xml': Core(
+        title: title,
+        subject: subject,
+        author: author,
+        revision: revision,
+      ).toString(),
       'ppt/presentation.xml': pres.toString(),
       'ppt/_rels/presentation.xml.rels': pres.createRel(),
-      '[Content_Types].xml':
-          ContentType(notes: arc.notes, slides: slides).toString(),
+      '[Content_Types].xml': ContentType(
+        notes: arc.notes,
+        slides: slides,
+      ).toString(),
     });
 
     // Copy assets
