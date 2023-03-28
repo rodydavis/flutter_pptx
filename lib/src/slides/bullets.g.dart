@@ -16,10 +16,9 @@ Map<String, dynamic> _$BulletsToJson(Bullets instance) => <String, dynamic>{
       'name': instance.name,
       'slideNumber': instance.slideNumber,
       'speakerNotes': instance.speakerNotes?.toJson(),
+      'notesId': instance.notesId,
       'hasNotes': instance.hasNotes,
       'bullets': instance.bullets.map((e) => e.toJson()).toList(),
-      'id1': instance.id1,
-      'id2': instance.id2,
-      'notesId': instance.notesId,
       'layoutId': instance.layoutId,
+      'source': instance.source,
     };

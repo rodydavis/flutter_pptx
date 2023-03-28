@@ -25,7 +25,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:grpSpPr>
             <p:pic>
                 <p:nvPicPr>
-                    <p:cNvPr id="{{id1}}" name="{{image.name}}" descr="{{image.description}}"/>
+                    <p:cNvPr id="{{new-id}}" name="{{image.name}}" descr="{{image.description}}"/>
                     <p:cNvPicPr>
                         <a:picLocks noChangeAspect="1"/>
                     </p:cNvPicPr>
@@ -49,7 +49,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:pic>
             <p:sp>
                 <p:nvSpPr>
-                    <p:cNvPr id="{{id2}}" name="PRESENTATION TITLE"/>
+                    <p:cNvPr id="{{new-id}}" name="PRESENTATION TITLE"/>
                     <p:cNvSpPr txBox="1"/>
                     <p:nvPr>
                         <p:ph type="title"/>
@@ -73,7 +73,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:sp>
             <p:sp>
                 <p:nvSpPr>
-                    <p:cNvPr id="{{id3}}" name="PRESENTATION SUBTITLE"/>
+                    <p:cNvPr id="{{new-id}}" name="PRESENTATION SUBTITLE"/>
                     <p:cNvSpPr txBox="1"/>
                     <p:nvPr>
                         <p:ph type="body" sz="quarter" idx="1"/>
@@ -97,7 +97,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:sp>
             <p:sp>
                 <p:nvSpPr>
-                    <p:cNvPr id="{{id4}}" name="Author and Date"/>
+                    <p:cNvPr id="{{new-id}}" name="Author and Date"/>
                     <p:cNvSpPr txBox="1"/>
                     <p:nvPr>
                         <p:ph type="body" idx="22"/>

@@ -25,7 +25,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:grpSpPr>
             <p:sp>
                 <p:nvSpPr>
-                    <p:cNvPr id="{{id1}}" name="Shape {{id1}}"/>
+                    <p:cNvPr id="{{new-id}}" name="Shape 1"/>
                     <p:cNvSpPr/>
                     <p:nvPr>
                         <p:ph type="sldImg"/>
@@ -46,7 +46,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:sp>
             <p:sp>
                 <p:nvSpPr>
-                    <p:cNvPr id="{{id2}}" name="Shape {{id2}}"/>
+                    <p:cNvPr id="{{new-id}}" name="Shape 2"/>
                     <p:cNvSpPr/>
                     <p:nvPr>
                         <p:ph type="body" sz="quarter" idx="1"/>

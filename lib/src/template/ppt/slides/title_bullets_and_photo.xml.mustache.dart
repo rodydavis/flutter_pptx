@@ -25,7 +25,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:grpSpPr>
             <p:sp>
                 <p:nvSpPr>
-                    <p:cNvPr id="{{id1}}" name="SLIDE TITLE"/>
+                    <p:cNvPr id="{{new-id}}" name="SLIDE TITLE"/>
                     <p:cNvSpPr txBox="1"/>
                     <p:nvPr>
                         <p:ph type="title"/>
@@ -53,7 +53,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:sp>
             <p:pic>
                 <p:nvPicPr>
-                    <p:cNvPr id="{{id2}}" name="Sea against sky at sunset" descr="Sea against sky at sunset"/>
+                    <p:cNvPr id="{{new-id}}" name="Sea against sky at sunset" descr="Sea against sky at sunset"/>
                     <p:cNvPicPr>
                         <a:picLocks noChangeAspect="1"/>
                     </p:cNvPicPr>
@@ -77,7 +77,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:pic>
             <p:sp>
                 <p:nvSpPr>
-                    <p:cNvPr id="{{id3}}" name="SLIDE SUBTITLE"/>
+                    <p:cNvPr id="{{new-id}}" name="SLIDE SUBTITLE"/>
                     <p:cNvSpPr txBox="1"/>
                     <p:nvPr>
                         <p:ph type="body" sz="quarter" idx="1"/>
@@ -101,7 +101,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:sp>
             <p:sp>
                 <p:nvSpPr>
-                    <p:cNvPr id="{{id4}}" name="Body Level One…"/>
+                    <p:cNvPr id="{{new-id}}" name="Body Level One…"/>
                     <p:cNvSpPr txBox="1"/>
                     <p:nvPr>
                         <p:ph type="body" idx="22"/>

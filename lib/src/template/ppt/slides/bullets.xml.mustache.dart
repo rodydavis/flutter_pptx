@@ -25,7 +25,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:grpSpPr>
             <p:sp>
                 <p:nvSpPr>
-                    <p:cNvPr id="{{id1}}" name="BULLET A…"/>
+                    <p:cNvPr id="{{new-id}}" name="BULLET A…"/>
                     <p:cNvSpPr txBox="1"/>
                     <p:nvPr>
                         <p:ph type="body" idx="1"/>

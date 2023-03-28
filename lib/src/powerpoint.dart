@@ -1,16 +1,14 @@
 import 'dart:convert';
 
 import 'classes/app.dart';
+import 'classes/arc.dart';
 import 'classes/content_type.dart';
 import 'classes/core.dart';
 import 'classes/images.dart';
 import 'classes/layout.dart';
-import 'classes/media_slide.dart';
-import 'classes/notes.dart';
 import 'classes/notes_rel.dart';
 import 'classes/presentation.dart';
 import 'classes/slide.dart';
-import 'classes/slide_rel.dart';
 import 'classes/text_value.dart';
 import 'slides/bullets.dart';
 import 'slides/title.dart';
@@ -191,98 +189,46 @@ class Powerpoint {
   }
 
   Future<List<int>?> save() async {
+    final arc = Arc();
+
     // Copy template to temp path
     for (final entry in templates.entries) {
       // final utf16 = Uint16List.fromList(entry.value);
       final name = entry.key;
+      if (name.startsWith('.') ||
+          name.endsWith('.mustache') ||
+          name.endsWith('.keep')) {
+        continue;
+      }
       if (name.contains('.png')) {
         // Base64 decode
         final bytes = base64Decode(entry.value);
         context.archive.addBinaryFile(name, bytes);
-      } else {
-        final result = entry.value.trim();
-        context.archive.addFile(entry.key, result);
+        continue;
       }
+      final result = entry.value.trim();
+      context.archive.addFile(entry.key, result);
     }
 
-    // Remove templates and keep files
-    context.archive.removeWhere((path, _) => path.endsWith('.keep'));
-    context.archive.removeWhere((path, _) => path.endsWith('.mustache'));
+    final files = <String, String>{};
 
-    int rId = 7;
-    int id = 255;
-    int offset = 150;
-
-    final files = <String, Object>{};
-    final notes = <Notes>[];
-    final media = <ImageReference>[];
-
-    for (final item in slides) {
-      if (item is MediaSlide) {
-        for (final image in item.images) {
-          final existingIdx = media.indexWhere((e) => e.path == image.path);
-          if (existingIdx == -1) media.add(image);
-        }
-      }
-    }
-
-    for (var i = 0; i < media.length; i++) {
-      final item = media[i];
-      item.index = i + 1;
-      item.isLast = i == media.length - 1;
-      item.id = ++id;
-      item.rId = ++rId;
-    }
+    arc.init(slides);
 
     for (var i = 0; i < slides.length; i++) {
       final item = slides[i];
-      item.index = i;
-      item.isLast = i == slides.length - 1;
-      item.id = ++id;
-      item.rId = ++rId;
-      offset = item.createIds(offset);
-
-      Notes? note;
-      final images = <ImageReference>[];
-
-      if (item is MediaSlide) {
-        for (final img in item.images) {
-          final existingIdx = media.indexWhere((e) => e.path == img.path);
-          if (existingIdx != -1) images.add(media[existingIdx]);
-        }
-      }
-
-      if (item.hasNotes) {
-        note = Notes(
-          notes: item.speakerNotes!,
-          slideIndex: i,
-        );
-        notes.add(note);
-      }
-
-      files['ppt/slides/slide${item.order}.xml'] = item;
-
-      final rel = SlideRel(
-        layoutId: item.layoutId,
-        notes: [if (note != null) note],
-        images: images,
-      );
-      files['ppt/slides/_rels/slide${item.order}.xml.rels'] = rel;
+      files['ppt/slides/_rels/slide${item.order}.xml.rels'] =
+          item.renderRelTemplate(arc);
+      files['ppt/slides/slide${item.order}.xml'] = item.renderTemplate(arc);
     }
 
-    for (var i = 0; i < notes.length; i++) {
-      final note = notes[i];
-      note.index = i;
-      note.isLast = i == notes.length - 1;
-      note.id = ++id;
-      note.rId = ++rId;
-      offset = note.createIds(offset);
-
-      files['ppt/notesSlides/notesSlide${note.order}.xml'] = note;
-
+    for (var i = 0; i < arc.notes.length; i++) {
+      final note = arc.notes[i];
       final slide = slides[note.slideIndex];
       final rel = NotesRel(slideOrder: slide.order);
-      files['ppt/notesSlides/_rels/notesSlide${note.order}.xml.rels'] = rel;
+      files['ppt/notesSlides/_rels/notesSlide${note.order}.xml.rels'] =
+          rel.toString();
+      files['ppt/notesSlides/notesSlide${note.order}.xml'] =
+          note.renderTemplate(arc);
     }
 
     final pres = Presentation(
@@ -291,18 +237,20 @@ class Powerpoint {
     );
 
     files.addAll({
-      'docProps/app.xml': App(slides: slides),
-      'docProps/core.xml': Core(),
-      'ppt/presentation.xml': pres,
+      'docProps/app.xml': App(slides: slides).toString(),
+      'docProps/core.xml': Core().toString(),
+      'ppt/presentation.xml': pres.toString(),
       'ppt/_rels/presentation.xml.rels': pres.createRel(),
-      '[Content_Types].xml': ContentType(notes: notes, slides: slides),
+      '[Content_Types].xml':
+          ContentType(notes: arc.notes, slides: slides).toString(),
     });
 
     // Copy assets
     final futures = <Future>[];
-    for (final item in media) {
+    for (final item in arc.images) {
       futures.add(Future.sync(() async {
         final bytes = await context.assets.getImageData(item.path);
+        print('${item.path} ${bytes?.length}');
         if (bytes != null) {
           final imgName = 'image${item.order}.${item.ext}';
           // final fileName = imgName ?? path.basename(item.path);

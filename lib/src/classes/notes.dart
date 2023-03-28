@@ -3,6 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:mustache_template/mustache_template.dart';
 
 import '../template/ppt/notesSlides/notesSlide.xml.mustache.dart';
+import 'arc.dart';
 import 'base.dart';
 import 'slide.dart';
 import 'text_value.dart';
@@ -14,15 +15,6 @@ class Notes extends Base {
   TextValue notes;
   int slideIndex;
 
-  late int id1, id2;
-
-  int createIds(int offset) {
-    int idx = offset;
-    id1 = ++idx;
-    id2 = ++idx;
-    return idx;
-  }
-
   Notes({
     required this.slideIndex,
     required this.notes,
@@ -31,12 +23,15 @@ class Notes extends Base {
   @override
   Map<String, dynamic> toJson() => _$NotesToJson(this);
 
-  @override
-  String toString() {
+  String renderTemplate(Arc arc) {
     final source = Template(
       template,
       partialResolver: resolvePartials,
     );
-    return source.renderString(toJson());
+    final args = {
+      ...toJson(),
+      ...lambdaResolver(arc),
+    };
+    return source.renderString(args);
   }
 }

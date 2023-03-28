@@ -15,6 +15,4 @@ Map<String, dynamic> _$NotesToJson(Notes instance) => <String, dynamic>{
       'localRId': instance.localRId,
       'notes': instance.notes.toJson(),
       'slideIndex': instance.slideIndex,
-      'id1': instance.id1,
-      'id2': instance.id2,
     };

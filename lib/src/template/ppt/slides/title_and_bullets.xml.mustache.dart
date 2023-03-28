@@ -25,7 +25,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:grpSpPr>
             <p:sp>
                 <p:nvSpPr>
-                    <p:cNvPr id="{{id1}}" name="SLIDE TITLE"/>
+                    <p:cNvPr id="{{new-id}}" name="SLIDE TITLE"/>
                     <p:cNvSpPr txBox="1"/>
                     <p:nvPr>
                         <p:ph type="title"/>
@@ -49,7 +49,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:sp>
             <p:sp>
                 <p:nvSpPr>
-                    <p:cNvPr id="{{id2}}" name="SLIDE BULLET A…"/>
+                    <p:cNvPr id="{{new-id}}" name="SLIDE BULLET A…"/>
                     <p:cNvSpPr txBox="1"/>
                     <p:nvPr>
                         <p:ph type="body" idx="1"/>
@@ -73,7 +73,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:sp>
             <p:sp>
                 <p:nvSpPr>
-                    <p:cNvPr id="{{id3}}" name="Slide Subtitle"/>
+                    <p:cNvPr id="{{new-id}}" name="Slide Subtitle"/>
                     <p:cNvSpPr txBox="1"/>
                     <p:nvPr>
                         <p:ph type="body" idx="21"/>
