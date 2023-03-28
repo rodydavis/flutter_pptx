@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_single_cascade_in_expression_statements
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -14,21 +16,18 @@ void main() {
 
       pres.addTitle(
         title: 'Slide one',
-        // notes: 'This is a note!',
       );
 
       pres.addTitleAndPhoto(
         title: 'Slide two',
         imagePath: './samples/images/sample_gif.gif',
         imageName: 'Sample Gif',
-        // notes: 'This is a note!',
       );
 
       pres.addTitleAndPhotoAlt(
         title: 'Slide three',
         imagePath: './samples/images/sample_jpg.jpg',
         imageName: 'Sample Jpg',
-        // notes: 'This is a note!',
       );
 
       pres.addTitleAndBullets(
@@ -39,9 +38,7 @@ void main() {
           'Bullet 3',
           'Bullet 4',
         ],
-        // notes: 'This is a note!',
-        notes: TextValue.uniform('This is a note!'),
-      );
+      )..speakerNotes = TextValue.uniform('This is a note!');
 
       pres.addBullets(
         bullets: [
@@ -50,14 +47,12 @@ void main() {
           'Bullet 3',
           'Bullet 4',
         ],
-        // notes: 'This is a note!',
-        notes: TextValue.singleLine([
+      )..speakerNotes = TextValue.singleLine([
           TextItem('This '),
           TextItem('is ', isBold: true),
           TextItem('a ', isUnderline: true),
           TextItem('note!'),
-        ]),
-      );
+        ]);
 
       pres.addSlideTitleBulletsAndPhoto(
         title: 'Slide five',
@@ -73,7 +68,7 @@ void main() {
 
       pres.addSection(
         section: 'Section 1',
-        notes: TextValue.multiLine([
+      )..speakerNotes = TextValue.multiLine([
           TextValueLine(values: [
             TextItem('This '),
             TextItem('is ', isBold: true),
@@ -86,8 +81,7 @@ void main() {
             TextItem('a ', isUnderline: true),
             TextItem('note 2!'),
           ]),
-        ]),
-      );
+        ]);
 
       pres.addSlideTitleOnly(
         title: 'Title 1',
@@ -134,6 +128,18 @@ void main() {
           name: 'Sample Gif',
         );
 
+      await pres.addSlideWidget(BaseWidget(
+        child: Center(
+          child: Container(
+              padding: const EdgeInsets.all(30.0),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.blueAccent, width: 5.0),
+                color: Colors.redAccent,
+              ),
+              child: const Text("This is an invisible widget")),
+        ),
+      ));
+
       pres.showSlideNumber = true;
 
       final bytes = await pres.save();
@@ -176,4 +182,21 @@ Future<void> saveFile(
   }
   if (bytes != null) await file.writeAsBytes(bytes);
   if (string != null) await file.writeAsString(string);
+}
+
+class BaseWidget extends StatelessWidget {
+  const BaseWidget({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: child,
+        backgroundColor: Colors.transparent,
+      ),
+    );
+  }
 }

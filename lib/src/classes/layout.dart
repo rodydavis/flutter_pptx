@@ -12,6 +12,9 @@ class Layout {
   int height;
   String type;
 
+  @JsonKey(includeToJson: false)
+  Size get size => Size(Util.ptToPixle(width), Util.ptToPixle(height));
+
   Layout({
     required this.width,
     required this.height,

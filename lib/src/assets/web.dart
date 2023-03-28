@@ -25,7 +25,7 @@ class Assets {
         return bytes;
       }
     }
-    if (path.startsWith('data:image')) {
+    if (path.startsWith('data:')) {
       final base64 = path.split(',').last;
       final bytes = base64Decode(base64);
       setCache(path, bytes);

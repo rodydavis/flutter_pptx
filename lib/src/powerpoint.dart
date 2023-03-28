@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 import 'classes/app.dart';
 import 'classes/arc.dart';
 import 'classes/content_type.dart';
@@ -73,15 +75,12 @@ class Powerpoint {
   Slide addTitle({
     required String title,
     String? author,
-    TextValue? notes,
-    bool? showSlideNumber,
   }) =>
       addSlide(
         SlideTitle(
           title: TextValue.uniform(title),
           author: TextValue.uniform(author),
         ),
-        notes: notes,
         showSlideNumber: showSlideNumber,
       );
 
@@ -92,8 +91,6 @@ class Powerpoint {
     String? imageDescription,
     String? author,
     String? subtitle,
-    TextValue? notes,
-    bool? showSlideNumber,
   }) {
     final imgName = imageName ?? imagePath.split('/').last.split('.').first;
     return addSlide(
@@ -107,7 +104,6 @@ class Powerpoint {
         ),
         author: TextValue.uniform(author),
       ),
-      notes: notes,
       showSlideNumber: showSlideNumber,
     );
   }
@@ -119,8 +115,6 @@ class Powerpoint {
     String? imageDescription,
     String? author,
     String? subtitle,
-    TextValue? notes,
-    bool? showSlideNumber,
   }) {
     final imgName = imageName ?? imagePath.split('/').last.split('.').first;
     return addSlide(
@@ -134,7 +128,6 @@ class Powerpoint {
           description: imageDescription ?? imgName,
         ),
       ),
-      notes: notes,
       showSlideNumber: showSlideNumber,
     );
   }
@@ -144,8 +137,6 @@ class Powerpoint {
     required List<String> bullets,
     String? author,
     String? subtitle,
-    TextValue? notes,
-    bool? showSlideNumber,
   }) {
     return addSlide(
       TitleAndBullets(
@@ -154,21 +145,17 @@ class Powerpoint {
         bullets: bullets.map((e) => TextValue.uniform(e)).toList(),
         author: TextValue.uniform(author),
       ),
-      notes: notes,
       showSlideNumber: showSlideNumber,
     );
   }
 
   Slide addBullets({
     required List<String> bullets,
-    TextValue? notes,
-    bool? showSlideNumber,
   }) {
     return addSlide(
       Bullets(
         bullets: bullets.map((e) => TextValue.uniform(e)).toList(),
       ),
-      notes: notes,
       showSlideNumber: showSlideNumber,
     );
   }
@@ -198,21 +185,17 @@ class Powerpoint {
               imagePath.split('/').last.split('.').first,
         ),
       ),
-      notes: notes,
       showSlideNumber: showSlideNumber,
     );
   }
 
   Slide addSection({
     required String section,
-    TextValue? notes,
-    bool? showSlideNumber,
   }) {
     return addSlide(
       SlideSection(
         section: TextValue.uniform(section),
       ),
-      notes: notes,
       showSlideNumber: showSlideNumber,
     );
   }
@@ -220,15 +203,12 @@ class Powerpoint {
   Slide addSlideTitleOnly({
     required String title,
     String? subtitle,
-    TextValue? notes,
-    bool? showSlideNumber,
   }) {
     return addSlide(
       SlideTitleOnly(
         title: TextValue.uniform(title),
         subtitle: TextValue.uniform(subtitle),
       ),
-      notes: notes,
       showSlideNumber: showSlideNumber,
     );
   }
@@ -237,8 +217,6 @@ class Powerpoint {
     required String title,
     String? subtitle,
     String? topics,
-    TextValue? notes,
-    bool? showSlideNumber,
   }) {
     return addSlide(
       SlideAgenda(
@@ -246,21 +224,17 @@ class Powerpoint {
         subtitle: TextValue.uniform(subtitle),
         topics: TextValue.uniform(topics),
       ),
-      notes: notes,
       showSlideNumber: showSlideNumber,
     );
   }
 
   Slide addSlideStatement({
     required String statement,
-    TextValue? notes,
-    bool? showSlideNumber,
   }) {
     return addSlide(
       SlideStatement(
         statement: TextValue.uniform(statement),
       ),
-      notes: notes,
       showSlideNumber: showSlideNumber,
     );
   }
@@ -268,15 +242,12 @@ class Powerpoint {
   Slide addBigFact({
     required String fact,
     String? information,
-    TextValue? notes,
-    bool? showSlideNumber,
   }) {
     return addSlide(
       SlideBigFact(
         fact: TextValueLine(values: [TextItem(fact)]),
         information: TextValue.uniform(information),
       ),
-      notes: notes,
       showSlideNumber: showSlideNumber,
     );
   }
@@ -284,15 +255,12 @@ class Powerpoint {
   Slide addSlideQuote({
     required String quote,
     String? attribution,
-    TextValue? notes,
-    bool? showSlideNumber,
   }) {
     return addSlide(
       SlideQuote(
         quote: TextValueLine(values: [TextItem(quote)]),
         attribution: TextValue.uniform(attribution),
       ),
-      notes: notes,
       showSlideNumber: showSlideNumber,
     );
   }
@@ -307,8 +275,6 @@ class Powerpoint {
     String? image3Path,
     String? image3Name,
     String? image3Description,
-    TextValue? notes,
-    bool? showSlideNumber,
   }) {
     return addSlide(
       SlidePhoto3Up(
@@ -340,7 +306,6 @@ class Powerpoint {
                     image3Path.split('/').last.split('.').first,
               ),
       ),
-      notes: notes,
       showSlideNumber: showSlideNumber,
     );
   }
@@ -349,8 +314,6 @@ class Powerpoint {
     required String imagePath,
     String? imageName,
     String? imageDescription,
-    TextValue? notes,
-    bool? showSlideNumber,
   }) {
     return addSlide(
       SlidePhoto(
@@ -362,18 +325,39 @@ class Powerpoint {
               imagePath.split('/').last.split('.').first,
         ),
       ),
-      notes: notes,
       showSlideNumber: showSlideNumber,
     );
   }
 
-  Slide addSlideBlank({
-    TextValue? notes,
-    bool? showSlideNumber,
-  }) {
+  Future<Slide> addSlideWidget(
+    Widget child, {
+    Duration delay = const Duration(seconds: 1),
+    double? pixelRatio,
+    BuildContext? context,
+    Size? targetSize,
+  }) async {
+    final bytes = await this.context.screenshotController.captureFromWidget(
+          child,
+          delay: delay,
+          pixelRatio: pixelRatio,
+          context: context,
+          targetSize: targetSize ?? layout.size,
+        );
+    final base64Data = base64Encode(bytes);
+    final image = ImageReference(
+      path: 'data:image/png;base64,$base64Data',
+      name: 'widget',
+      description: 'image created from a widget',
+    );
+    return addSlide(
+      SlideBlank()..background.image = image,
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addSlideBlank() {
     return addSlide(
       SlideBlank(),
-      notes: notes,
       showSlideNumber: showSlideNumber,
     );
   }

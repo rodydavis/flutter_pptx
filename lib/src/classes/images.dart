@@ -22,7 +22,7 @@ class ImageReference extends Base {
   bool get isAsset => path.startsWith('asset:');
   bool get isFile => path.startsWith('/') || path.startsWith('.');
 
-  String get ext => path.split('.').last;
+  String get ext => isMemory ? 'png' : path.split('.').last;
 
   @override
   Map<String, dynamic> toJson() => _$ImageReferenceToJson(this);

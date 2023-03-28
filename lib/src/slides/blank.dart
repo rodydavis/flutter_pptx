@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../classes/images.dart';
 import '../classes/slide.dart';
 import '../template/ppt/slides/blank.xml.mustache.dart';
 
@@ -16,9 +15,6 @@ class SlideBlank extends Slide {
 
   @override
   int get layoutId => 15;
-
-  @override
-  Map<int, ImageReference?> get imageRefs => {};
 
   @override
   Map<String, dynamic> toJson() => _$SlideBlankToJson(this);
