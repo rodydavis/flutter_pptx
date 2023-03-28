@@ -11,12 +11,14 @@ import 'classes/presentation.dart';
 import 'classes/slide.dart';
 import 'classes/text_value.dart';
 import 'slides/bullets.dart';
+import 'slides/section.dart';
 import 'slides/title.dart';
 import 'slides/title_and_bullets.dart';
 import 'slides/title_and_photo.dart';
 import 'context.dart';
 import 'slides/title_and_photo_alt.dart';
 import 'slides/title_bullets_and_photo.dart';
+import 'slides/title_only.dart';
 import 'template/template.dart';
 
 class Powerpoint {
@@ -183,6 +185,36 @@ class Powerpoint {
               imageName ??
               imagePath.split('/').last.split('.').first,
         ),
+      ),
+      notes: notes,
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addSection({
+    required String section,
+    TextValue? notes,
+    bool? showSlideNumber,
+  }) {
+    return addSlide(
+      SlideSection(
+        section: TextValue.uniform(section),
+      ),
+      notes: notes,
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addSlideTitleOnly({
+    required String title,
+    String? subtitle,
+    TextValue? notes,
+    bool? showSlideNumber,
+  }) {
+    return addSlide(
+      SlideTitleOnly(
+        title: TextValue.uniform(title),
+        subtitle: TextValue.uniform(subtitle),
       ),
       notes: notes,
       showSlideNumber: showSlideNumber,

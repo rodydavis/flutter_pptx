@@ -40,10 +40,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                     <a:bodyPr/>
                     <a:lstStyle/>
                     {{#bullets}}
-                    <a:p>
-                        <a:pPr/>
-                        {{>text-value}}
-                    </a:p>
+                    {{>text-value}}
                     {{/bullets}}
                 </p:txBody>
             </p:sp>

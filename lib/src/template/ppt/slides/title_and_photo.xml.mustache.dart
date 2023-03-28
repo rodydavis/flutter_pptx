@@ -63,12 +63,9 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                 <p:txBody>
                     <a:bodyPr/>
                     <a:lstStyle/>
-                    <a:p>
-                        <a:pPr/>
-                        {{#title}}
-                        {{>text-value}}
-                        {{/title}}
-                    </a:p>
+                    {{#title}}
+                    {{>text-value}}
+                    {{/title}}
                 </p:txBody>
             </p:sp>
             <p:sp>
@@ -87,12 +84,9 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                 <p:txBody>
                     <a:bodyPr/>
                     <a:lstStyle/>
-                    <a:p>
-                        <a:pPr/>
-                        {{#subtitle}}
-                        {{>text-value}}
-                        {{/subtitle}}
-                    </a:p>
+                    {{#subtitle}}
+                    {{>text-value}}
+                    {{/subtitle}}
                 </p:txBody>
             </p:sp>
             <p:sp>
@@ -119,12 +113,9 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                 <p:txBody>
                     <a:bodyPr/>
                     <a:lstStyle/>
-                    <a:p>
-                        <a:pPr/>
-                        {{#author}}
-                        {{>text-value}}
-                        {{/author}}
-                    </a:p>
+                    {{#author}}
+                    {{>text-value}}
+                    {{/author}}
                 </p:txBody>
             </p:sp>
             {{>speaker-notes}}

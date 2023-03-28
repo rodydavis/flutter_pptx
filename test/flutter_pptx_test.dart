@@ -132,7 +132,7 @@ void main() {
           'Bullet 4',
         ],
         // notes: 'This is a note!',
-        notes: TextValue.list([
+        notes: TextValue.singleLine([
           TextItem('This '),
           TextItem('is ', isBold: true),
           TextItem('a ', isUnderline: true),
@@ -150,6 +150,29 @@ void main() {
           'Bullet 3',
           'Bullet 4',
         ],
+      );
+
+      pres.addSection(
+        section: 'Section 1',
+        notes: TextValue.multiLine([
+          TextValueLine(values: [
+            TextItem('This '),
+            TextItem('is ', isBold: true),
+            TextItem('a ', isUnderline: true),
+            TextItem('note 1!'),
+          ]),
+          TextValueLine(values: [
+            TextItem('This '),
+            TextItem('is ', isBold: true),
+            TextItem('a ', isUnderline: true),
+            TextItem('note 2!'),
+          ]),
+        ]),
+      );
+
+      pres.addSlideTitleOnly(
+        title: 'Title 1',
+        subtitle: 'Subtitle 1',
       );
 
       pres.showSlideNumber = true;

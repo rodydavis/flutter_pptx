@@ -43,12 +43,9 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                             <a:defRPr spc="-78" sz="7812"/>
                         </a:lvl1pPr>
                     </a:lstStyle>
-                    <a:p>
-                        <a:pPr/>
-                        <a:r>
-                            <a:t>SLIDE TITLE</a:t>
-                        </a:r>
-                    </a:p>
+                    {{#title}}
+                    {{>text-value}}
+                    {{/title}}
                 </p:txBody>
             </p:sp>
             <p:pic>
@@ -91,12 +88,9 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                 <p:txBody>
                     <a:bodyPr/>
                     <a:lstStyle/>
-                    <a:p>
-                        <a:pPr/>
-                        <a:r>
-                            <a:t>SLIDE SUBTITLE</a:t>
-                        </a:r>
-                    </a:p>
+                    {{#subtitle}}
+                    {{>text-value}}
+                    {{/subtitle}}
                 </p:txBody>
             </p:sp>
             <p:sp>
@@ -122,10 +116,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                     <a:bodyPr/>
                     <a:lstStyle/>
                     {{#bullets}}
-                    <a:p>
-                        <a:pPr/>
-                        {{>text-value}}
-                    </a:p>
+                    {{>text-value}}
                     {{/bullets}}
                 </p:txBody>
             </p:sp>

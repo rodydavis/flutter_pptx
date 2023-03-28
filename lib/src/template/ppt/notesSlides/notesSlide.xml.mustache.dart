@@ -60,12 +60,9 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                 <p:txBody>
                     <a:bodyPr/>
                     <a:lstStyle/>
-                    <a:p>
-                        <a:pPr/>
-                        {{#notes}}
-                        {{>text-value}}
-                        {{/notes}}
-                    </a:p>
+                    {{#notes}}
+                    {{>text-value}}
+                    {{/notes}}
                 </p:txBody>
             </p:sp>
         </p:spTree>

@@ -24,11 +24,22 @@ class TextItem {
 }
 
 @JsonSerializable(createFactory: false)
-class TextValue {
+class TextValueLine {
   final List<TextItem> values;
 
-  TextValue({
+  TextValueLine({
     required this.values,
+  });
+
+  Map<String, dynamic> toJson() => _$TextValueLineToJson(this);
+}
+
+@JsonSerializable(createFactory: false)
+class TextValue {
+  final List<TextValueLine> lines;
+
+  TextValue({
+    required this.lines,
   });
 
   factory TextValue.uniform(
@@ -39,21 +50,31 @@ class TextValue {
     bool isStrikeThrough = false,
   }) {
     return TextValue(
-      values: [
+      lines: [
         if (value != null)
-          TextItem(
-            value,
-            isBold: isBold,
-            isItalic: isItalic,
-            isUnderline: isUnderline,
-            isStrikeThrough: isStrikeThrough,
+          TextValueLine(
+            values: [
+              TextItem(
+                value,
+                isBold: isBold,
+                isItalic: isItalic,
+                isUnderline: isUnderline,
+                isStrikeThrough: isStrikeThrough,
+              ),
+            ],
           ),
       ],
     );
   }
 
-  factory TextValue.list(List<TextItem>? values) {
-    return TextValue(values: values ?? []);
+  factory TextValue.singleLine(List<TextItem>? values) {
+    return TextValue(lines: [
+      TextValueLine(values: values ?? []),
+    ]);
+  }
+
+  factory TextValue.multiLine(List<TextValueLine>? lines) {
+    return TextValue(lines: lines ?? []);
   }
 
   Map<String, dynamic> toJson() => _$TextValueToJson(this);
@@ -65,17 +86,22 @@ final textValueTemplate = Template(
 );
 
 const normalString = r'''
-{{#values}}
-<a:r>
-    {{#isStylized}}
-    <a:rPr
-        {{#isBold}}b="1"{{/isBold}}
-        {{#isItalic}}i="1"{{/isItalic}}
-        {{#isUnderline}}u="sng"{{/isUnderline}}
-        {{#isStrikeThrough}}strike="sngStrike"{{/isStrikeThrough}}
-    />
-    {{/isStylized}}
-    <a:t>{{value}}</a:t>
-</a:r>
-{{/values}}
+{{#lines}}
+<a:p>
+  <a:pPr/>
+  {{#values}}
+  <a:r>
+      {{#isStylized}}
+      <a:rPr
+          {{#isBold}}b="1"{{/isBold}}
+          {{#isItalic}}i="1"{{/isItalic}}
+          {{#isUnderline}}u="sng"{{/isUnderline}}
+          {{#isStrikeThrough}}strike="sngStrike"{{/isStrikeThrough}}
+      />
+      {{/isStylized}}
+      <a:t>{{value}}</a:t>
+  </a:r>
+  {{/values}}
+</a:p>
+{{/lines}}
 ''';

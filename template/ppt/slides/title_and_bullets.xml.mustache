@@ -35,12 +35,9 @@
                 <p:txBody>
                     <a:bodyPr/>
                     <a:lstStyle/>
-                    <a:p>
-                        <a:pPr/>
-                        {{#title}}
-                        {{>text-value}}
-                        {{/title}}
-                    </a:p>
+                    {{#title}}
+                    {{>text-value}}
+                    {{/title}}
                 </p:txBody>
             </p:sp>
             <p:sp>
@@ -60,10 +57,7 @@
                     <a:bodyPr/>
                     <a:lstStyle/>
                     {{#bullets}}
-                    <a:p>
-                        <a:pPr/>
-                        {{>text-value}}
-                    </a:p>
+                    {{>text-value}}
                     {{/bullets}}
                 </p:txBody>
             </p:sp>
@@ -89,12 +83,9 @@
                 <p:txBody>
                     <a:bodyPr/>
                     <a:lstStyle/>
-                    <a:p>
-                        <a:pPr/>
-                        {{#subtitle}}
-                        {{>text-value}}
-                        {{/subtitle}}
-                    </a:p>
+                    {{#subtitle}}
+                    {{>text-value}}
+                    {{/subtitle}}
                 </p:txBody>
             </p:sp>
             {{>speaker-notes}}

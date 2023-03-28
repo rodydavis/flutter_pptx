@@ -21,10 +21,10 @@
             </p:grpSpPr>
             <p:sp>
                 <p:nvSpPr>
-                    <p:cNvPr id="{{new-id}}" name="BULLET A…"/>
+                    <p:cNvPr id="{{new-id}}" name="SECTION TITLE"/>
                     <p:cNvSpPr txBox="1"/>
                     <p:nvPr>
-                        <p:ph type="body" idx="1"/>
+                        <p:ph type="title"/>
                     </p:nvPr>
                 </p:nvSpPr>
                 <p:spPr>
@@ -35,9 +35,9 @@
                 <p:txBody>
                     <a:bodyPr/>
                     <a:lstStyle/>
-                    {{#bullets}}
+                    {{#section}}
                     {{>text-value}}
-                    {{/bullets}}
+                    {{/section}}
                 </p:txBody>
             </p:sp>
             {{>speaker-notes}}
