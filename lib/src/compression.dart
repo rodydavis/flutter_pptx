@@ -1,6 +1,6 @@
 import 'package:archive/archive.dart';
 
-import 'zip/zip.dart';
+import 'archive/create_zip.dart';
 
 class Compression {
   final archive = Archive();

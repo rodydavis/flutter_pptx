@@ -5,6 +5,10 @@ class Util {
     return px * 12700;
   }
 
+  static double ptToPixle(num pt) {
+    return pt / 12700;
+  }
+
   static readTemplate(String filename) {
     return templates[filename];
   }

@@ -1,6 +1,9 @@
+// ignore_for_file: avoid_single_cascade_in_expression_statements
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_pptx/flutter_pptx.dart';
 
@@ -10,50 +13,152 @@ void main() {
     'check sample presentation',
     () async {
       final pres = Powerpoint();
-      pres.addIntro('Bicycle Of the Mind', subtitile: 'created by Steve Jobs');
-      // ignore: avoid_single_cascade_in_expression_statements
-      pres.addTextualSlide('Why Mac?', ['Its cool!', 'Its light!'])
-        ..setSpeakerNotes('This is a note!');
-      pres.addTextualSlide('Why Iphone?', ['Its fast!', 'Its cheap!']);
-      pres.addPictorialSlide('JPG Logo', 'samples/images/sample_png.png');
-      pres.addTextPictureSlide(
-        'Text Pic Split',
-        'samples/images/sample_png.png',
-        content: ['Here is a string', 'here is another'],
+
+      pres.addTitle(
+        title: 'Slide one',
       );
-      pres.addPictorialSlide('PNG Logo', 'samples/images/sample_png.png');
-      pres.addPictureDescriptionSlide(
-        'Pic Desc',
-        'samples/images/sample_png.png',
-        content: ['Here is a string', 'here is another'],
+
+      pres.addTitleAndPhoto(
+        title: 'Slide two',
+        imagePath: './samples/images/sample_gif.gif',
+        imageName: 'Sample Gif',
       );
-      pres.addPictureDescriptionSlide(
-        'JPG Logo',
-        'samples/images/sample_jpg.jpg',
-        content: ['descriptions'],
+
+      pres.addTitleAndPhotoAlt(
+        title: 'Slide three',
+        imagePath: './samples/images/sample_jpg.jpg',
+        imageName: 'Sample Jpg',
       );
-      pres.addPictorialSlide(
-        'GIF Logo',
-        'samples/images/sample_gif.gif',
-        coords: Coords(
-          x: 124200,
-          y: 3356451,
-          cx: 2895600,
-          cy: 1013460,
+
+      pres.addTitleAndBullets(
+        title: 'Slide three',
+        bullets: [
+          'Bullet 1',
+          'Bullet 2',
+          'Bullet 3',
+          'Bullet 4',
+        ],
+      )..speakerNotes = TextValue.uniform('This is a note!');
+
+      pres.addBullets(
+        bullets: [
+          'Bullet 1',
+          'Bullet 2',
+          'Bullet 3',
+          'Bullet 4',
+        ],
+      )..speakerNotes = TextValue.singleLine([
+          TextItem('This '),
+          TextItem('is ', isBold: true),
+          TextItem('a ', isUnderline: true),
+          TextItem('note!'),
+        ]);
+
+      pres.addSlideTitleBulletsAndPhoto(
+        title: 'Slide five',
+        imagePath: './samples/images/sample_jpg.jpg',
+        imageName: 'Sample Jpg',
+        bullets: [
+          'Bullet 1',
+          'Bullet 2',
+          'Bullet 3',
+          'Bullet 4',
+        ],
+      );
+
+      pres.addSection(
+        section: 'Section 1',
+      )..speakerNotes = TextValue.multiLine([
+          TextValueLine(values: [
+            TextItem('This '),
+            TextItem('is ', isBold: true),
+            TextItem('a ', isUnderline: true),
+            TextItem('note 1!'),
+          ]),
+          TextValueLine(values: [
+            TextItem('This '),
+            TextItem('is ', isBold: true),
+            TextItem('a ', isUnderline: true),
+            TextItem('note 2!'),
+          ]),
+        ]);
+
+      pres.addSlideTitleOnly(
+        title: 'Title 1',
+        subtitle: 'Subtitle 1',
+      );
+
+      pres.addSlideAgenda(
+        title: 'Title 1',
+        subtitle: 'Subtitle 1',
+        topics: 'Topics 1',
+      );
+
+      pres.addSlideStatement(
+        statement: 'Statement 1',
+      );
+
+      pres.addBigFact(
+        fact: 'Title 1',
+        information: 'Fact 1',
+      );
+
+      pres.addSlideQuote(
+        quote: 'Quote 1',
+        attribution: 'Attribution 1',
+      );
+
+      pres.addSlidePhoto3Up(
+        image1Path: './samples/images/sample_gif.gif',
+        image2Path: './samples/images/sample_jpg.jpg',
+        image3Path: './samples/images/sample_png.png',
+      );
+
+      pres.addSlidePhoto(
+        imagePath: './samples/images/sample_gif.gif',
+      );
+
+      pres.addSlideBlank();
+
+      pres.addSlideBlank()..background.color = '000000';
+
+      pres.addSlideBlank()
+        ..background.image = ImageReference(
+          path: './samples/images/sample_gif.gif',
+          name: 'Sample Gif',
+        );
+
+      await pres.addSlideWidget(BaseWidget(
+        child: Center(
+          child: Container(
+              padding: const EdgeInsets.all(30.0),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.blueAccent, width: 5.0),
+                color: Colors.redAccent,
+              ),
+              child: const Text("This is an invisible widget")),
         ),
-      );
-      pres.addTextualSlide('Why Android?', ['Its great!', 'Its sweet!']);
+      ));
+
+      pres.showSlideNumber = true;
 
       final bytes = await pres.save();
       if (bytes != null) {
         // Save to directory
+        final dir = Directory('./build/pptx');
+        if (!await dir.exists()) {
+          await dir.create(recursive: true);
+        } else {
+          await dir.delete(recursive: true);
+          await dir.create(recursive: true);
+        }
         for (final entry in pres.context.archive.files.entries) {
           final name = entry.key;
           final value = entry.value;
           if (value is List<int>) {
-            await saveFile('./build/pptx/$name', bytes: value);
+            await saveFile('${dir.path}/$name', bytes: value);
           } else if (value is String) {
-            await saveFile('./build/pptx/$name', string: value);
+            await saveFile('${dir.path}/$name', string: value);
           }
         }
 
@@ -77,4 +182,21 @@ Future<void> saveFile(
   }
   if (bytes != null) await file.writeAsBytes(bytes);
   if (string != null) await file.writeAsString(string);
+}
+
+class BaseWidget extends StatelessWidget {
+  const BaseWidget({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: child,
+        backgroundColor: Colors.transparent,
+      ),
+    );
+  }
 }

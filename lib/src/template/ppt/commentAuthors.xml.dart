@@ -7,4 +7,8 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
     xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
     xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main"
     xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"
-    xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main"/>''';
+    xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+    {{#authors}}
+    <p:cmAuthor id="{{id}}" name="{{name}}" initials="{{initials}}" lastIdx="{{lastIdx}}" clrIdx="{{clrIdx}}"/>
+    {{/authors}}
+</p:cmAuthorLst>''';

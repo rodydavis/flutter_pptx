@@ -1,176 +1,452 @@
-import 'classes/coords.dart';
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+
+import 'classes/app.dart';
+import 'classes/arc.dart';
+import 'classes/content_type.dart';
+import 'classes/core.dart';
+import 'classes/images.dart';
 import 'classes/layout.dart';
+import 'classes/notes_rel.dart';
+import 'classes/presentation.dart';
+import 'classes/slide.dart';
+import 'classes/text_value.dart';
+import 'slides/agenda.dart';
+import 'slides/big_fact.dart';
+import 'slides/blank.dart';
+import 'slides/bullets.dart';
+import 'slides/photo.dart';
+import 'slides/photo_3_up.dart';
+import 'slides/quote.dart';
+import 'slides/section.dart';
+import 'slides/statement.dart';
+import 'slides/title.dart';
+import 'slides/title_and_bullets.dart';
+import 'slides/title_and_photo.dart';
 import 'context.dart';
-import 'slide/intro.dart';
-import 'slide/notes.dart';
-import 'slide/pictorial.dart';
-import 'slide/picture_description.dart';
-import 'slide/slide.dart';
-import 'slide/text_picture_split.dart';
-import 'slide/textual.dart';
+import 'slides/title_and_photo_alt.dart';
+import 'slides/title_bullets_and_photo.dart';
+import 'slides/title_only.dart';
 import 'template/template.dart';
 
-import 'views/content_type.xml.dart' as content_type_xml;
-import 'views/presentation.xml.rel.dart' as presentation_xml_rel;
-import 'views/presentation.xml.dart' as presentation_xml;
-import 'views/app.xml.dart' as app_xml;
-
 class Powerpoint {
-  final context = PresentationContext.create();
-  Layout layout = Layout.screen16x9();
-  List<Slide> slides = [];
+  // TODO: .fromMarkdown, Widget slide
+  var context = PresentationContext();
+  Layout layout = Layout(
+    type: 'custom',
+    width: 24384000,
+    height: 13716000,
+  );
+  final slides = <Slide>[];
+
+  bool _showSlideNumber = false;
+  bool get showSlideNumber => _showSlideNumber;
+  set showSlideNumber(bool value) {
+    _showSlideNumber = value;
+    for (var slide in slides) {
+      if (slide is SlideTitle) {
+        slide.slideNumber = _showSlideNumber;
+      }
+    }
+  }
+
+  String? company;
+  String? title;
+  String? subject;
+  String? author;
+  String? revision;
 
   void setLayout(Layout layout) {
     this.layout = layout;
   }
 
-  Slide addSlide(Slide slide) {
+  Slide addSlide(
+    Slide slide, {
+    TextValue? notes,
+    bool? showSlideNumber,
+  }) {
+    slide.speakerNotes = notes ?? slide.speakerNotes;
+    slide.slideNumber = showSlideNumber ?? _showSlideNumber;
     slides.add(slide);
     return slide;
   }
 
-  Slide addIntro(
-    String title, {
-    String? subtitile,
+  Slide addTitle({
+    required String title,
+    String? author,
+  }) =>
+      addSlide(
+        SlideTitle(
+          title: TextValue.uniform(title),
+          author: TextValue.uniform(author),
+        ),
+        showSlideNumber: showSlideNumber,
+      );
+
+  Slide addTitleAndPhoto({
+    required String title,
+    required String imagePath,
+    String? imageName,
+    String? imageDescription,
+    String? author,
+    String? subtitle,
   }) {
-    final slide = Intro(
-      title: title,
-      subtitile: subtitile ?? '', // TODO: make this optional
+    final imgName = imageName ?? imagePath.split('/').last.split('.').first;
+    return addSlide(
+      SlideTitleAndPhoto(
+        title: TextValue.uniform(title),
+        subtitle: TextValue.uniform(subtitle),
+        image: ImageReference(
+          path: imagePath,
+          name: imgName,
+          description: imageDescription ?? imgName,
+        ),
+        author: TextValue.uniform(author),
+      ),
+      showSlideNumber: showSlideNumber,
     );
-    final idx = slides.indexWhere((s) => s is Intro);
-    if (idx != -1) {
-      slides[idx] = slide;
-    } else {
-      addSlide(slide);
-    }
-    return slide;
   }
 
-  Slide addTextualSlide(String title, List<String> content) {
-    return addSlide(Textual(
-      title: title,
-      content: content,
-    ));
-  }
-
-  Slide addPictorialSlide(
-    String title,
-    String image, {
-    Coords? coords,
+  Slide addTitleAndPhotoAlt({
+    required String title,
+    required String imagePath,
+    String? imageName,
+    String? imageDescription,
+    String? author,
+    String? subtitle,
   }) {
-    return addSlide(Pictorial(
-      title: title,
-      imagePath: image,
-      coords: coords,
-    ));
-  }
-
-  Slide addTextPictureSlide(
-    String title,
-    String image, {
-    Coords? coords,
-    List<String> content = const [],
-  }) {
-    final slide = TextPicSplit(
-      title: title,
-      imagePath: image,
-      content: content,
-      coords: coords,
+    final imgName = imageName ?? imagePath.split('/').last.split('.').first;
+    return addSlide(
+      SlideTitleAndPhotoAlt(
+        title: TextValue.uniform(title),
+        subtitle: TextValue.uniform(subtitle),
+        author: TextValue.uniform(author),
+        image: ImageReference(
+          path: imagePath,
+          name: imgName,
+          description: imageDescription ?? imgName,
+        ),
+      ),
+      showSlideNumber: showSlideNumber,
     );
-    return addSlide(slide);
   }
 
-  Slide addPictureDescriptionSlide(
-    String title,
-    String image, {
-    Coords? coords,
-    List<String> content = const [],
+  Slide addTitleAndBullets({
+    required String title,
+    required List<String> bullets,
+    String? author,
+    String? subtitle,
   }) {
-    final slide = DescriptionPic(
-      title: title,
-      imagePath: image,
-      coords: coords,
-      content: content,
+    return addSlide(
+      TitleAndBullets(
+        title: TextValue.uniform(title),
+        subtitle: TextValue.uniform(subtitle),
+        bullets: bullets.map((e) => TextValue.uniform(e)).toList(),
+        author: TextValue.uniform(author),
+      ),
+      showSlideNumber: showSlideNumber,
     );
-    return addSlide(slide);
   }
 
-  List<String> get fileTypes {
-    final types = <String>[];
-    for (final slide in slides) {
-      final type = slide.fileType();
-      if (type != null && !types.contains(type)) {
-        types.add(type);
-      }
-    }
-    return types;
+  Slide addBullets({
+    required List<String> bullets,
+  }) {
+    return addSlide(
+      Bullets(
+        bullets: bullets.map((e) => TextValue.uniform(e)).toList(),
+      ),
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addSlideTitleBulletsAndPhoto({
+    required String title,
+    required List<String> bullets,
+    required String imagePath,
+    String? imageName,
+    String? imageDescription,
+    TextValue? notes,
+    String? author,
+    String? subtitle,
+    bool? showSlideNumber,
+  }) {
+    return addSlide(
+      SlideTitleBulletsAndPhoto(
+        title: TextValue.uniform(title),
+        subtitle: TextValue.uniform(subtitle),
+        author: TextValue.uniform(author),
+        bullets: bullets.map((e) => TextValue.uniform(e)).toList(),
+        image: ImageReference(
+          path: imagePath,
+          name: imageName ?? imagePath.split('/').last.split('.').first,
+          description: imageDescription ??
+              imageName ??
+              imagePath.split('/').last.split('.').first,
+        ),
+      ),
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addSection({
+    required String section,
+  }) {
+    return addSlide(
+      SlideSection(
+        section: TextValue.uniform(section),
+      ),
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addSlideTitleOnly({
+    required String title,
+    String? subtitle,
+  }) {
+    return addSlide(
+      SlideTitleOnly(
+        title: TextValue.uniform(title),
+        subtitle: TextValue.uniform(subtitle),
+      ),
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addSlideAgenda({
+    required String title,
+    String? subtitle,
+    String? topics,
+  }) {
+    return addSlide(
+      SlideAgenda(
+        title: TextValue.uniform(title),
+        subtitle: TextValue.uniform(subtitle),
+        topics: TextValue.uniform(topics),
+      ),
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addSlideStatement({
+    required String statement,
+  }) {
+    return addSlide(
+      SlideStatement(
+        statement: TextValue.uniform(statement),
+      ),
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addBigFact({
+    required String fact,
+    String? information,
+  }) {
+    return addSlide(
+      SlideBigFact(
+        fact: TextValueLine(values: [TextItem(fact)]),
+        information: TextValue.uniform(information),
+      ),
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addSlideQuote({
+    required String quote,
+    String? attribution,
+  }) {
+    return addSlide(
+      SlideQuote(
+        quote: TextValueLine(values: [TextItem(quote)]),
+        attribution: TextValue.uniform(attribution),
+      ),
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addSlidePhoto3Up({
+    String? image1Path,
+    String? image1Name,
+    String? image1Description,
+    String? image2Path,
+    String? image2Name,
+    String? image2Description,
+    String? image3Path,
+    String? image3Name,
+    String? image3Description,
+  }) {
+    return addSlide(
+      SlidePhoto3Up(
+        image1: image1Path == null
+            ? null
+            : ImageReference(
+                path: image1Path,
+                name: image1Name ?? image1Path.split('/').last.split('.').first,
+                description: image1Description ??
+                    image1Name ??
+                    image1Path.split('/').last.split('.').first,
+              ),
+        image2: image2Path == null
+            ? null
+            : ImageReference(
+                path: image2Path,
+                name: image2Name ?? image2Path.split('/').last.split('.').first,
+                description: image2Description ??
+                    image2Name ??
+                    image2Path.split('/').last.split('.').first,
+              ),
+        image3: image3Path == null
+            ? null
+            : ImageReference(
+                path: image3Path,
+                name: image3Name ?? image3Path.split('/').last.split('.').first,
+                description: image3Description ??
+                    image3Name ??
+                    image3Path.split('/').last.split('.').first,
+              ),
+      ),
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addSlidePhoto({
+    required String imagePath,
+    String? imageName,
+    String? imageDescription,
+  }) {
+    return addSlide(
+      SlidePhoto(
+        image: ImageReference(
+          path: imagePath,
+          name: imageName ?? imagePath.split('/').last.split('.').first,
+          description: imageDescription ??
+              imageName ??
+              imagePath.split('/').last.split('.').first,
+        ),
+      ),
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Future<Slide> addSlideWidget(
+    Widget child, {
+    Duration delay = const Duration(seconds: 1),
+    double? pixelRatio,
+    BuildContext? context,
+    Size? targetSize,
+  }) async {
+    final bytes = await this.context.screenshotController.captureFromWidget(
+          child,
+          delay: delay,
+          pixelRatio: pixelRatio,
+          context: context,
+          targetSize: targetSize ?? layout.size,
+        );
+    final base64Data = base64Encode(bytes);
+    final image = ImageReference(
+      path: 'data:image/png;base64,$base64Data',
+      name: 'widget',
+      description: 'image created from a widget',
+    );
+    return addSlide(
+      SlideBlank()..background.image = image,
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addSlideBlank() {
+    return addSlide(
+      SlideBlank(),
+      showSlideNumber: showSlideNumber,
+    );
   }
 
   Future<List<int>?> save() async {
+    final arc = Arc();
+
     // Copy template to temp path
     for (final entry in templates.entries) {
       // final utf16 = Uint16List.fromList(entry.value);
-      context.archive.addFile(entry.key, entry.value.trim());
-    }
-
-    // Remove keep files
-    context.archive.removeWhere((path, _) => path.endsWith('.keep'));
-
-    // Render/save generic stuff
-    context.archive.addFile(
-      '[Content_Types].xml',
-      content_type_xml.renderString(
-        content_type_xml.Source.create(
-          fileTypes: fileTypes,
-          slideCount: slides.length,
-        ),
-      ),
-    );
-    context.archive.addFile(
-      'ppt/_rels/presentation.xml.rels',
-      presentation_xml_rel.renderString(
-        presentation_xml_rel.Source.create(
-          slides.length,
-        ),
-      ),
-    );
-    context.archive.addFile(
-      'ppt/presentation.xml',
-      presentation_xml.renderString(
-        presentation_xml.Source(
-          layout: layout,
-          slides: [
-            for (var i = 0; i < slides.length; i++)
-              presentation_xml.Slide.fromIndex(i, slides[i].notes)
-          ],
-        ),
-      ),
-    );
-    context.archive.addFile(
-      'docProps/app.xml',
-      app_xml.renderString(
-        app_xml.Source.slides(
-          slides.map((e) => app_xml.Slide(title: e.title)).toList(),
-        ),
-      ),
-    );
-
-    // Save slides
-    List<Notes> notes = [];
-    for (var i = 0; i < slides.length; i++) {
-      final slide = slides[i];
-      if (slide.notes.trim().isNotEmpty) {
-        notes.add(Notes(slideIndex: i, notes: slide.notes));
+      final name = entry.key;
+      if (name.startsWith('.') ||
+          name.endsWith('.mustache') ||
+          name.endsWith('.keep')) {
+        continue;
       }
+      if (name.contains('.png')) {
+        // Base64 decode
+        final bytes = base64Decode(entry.value);
+        context.archive.addBinaryFile(name, bytes);
+        continue;
+      }
+      final result = entry.value.trim();
+      context.archive.addFile(entry.key, result);
     }
+
+    final files = <String, String>{};
+
+    arc.init(slides);
+
     for (var i = 0; i < slides.length; i++) {
-      final slide = slides[i];
-      final notesIndex = notes.indexWhere((n) => n.slideIndex == i);
-      await slide.save(context, i + 1, notesIndex + 1);
+      final item = slides[i];
+      files['ppt/slides/_rels/slide${item.order}.xml.rels'] =
+          item.renderRelTemplate(arc);
+      files['ppt/slides/slide${item.order}.xml'] = item.renderTemplate(arc);
     }
-    for (var i = 0; i < notes.length; i++) {
-      final note = notes[i];
-      await note.save(context, i + 1, i + 1);
+
+    for (var i = 0; i < arc.notes.length; i++) {
+      final note = arc.notes[i];
+      final slide = slides[note.slideIndex];
+      final rel = NotesRel(slideOrder: slide.order);
+      files['ppt/notesSlides/_rels/notesSlide${note.order}.xml.rels'] =
+          rel.toString();
+      files['ppt/notesSlides/notesSlide${note.order}.xml'] =
+          note.renderTemplate(arc);
+    }
+
+    final pres = Presentation(
+      layout: layout,
+      slides: slides,
+    );
+
+    files.addAll({
+      'docProps/app.xml': App(
+        slides: slides,
+        company: company,
+      ).toString(),
+      'docProps/core.xml': Core(
+        title: title,
+        subject: subject,
+        author: author,
+        revision: revision,
+      ).toString(),
+      'ppt/presentation.xml': pres.toString(),
+      'ppt/_rels/presentation.xml.rels': pres.createRel(),
+      '[Content_Types].xml': ContentType(
+        notes: arc.notes,
+        slides: slides,
+        comments: arc.comments,
+      ).toString(),
+    });
+
+    // Copy assets
+    final futures = <Future>[];
+    for (final item in arc.images) {
+      futures.add(Future.sync(() async {
+        final bytes = await context.assets.getImageData(item.path);
+        if (bytes != null) {
+          final imgName = 'image${item.order}.${item.ext}';
+          // final fileName = imgName ?? path.basename(item.path);
+          context.archive.addBinaryFile('ppt/media/$imgName', bytes);
+        }
+      }));
+    }
+    await Future.wait(futures);
+
+    for (final entry in files.entries) {
+      final str = entry.value.toString();
+      context.archive.addFile(entry.key, str);
     }
 
     // Create .pptx file
