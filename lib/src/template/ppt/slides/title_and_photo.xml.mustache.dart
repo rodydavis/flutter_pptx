@@ -34,7 +34,7 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
                     </p:nvPr>
                 </p:nvPicPr>
                 <p:blipFill>
-                    <a:blip r:embed="rId{{imageId}}">
+                    <a:blip r:embed="rId{{imageId1}}">
                         <a:extLst/>
                     </a:blip>
                     <a:stretch>

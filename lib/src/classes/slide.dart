@@ -43,14 +43,18 @@ abstract class Slide extends Base {
     for (var item in localImages) {
       item.localRId = ++localRId;
     }
-    if (arc.notes.isNotEmpty) {
-      notesId = arc.notes.first.rId;
+    if (localNotes.isNotEmpty) {
+      notesId = arc.notes.first.localRId!;
     }
     return {
       'notes': localNotes.map((e) => e.toJson()).toList(),
       'images': localImages.map((e) => e.toJson()).toList(),
       'layoutId': layoutId,
       'notesId': notesId,
+      for (var i = 0; i < localImages.length; i++)
+        'imageId${i + 1}': localImages[i].localRId,
+      for (var i = 0; i < localNotes.length; i++)
+        'notesId${i + 1}': localNotes[i].localRId,
     };
   }
 

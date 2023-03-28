@@ -20,6 +20,7 @@ import 'slides/title_bullets_and_photo.dart';
 import 'template/template.dart';
 
 class Powerpoint {
+  // TODO: .fromMarkdown, Widget slide
   var context = PresentationContext();
   Layout layout = Layout(
     type: 'custom',
@@ -250,7 +251,6 @@ class Powerpoint {
     for (final item in arc.images) {
       futures.add(Future.sync(() async {
         final bytes = await context.assets.getImageData(item.path);
-        print('${item.path} ${bytes?.length}');
         if (bytes != null) {
           final imgName = 'image${item.order}.${item.ext}';
           // final fileName = imgName ?? path.basename(item.path);

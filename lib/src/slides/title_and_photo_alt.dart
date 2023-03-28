@@ -31,21 +31,6 @@ class SlideTitleAndPhotoAlt extends MediaSlide {
   @override
   int get layoutId => 3;
 
-  int imageId = -1;
-
-  @override
-  Map<String, dynamic> generateLocalIds(Arc arc) {
-    final data = super.generateLocalIds(arc);
-    final related = arc.getImagesForSlide(this);
-    if (related.isNotEmpty) {
-      imageId = related.first.order;
-    }
-    return {
-      ...data,
-      'imageId': imageId,
-    };
-  }
-
   @override
   Map<String, dynamic> toJson() => _$SlideTitleAndPhotoAltToJson(this);
 
