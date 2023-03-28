@@ -35,6 +35,7 @@ class Assets {
       final data = await rootBundle.load(path);
       final bytes = data.buffer.asUint8List();
       setCache(path, bytes);
+      return bytes;
     } catch (e) {
       debugPrint('Failed to load image: $path');
     }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pptx/flutter_pptx.dart';
+
+import 'download/download.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,39 +10,22 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+      theme: ThemeData.light(useMaterial3: true).copyWith(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue,
+        ),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Presentation Example'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -48,68 +34,185 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  Future<Powerpoint> createPresentation() async {
+    final pres = Powerpoint();
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+    pres.addTitleSlide(
+      title: 'Slide one'.toTextValue(),
+    );
+
+    pres.addTitleAndPhotoSlide(
+      title: 'Slide two'.toTextValue(),
+      image: ImageReference(
+        path: 'assets/images/sample_gif.gif',
+        name: 'Sample Gif',
+      ),
+    );
+
+    pres.addTitleAndPhotoAltSlide(
+      title: 'Slide three'.toTextValue(),
+      image: ImageReference(
+        path: 'assets/images/sample_jpg.jpg',
+        name: 'Sample Jpg',
+      ),
+    );
+
+    pres
+        .addTitleAndBulletsSlide(
+          title: 'Slide three'.toTextValue(),
+          bullets: [
+            'Bullet 1',
+            'Bullet 2',
+            'Bullet 3',
+            'Bullet 4',
+          ].map((e) => e.toTextValue()).toList(),
+        )
+        .speakerNotes = TextValue.uniform('This is a note!');
+
+    pres
+        .addBulletsSlide(
+          bullets: [
+            'Bullet 1',
+            'Bullet 2',
+            'Bullet 3',
+            'Bullet 4',
+          ].map((e) => e.toTextValue()).toList(),
+        )
+        .speakerNotes = TextValue.singleLine([
+      TextItem('This '),
+      TextItem('is ', isBold: true),
+      TextItem('a ', isUnderline: true),
+      TextItem('note!'),
+    ]);
+
+    pres.addTitleBulletsAndPhotoSlide(
+      title: 'Slide five'.toTextValue(),
+      image: ImageReference(
+        path: 'assets/images/sample_jpg.jpg',
+        name: 'Sample Jpg',
+      ),
+      bullets: [
+        'Bullet 1',
+        'Bullet 2',
+        'Bullet 3',
+        'Bullet 4',
+      ].map((e) => e.toTextValue()).toList(),
+    );
+
+    pres
+        .addSectionSlide(
+          section: 'Section 1'.toTextValue(),
+        )
+        .speakerNotes = TextValue.multiLine([
+      TextValueLine(values: [
+        TextItem('This '),
+        TextItem('is ', isBold: true),
+        TextItem('a ', isUnderline: true),
+        TextItem('note 1!'),
+      ]),
+      TextValueLine(values: [
+        TextItem('This '),
+        TextItem('is ', isBold: true),
+        TextItem('a ', isUnderline: true),
+        TextItem('note 2!'),
+      ]),
+    ]);
+
+    pres.addTitleOnlySlide(
+      title: 'Title 1'.toTextValue(),
+      subtitle: 'Subtitle 1'.toTextValue(),
+    );
+
+    pres.addAgendaSlide(
+      title: 'Title 1'.toTextValue(),
+      subtitle: 'Subtitle 1'.toTextValue(),
+      topics: 'Topics 1'.toTextValue(),
+    );
+
+    pres.addStatementSlide(
+      statement: 'Statement 1'.toTextValue(),
+    );
+
+    pres.addBigFactSlide(
+      fact: 'Title 1'.toTextLine(),
+      information: 'Fact 1'.toTextValue(),
+    );
+
+    pres.addQuoteSlide(
+      quote: 'Quote 1'.toTextLine(),
+      attribution: 'Attribution 1'.toTextValue(),
+    );
+
+    pres.addPhoto3UpSlide(
+      image1: ImageReference(
+        path: 'assets/images/sample_gif.gif',
+        name: 'Sample Gif',
+      ),
+      image2: ImageReference(
+        path: 'assets/images/sample_jpg.jpg',
+        name: 'Sample Jpg',
+      ),
+      image3: ImageReference(
+        path: 'assets/images/sample_png.png',
+        name: 'Sample Png',
+      ),
+    );
+
+    pres.addPhotoSlide(
+      image: ImageReference(
+        path: 'assets/images/sample_gif.gif',
+        name: 'Sample Gif',
+      ),
+    );
+
+    pres.addBlankSlide();
+
+    pres.addBlankSlide().background.color = '000000';
+
+    pres.addBlankSlide().background.image = ImageReference(
+      path: 'assets/images/sample_gif.gif',
+      name: 'Sample Gif',
+    );
+
+    await pres.addWidgetSlide(
+      Center(
+        child: Container(
+          padding: const EdgeInsets.all(30.0),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.blueAccent, width: 5.0),
+            color: Colors.redAccent,
+          ),
+          child: const Text("This is an invisible widget"),
+        ),
+      ),
+    );
+
+    pres.showSlideNumber = true;
+
+    return pres;
+  }
+
+  Future<void> downloadPresentation(Powerpoint pres) async {
+    final bytes = await pres.save();
+    if (bytes == null) return;
+    downloadFile('presentation.pptx', bytes);
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        child: ElevatedButton(
+          onPressed: () async {
+            final pres = await createPresentation();
+            await downloadPresentation(pres);
+          },
+          child: const Text('Download Presentation'),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

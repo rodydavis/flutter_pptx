@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
@@ -348,7 +349,7 @@ class Powerpoint {
     return items;
   }
 
-  Future<List<int>?> save() async {
+  Future<Uint8List?> save() async {
     final arc = Arc();
 
     // Copy template to temp path
@@ -436,6 +437,8 @@ class Powerpoint {
     }
 
     // Create .pptx file
-    return context.archive.toBytes();
+    final data = context.archive.toBytes();
+    if (data == null) return null;
+    return Uint8List.fromList(data);
   }
 }
