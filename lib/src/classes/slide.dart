@@ -86,7 +86,8 @@ abstract class Slide extends Base {
 Template? resolvePartials(String value) {
   if (value.isEmpty) return null;
   if (value == 'speaker-notes') return slideNotesTemplate;
-  if (value == 'text-value') return textValueTemplate;
+  if (value == 'text-value') return multiLineTemplate;
+  if (value == 'text-line') return singleLineTemplate;
   return null;
 }
 

@@ -80,28 +80,37 @@ class TextValue {
   Map<String, dynamic> toJson() => _$TextValueToJson(this);
 }
 
-final textValueTemplate = Template(
-  normalString,
+final multiLineTemplate = Template(
+  _multiLine,
   partialResolver: resolvePartials,
 );
 
-const normalString = r'''
+final singleLineTemplate = Template(
+  _singleLine,
+  partialResolver: resolvePartials,
+);
+
+const _multiLine = r'''
 {{#lines}}
 <a:p>
   <a:pPr/>
-  {{#values}}
-  <a:r>
-      {{#isStylized}}
-      <a:rPr
-          {{#isBold}}b="1"{{/isBold}}
-          {{#isItalic}}i="1"{{/isItalic}}
-          {{#isUnderline}}u="sng"{{/isUnderline}}
-          {{#isStrikeThrough}}strike="sngStrike"{{/isStrikeThrough}}
-      />
-      {{/isStylized}}
-      <a:t>{{value}}</a:t>
-  </a:r>
-  {{/values}}
+  {{>text-line}}
 </a:p>
 {{/lines}}
+''';
+
+const _singleLine = r'''
+{{#values}}
+<a:r>
+    {{#isStylized}}
+    <a:rPr
+        {{#isBold}}b="1"{{/isBold}}
+        {{#isItalic}}i="1"{{/isItalic}}
+        {{#isUnderline}}u="sng"{{/isUnderline}}
+        {{#isStrikeThrough}}strike="sngStrike"{{/isStrikeThrough}}
+    />
+    {{/isStylized}}
+    <a:t>{{value}}</a:t>
+</a:r>
+{{/values}}
 ''';

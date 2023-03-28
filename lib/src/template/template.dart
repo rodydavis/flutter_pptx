@@ -40,11 +40,15 @@ import 'ppt/notesSlides/notesSlide.xml.mustache.dart' as ppt_notes_slides_notes_
 import 'ppt/notesSlides/_rels/noteSlide.xml.rels.mustache.dart' as ppt_notes_slides_rels_note_slide;
 import 'ppt/slideMasters/slideMaster1.xml.dart' as ppt_slide_masters_slide_master1;
 import 'ppt/slideMasters/_rels/slideMaster1.xml.rels.dart' as ppt_slide_masters_rels_slide_master1;
+import 'ppt/slides/agenda.xml.mustache.dart' as ppt_slides_agenda;
+import 'ppt/slides/statement.xml.mustache.dart' as ppt_slides_statement;
 import 'ppt/slides/title.xml.mustache.dart' as ppt_slides_title;
 import 'ppt/slides/bullets.xml.mustache.dart' as ppt_slides_bullets;
 import 'ppt/slides/title_and_bullets.xml.mustache.dart' as ppt_slides_title_and_bullets;
 import 'ppt/slides/title_and_photo_alt.xml.mustache.dart' as ppt_slides_title_and_photo_alt;
+import 'ppt/slides/big_fact.xml.mustache.dart' as ppt_slides_big_fact;
 import 'ppt/slides/title_bullets_and_photo.xml.mustache.dart' as ppt_slides_title_bullets_and_photo;
+import 'ppt/slides/quote.xml.mustache.dart' as ppt_slides_quote;
 import 'ppt/slides/section.xml.mustache.dart' as ppt_slides_section;
 import 'ppt/slides/_rels/slide.xml.rels.mustache.dart' as ppt_slides_rels_slide;
 import 'ppt/slides/title_and_photo.xml.mustache.dart' as ppt_slides_title_and_photo;
@@ -100,11 +104,15 @@ final templates = {
   'ppt/notesSlides/_rels/noteSlide.xml.rels.mustache': ppt_notes_slides_rels_note_slide.template,
   'ppt/slideMasters/slideMaster1.xml': ppt_slide_masters_slide_master1.template,
   'ppt/slideMasters/_rels/slideMaster1.xml.rels': ppt_slide_masters_rels_slide_master1.template,
+  'ppt/slides/agenda.xml.mustache': ppt_slides_agenda.template,
+  'ppt/slides/statement.xml.mustache': ppt_slides_statement.template,
   'ppt/slides/title.xml.mustache': ppt_slides_title.template,
   'ppt/slides/bullets.xml.mustache': ppt_slides_bullets.template,
   'ppt/slides/title_and_bullets.xml.mustache': ppt_slides_title_and_bullets.template,
   'ppt/slides/title_and_photo_alt.xml.mustache': ppt_slides_title_and_photo_alt.template,
+  'ppt/slides/big_fact.xml.mustache': ppt_slides_big_fact.template,
   'ppt/slides/title_bullets_and_photo.xml.mustache': ppt_slides_title_bullets_and_photo.template,
+  'ppt/slides/quote.xml.mustache': ppt_slides_quote.template,
   'ppt/slides/section.xml.mustache': ppt_slides_section.template,
   'ppt/slides/_rels/slide.xml.rels.mustache': ppt_slides_rels_slide.template,
   'ppt/slides/title_and_photo.xml.mustache': ppt_slides_title_and_photo.template,

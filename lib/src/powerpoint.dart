@@ -10,8 +10,12 @@ import 'classes/notes_rel.dart';
 import 'classes/presentation.dart';
 import 'classes/slide.dart';
 import 'classes/text_value.dart';
+import 'slides/agenda.dart';
+import 'slides/big_fact.dart';
 import 'slides/bullets.dart';
+import 'slides/quote.dart';
 import 'slides/section.dart';
+import 'slides/statement.dart';
 import 'slides/title.dart';
 import 'slides/title_and_bullets.dart';
 import 'slides/title_and_photo.dart';
@@ -215,6 +219,70 @@ class Powerpoint {
       SlideTitleOnly(
         title: TextValue.uniform(title),
         subtitle: TextValue.uniform(subtitle),
+      ),
+      notes: notes,
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addSlideAgenda({
+    required String title,
+    String? subtitle,
+    String? topics,
+    TextValue? notes,
+    bool? showSlideNumber,
+  }) {
+    return addSlide(
+      SlideAgenda(
+        title: TextValue.uniform(title),
+        subtitle: TextValue.uniform(subtitle),
+        topics: TextValue.uniform(topics),
+      ),
+      notes: notes,
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addSlideStatement({
+    required String statement,
+    TextValue? notes,
+    bool? showSlideNumber,
+  }) {
+    return addSlide(
+      SlideStatement(
+        statement: TextValue.uniform(statement),
+      ),
+      notes: notes,
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addBigFact({
+    required String fact,
+    String? information,
+    TextValue? notes,
+    bool? showSlideNumber,
+  }) {
+    return addSlide(
+      SlideBigFact(
+        fact: TextValueLine(values: [TextItem(fact)]),
+        information: TextValue.uniform(information),
+      ),
+      notes: notes,
+      showSlideNumber: showSlideNumber,
+    );
+  }
+
+  Slide addSlideQuote({
+    required String quote,
+    String? attribution,
+    TextValue? notes,
+    bool? showSlideNumber,
+  }) {
+    return addSlide(
+      SlideQuote(
+        quote: TextValueLine(values: [TextItem(quote)]),
+        attribution: TextValue.uniform(attribution),
       ),
       notes: notes,
       showSlideNumber: showSlideNumber,

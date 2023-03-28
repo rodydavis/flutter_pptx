@@ -175,6 +175,26 @@ void main() {
         subtitle: 'Subtitle 1',
       );
 
+      pres.addSlideAgenda(
+        title: 'Title 1',
+        subtitle: 'Subtitle 1',
+        topics: 'Topics 1',
+      );
+
+      pres.addSlideStatement(
+        statement: 'Statement 1',
+      );
+
+      pres.addBigFact(
+        fact: 'Title 1',
+        information: 'Fact 1',
+      );
+
+      pres.addSlideQuote(
+        quote: 'Quote 1',
+        attribution: 'Attribution 1',
+      );
+
       pres.showSlideNumber = true;
 
       final bytes = await pres.save();
