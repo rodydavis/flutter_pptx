@@ -15,86 +15,92 @@ final pres = Powerpoint();
 ### Title Slide
 
 ```dart
-pres.addTitle(
-    title: 'Title',
+pres.addTitleSlide(
+    title: 'Title'.toTextValue(),
 );
 ```
 
 ### Title and Photo Slide
 
 ```dart
-pres.addTitleAndPhoto(
-    title: 'Title',
-    imagePath: './samples/images/sample_gif.gif',
-    imageName: 'Sample Gif',
+pres.addTitleAndPhotoSlide(
+    title: 'Title'.toTextValue(),
+    image: ImageReference(
+        path: './samples/images/sample_gif.gif',
+        name: 'Sample Gif',
+    ),
 );
 ```
 
 ### Title and Photo Slide (Alternative)
 
 ```dart
-pres.addTitleAndPhotoAlt(
-    title: 'Title',
-    imagePath: './samples/images/sample_jpg.jpg',
-    imageName: 'Sample Jpg',
+pres.addTitleAndPhotoAltSlide(
+    title: 'Title'.toTextValue(),
+    image: ImageReference(
+        path: './samples/images/sample_jpg.jpg',
+        name: 'Sample Jpg',
+    ),
 );
 ```
 
 ### Title and Bullets Slide
 
 ```dart
-pres.addTitleAndBullets(
-    title: 'Title',
+pres.addTitleAndBulletsSlide(
+    title: 'Title'.toTextValue(),
     bullets: [
         'Bullet 1',
         'Bullet 2',
         'Bullet 3',
         'Bullet 4',
-    ],
+    ].map((e) => e.toTextValue()).toList(),
 );
 ```
 
 ### Bullets Slide
 
 ```dart
-pres.addBullets(
+pres.addBulletsSlide(
     bullets: [
         'Bullet 1',
         'Bullet 2',
         'Bullet 3',
         'Bullet 4',
-    ],
+    ].map((e) => e.toTextValue()).toList(),
 );
 ```
 
 ### Title, Bullets, and Photo Slide
 
 ```dart
-pres.addSlideTitleBulletsAndPhoto(
-    title: 'Title',
-    imagePath: './samples/images/sample_jpg.jpg',
-    imageName: 'Sample Jpg',
+pres.addTitleBulletsAndPhotoSlide(
+    title: 'Title'.toTextValue(),
+    image: ImageReference(
+        path: './samples/images/sample_jpg.jpg',
+        name: 'Sample Jpg',
+    ),
     bullets: [
         'Bullet 1',
         'Bullet 2',
         'Bullet 3',
         'Bullet 4',
-    ],
+    ].map((e) => e.toTextValue()).toList(),
 );
 ```
 
 ### Section Slide
 
 ```dart
-pres.addSection(
-    section: 'Section 1',
+pres.addSectionSlide(
+    section: 'Section 1'.toTextValue(),
 );
 ```
 
 ### Title Only Slide
 
 ```dart
-pres.addSlideTitleOnly(
+pres.addTitleOnlySlide(
     title: 'Title 1',
     subtitle: 'Subtitle 1',
 );
@@ -103,7 +109,7 @@ pres.addSlideTitleOnly(
 ### Agenda Slide
 
 ```dart
-pres.addSlideAgenda(
+pres.addAgendaSlide(
     title: 'Title 1',
     subtitle: 'Subtitle 1',
     topics: 'Topics 1',
@@ -113,7 +119,7 @@ pres.addSlideAgenda(
 ### Statement Slide
 
 ```dart
-pres.addSlideStatement(
+pres.addStatementSlide(
     statement: 'Statement 1',
 );
 ```
@@ -121,16 +127,16 @@ pres.addSlideStatement(
 ### Big Fact Slide
 
 ```dart
-pres.addBigFact(
-    fact: 'Title 1',
-    information: 'Fact 1',
+pres.addBigFactSlide(
+    fact: 'Fact 1',
+    information: 'Information 1',
 );
 ```
 
 ### Quote Slide
 
 ```dart
-pres.addSlideQuote(
+pres.addQuoteSlide(
     quote: 'Quote 1',
     attribution: 'Attribution 1',
 );
@@ -139,31 +145,39 @@ pres.addSlideQuote(
 ### Photo 3 Up Slide
 
 ```dart
-pres.addSlidePhoto3Up(
-    image1Path: './samples/images/sample_gif.gif',
-    image2Path: './samples/images/sample_jpg.jpg',
-    image3Path: './samples/images/sample_png.png',
+pres.addPhoto3UpSlide(
+    image1: ImageReference(
+        path: './samples/images/sample_gif.gif',
+    ),
+    image2: ImageReference(
+        path: './samples/images/sample_jpg.jpg',
+    ),
+    image3: ImageReference(
+        path: './samples/images/sample_png.png',
+    ),
 );
 ```
 
 ### Photo Slide
 
 ```dart
-pres.addSlidePhoto(
-    imagePath: './samples/images/sample_gif.gif',
+pres.addPhotoSlide(
+    image: ImageReference(
+        path: './samples/images/sample_gif.gif',
+    ),
 );
 ```
 
 ### Blank Slide
 
 ```dart
-pres.addSlideBlank();
+pres.addBlankSlide();
 ```
 
 ## Widget Slide
 
 ```dart
-await pres.addSlideWidget(Center(
+await pres.addWidget(Center(
   child: Container(
       padding: const EdgeInsets.all(30.0),
       decoration: BoxDecoration(
