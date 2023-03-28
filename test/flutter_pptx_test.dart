@@ -7,6 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_pptx/flutter_pptx.dart';
 
+import 'base_widget.dart';
+import 'save_file.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   test(
@@ -169,34 +172,4 @@ void main() {
     },
     timeout: const Timeout(Duration(minutes: 2)),
   );
-}
-
-Future<void> saveFile(
-  String name, {
-  List<int>? bytes,
-  String? string,
-}) async {
-  final file = File(name);
-  if (!await file.exists()) {
-    await file.create(recursive: true);
-  }
-  if (bytes != null) await file.writeAsBytes(bytes);
-  if (string != null) await file.writeAsString(string);
-}
-
-class BaseWidget extends StatelessWidget {
-  const BaseWidget({super.key, required this.child});
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: child,
-        backgroundColor: Colors.transparent,
-      ),
-    );
-  }
 }

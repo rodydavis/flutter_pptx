@@ -31,7 +31,6 @@ import 'slides/title_only.dart';
 import 'template/template.dart';
 
 class Powerpoint {
-  // TODO: .fromMarkdown, Widget slide
   var context = PresentationContext();
   Layout layout = Layout(
     type: 'custom',
@@ -360,6 +359,58 @@ class Powerpoint {
       SlideBlank(),
       showSlideNumber: showSlideNumber,
     );
+  }
+
+  List<Slide> addSlidesFromMarkdown(String markdown) {
+    final items = <Slide>[];
+    final sections = markdown.trim().split('---');
+    for (final section in sections) {
+      final lines = section.split('\n');
+      String? title,
+          subtitle,
+          statement,
+          quote,
+          attribution,
+          fact,
+          information,
+          content;
+
+      for (final line in lines) {
+        if (line.startsWith('# ')) {
+          title = line.substring(2);
+        } else if (line.startsWith('## ')) {
+          subtitle = line.substring(3);
+        } else if (line.startsWith('### ')) {
+          statement = line.substring(4);
+        } else if (line.startsWith('> ')) {
+          quote = line.substring(2);
+        } else if (line.startsWith('**')) {
+          attribution = line.substring(2);
+        } else if (line.startsWith('* ')) {
+          fact = line.substring(2);
+        } else if (line.startsWith('! ')) {
+          information = line.substring(2);
+        } else {
+          content = line.trim();
+        }
+      }
+
+      if (statement != null) {
+        items.add(addSlideStatement(statement: statement));
+      } else if (quote != null) {
+        items.add(addSlideQuote(quote: quote, attribution: attribution));
+      } else if (fact != null) {
+        items.add(addBigFact(fact: fact, information: information));
+      } else if (title != null) {
+        items.add(addSlideAgenda(
+          title: title,
+          subtitle: subtitle,
+        ));
+      } else {
+        items.add(addSlideBlank());
+      }
+    }
+    return items;
   }
 
   Future<List<int>?> save() async {
