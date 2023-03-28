@@ -101,8 +101,8 @@ pres.addSectionSlide(
 
 ```dart
 pres.addTitleOnlySlide(
-    title: 'Title 1',
-    subtitle: 'Subtitle 1',
+    title: 'Title 1'.toTextValue(),
+    subtitle: 'Subtitle 1'.toTextValue(),
 );
 ```
 
@@ -110,9 +110,9 @@ pres.addTitleOnlySlide(
 
 ```dart
 pres.addAgendaSlide(
-    title: 'Title 1',
-    subtitle: 'Subtitle 1',
-    topics: 'Topics 1',
+    title: 'Title 1'.toTextValue(),
+    subtitle: 'Subtitle 1'.toTextValue(),
+    topics: 'Topics 1'.toTextValue(),
 );
 ```
 
@@ -120,7 +120,7 @@ pres.addAgendaSlide(
 
 ```dart
 pres.addStatementSlide(
-    statement: 'Statement 1',
+    statement: 'Statement 1'.toTextValue(),
 );
 ```
 
@@ -128,8 +128,8 @@ pres.addStatementSlide(
 
 ```dart
 pres.addBigFactSlide(
-    fact: 'Fact 1',
-    information: 'Information 1',
+    fact: 'Fact 1'.toTextValue(),
+    information: 'Information 1'.toTextValue(),
 );
 ```
 
@@ -137,8 +137,8 @@ pres.addBigFactSlide(
 
 ```dart
 pres.addQuoteSlide(
-    quote: 'Quote 1',
-    attribution: 'Attribution 1',
+    quote: 'Quote 1'.toTextValue(),
+    attribution: 'Attribution 1'.toTextValue(),
 );
 ```
 
