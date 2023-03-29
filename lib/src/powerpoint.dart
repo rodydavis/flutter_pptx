@@ -13,6 +13,7 @@ import 'classes/notes_rel.dart';
 import 'classes/presentation.dart';
 import 'classes/slide.dart';
 import 'classes/text_value.dart';
+import 'markdown.dart';
 import 'slides/agenda.dart';
 import 'slides/big_fact.dart';
 import 'slides/blank.dart';
@@ -290,62 +291,8 @@ class Powerpoint {
   }
 
   List<Slide> addSlidesFromMarkdown(String markdown) {
-    final items = <Slide>[];
-    final sections = markdown.trim().split('---');
-    for (final section in sections) {
-      final lines = section.split('\n');
-      String? title,
-          subtitle,
-          statement,
-          quote,
-          attribution,
-          fact,
-          information,
-          content;
-
-      for (final line in lines) {
-        if (line.startsWith('# ')) {
-          title = line.substring(2);
-        } else if (line.startsWith('## ')) {
-          subtitle = line.substring(3);
-        } else if (line.startsWith('### ')) {
-          statement = line.substring(4);
-        } else if (line.startsWith('> ')) {
-          quote = line.substring(2);
-        } else if (line.startsWith('**')) {
-          attribution = line.substring(2);
-        } else if (line.startsWith('* ')) {
-          fact = line.substring(2);
-        } else if (line.startsWith('! ')) {
-          information = line.substring(2);
-        } else {
-          content = line.trim();
-        }
-      }
-
-      if (statement != null) {
-        items.add(addStatementSlide(
-          statement: statement.toTextValue(),
-        ));
-      } else if (quote != null) {
-        items.add(addQuoteSlide(
-          quote: quote.toTextLine(),
-          attribution: attribution?.toTextValue(),
-        ));
-      } else if (fact != null) {
-        items.add(addBigFactSlide(
-          fact: fact.toTextLine(),
-          information: information?.toTextValue(),
-        ));
-      } else if (title != null) {
-        items.add(addAgendaSlide(
-          title: title.toTextValue(),
-          subtitle: subtitle?.toTextValue(),
-        ));
-      } else {
-        items.add(addBlankSlide());
-      }
-    }
+    final items = createSlidesFromMarkdown(markdown);
+    slides.addAll(items);
     return items;
   }
 
