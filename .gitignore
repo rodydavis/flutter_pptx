@@ -31,3 +31,4 @@ build/
 
 samples/pptx/
 temp/
+.fvm/flutter_sdk
