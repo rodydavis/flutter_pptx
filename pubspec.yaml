@@ -3,7 +3,7 @@ description: A Flutter package to create powerpoint presentations based on the o
 version: 0.0.1
 
 environment:
-  sdk: '>=2.19.5 <3.0.0'
+  sdk: '>=2.19.2 <3.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
