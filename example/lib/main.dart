@@ -34,8 +34,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Future<Powerpoint> createPresentation() async {
-    final pres = Powerpoint();
+  Future<FlutterPowerPoint> createPresentation() async {
+    final pres = FlutterPowerPoint();
 
     pres.addTitleSlide(
       title: 'Slide one'.toTextValue(),
@@ -192,7 +192,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return pres;
   }
 
-  Future<void> downloadPresentation(Powerpoint pres) async {
+  Future<void> downloadPresentation(FlutterPowerPoint pres) async {
     final bytes = await pres.save();
     if (bytes == null) return;
     downloadFile('presentation.pptx', bytes);

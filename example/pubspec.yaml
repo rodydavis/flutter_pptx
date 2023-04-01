@@ -14,7 +14,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   share_plus: ^6.3.1
   flutter_pptx:
-    path: ..
+    path: ../packages/flutter_pptx
 
 dev_dependencies:
   flutter_test:

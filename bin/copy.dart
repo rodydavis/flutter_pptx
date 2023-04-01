@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:recase/recase.dart';
 
 final inputDir = Directory('./template');
-final outputDir = Directory('./lib/src/template');
+final outputDir = Directory('./packages/dart_pptx/lib/src/template');
 
 void main() {
   if (!outputDir.existsSync()) {
