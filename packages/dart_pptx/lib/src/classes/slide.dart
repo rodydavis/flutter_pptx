@@ -70,27 +70,26 @@ abstract class Slide extends Base {
     return data;
   }
 
+  Map<String, dynamic> toMap(Arc arc) {
+    final local = generateLocalIds(arc);
+    return {
+      ...toJson(),
+      ...local,
+      ...lambdaResolver(arc, slide: this),
+    };
+  }
+
   String renderTemplate(Arc arc) {
     final template = Template(
       source,
       partialResolver: resolvePartials,
     );
-    final args = {
-      ...toJson(),
-      ...generateLocalIds(arc),
-      ...lambdaResolver(arc, slide: this),
-    };
-    return template.renderString(args);
+    return template.renderString(toMap(arc));
   }
 
   String renderRelTemplate(Arc arc) {
-    generateLocalIds(arc);
     final source = Template(template);
-    final args = {
-      ...generateLocalIds(arc),
-      ...lambdaResolver(arc, slide: this),
-    };
-    return source.renderString(args);
+    return source.renderString(toMap(arc));
   }
 }
 

@@ -1,12 +1,26 @@
 name: dart_pptx
-description: A starting point for Dart libraries or applications.
-version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+description: A package for creating pptx files from markdown or slide templates.
+version: 0.1.0
+repository: https://github.com/rodydavis/flutter_pptx
 
 environment:
   sdk: '>=3.0.0-171.0.dev <4.0.0'
 
-# Add regular dependencies here.
+executables:
+  md2pptx: main
+
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  windows:
+  web:
+
+funding:
+ - https://www.buymeacoffee.com/rodydavis
+ - https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSH3GVC49GNNJ
+
 dependencies:
   archive: ^3.3.6
   collection: ^1.17.0

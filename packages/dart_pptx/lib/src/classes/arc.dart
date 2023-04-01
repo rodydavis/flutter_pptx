@@ -18,6 +18,7 @@ class Arc {
     for (var i = 0; i < slides.length; i++) {
       final slide = slides[i];
       slide.index = i;
+      slide.id = ++id;
       slide.rId = ++rId;
       if (slide.hasNotes) {
         notes.add(Notes(
@@ -38,11 +39,13 @@ class Arc {
     for (var i = 0; i < notes.length; i++) {
       final item = notes[i];
       item.index = i;
+      item.id = ++id;
       item.rId = ++rId;
     }
     for (var i = 0; i < images.length; i++) {
       final item = images[i];
       item.index = i + 1;
+      item.id = ++id;
       item.rId = ++rId;
     }
   }

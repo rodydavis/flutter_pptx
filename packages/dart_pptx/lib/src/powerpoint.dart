@@ -10,12 +10,12 @@ import 'template/template.dart';
 
 class PowerPoint {
   var context = PresentationContext();
-  Layout layout = Layout(
+  var layout = Layout(
     type: 'custom',
     width: 24384000,
     height: 13716000,
   );
-  final slides = <Slide>[];
+  var slides = <Slide>[];
 
   bool _showSlideNumber = false;
   bool get showSlideNumber => _showSlideNumber;
@@ -47,198 +47,6 @@ class PowerPoint {
     slide.slideNumber = showSlideNumber ?? _showSlideNumber;
     slides.add(slide);
     return slide;
-  }
-
-  Slide addTitleSlide({
-    TextValue? title,
-    TextValue? author,
-  }) =>
-      addSlide(
-        SlideTitle(
-          title: title,
-          author: author,
-        ),
-        showSlideNumber: showSlideNumber,
-      );
-
-  Slide addTitleAndPhotoSlide({
-    TextValue? title,
-    ImageReference? image,
-    TextValue? author,
-    TextValue? subtitle,
-  }) =>
-      addSlide(
-        SlideTitleAndPhoto(
-          title: title,
-          subtitle: subtitle,
-          image: image,
-          author: author,
-        ),
-        showSlideNumber: showSlideNumber,
-      );
-
-  Slide addTitleAndPhotoAltSlide({
-    ImageReference? image,
-    TextValue? title,
-    TextValue? author,
-    TextValue? subtitle,
-  }) {
-    return addSlide(
-      SlideTitleAndPhotoAlt(
-        title: title,
-        subtitle: subtitle,
-        author: author,
-        image: image,
-      ),
-      showSlideNumber: showSlideNumber,
-    );
-  }
-
-  Slide addTitleAndBulletsSlide({
-    TextValue? title,
-    List<TextValue> bullets = const [],
-    TextValue? author,
-    TextValue? subtitle,
-  }) =>
-      addSlide(
-        TitleAndBullets(
-          bullets: bullets,
-          title: title,
-          subtitle: subtitle,
-          author: author,
-        ),
-        showSlideNumber: showSlideNumber,
-      );
-
-  Slide addBulletsSlide({
-    List<TextValue> bullets = const [],
-  }) =>
-      addSlide(
-        Bullets(
-          bullets: bullets,
-        ),
-        showSlideNumber: showSlideNumber,
-      );
-
-  Slide addTitleBulletsAndPhotoSlide({
-    TextValue? title,
-    List<TextValue> bullets = const [],
-    ImageReference? image,
-    TextValue? notes,
-    TextValue? author,
-    TextValue? subtitle,
-    bool? showSlideNumber,
-  }) =>
-      addSlide(
-        SlideTitleBulletsAndPhoto(
-          title: title,
-          subtitle: subtitle,
-          author: author,
-          bullets: bullets,
-          image: image,
-        ),
-        showSlideNumber: showSlideNumber,
-      );
-
-  Slide addSectionSlide({
-    TextValue? section,
-  }) =>
-      addSlide(
-        SlideSection(
-          section: section,
-        ),
-        showSlideNumber: showSlideNumber,
-      );
-
-  Slide addTitleOnlySlide({
-    TextValue? title,
-    TextValue? subtitle,
-  }) =>
-      addSlide(
-        SlideTitleOnly(
-          title: title,
-          subtitle: subtitle,
-        ),
-        showSlideNumber: showSlideNumber,
-      );
-
-  Slide addAgendaSlide({
-    TextValue? title,
-    TextValue? subtitle,
-    TextValue? topics,
-  }) =>
-      addSlide(
-        SlideAgenda(
-          title: title,
-          subtitle: subtitle,
-          topics: topics,
-        ),
-        showSlideNumber: showSlideNumber,
-      );
-
-  Slide addStatementSlide({
-    TextValue? statement,
-  }) =>
-      addSlide(
-        SlideStatement(
-          statement: statement,
-        ),
-        showSlideNumber: showSlideNumber,
-      );
-
-  Slide addBigFactSlide({
-    TextValueLine? fact,
-    TextValue? information,
-  }) =>
-      addSlide(
-        SlideBigFact(
-          fact: fact,
-          information: information,
-        ),
-        showSlideNumber: showSlideNumber,
-      );
-
-  Slide addQuoteSlide({
-    TextValueLine? quote,
-    TextValue? attribution,
-  }) =>
-      addSlide(
-        SlideQuote(
-          quote: quote,
-          attribution: attribution,
-        ),
-        showSlideNumber: showSlideNumber,
-      );
-
-  Slide addPhoto3UpSlide({
-    ImageReference? image1,
-    ImageReference? image2,
-    ImageReference? image3,
-  }) =>
-      addSlide(
-        SlidePhoto3Up(
-          image1: image1,
-          image2: image2,
-          image3: image3,
-        ),
-        showSlideNumber: showSlideNumber,
-      );
-
-  Slide addPhotoSlide({
-    ImageReference? image,
-  }) =>
-      addSlide(
-        SlidePhoto(
-          image: image,
-        ),
-        showSlideNumber: showSlideNumber,
-      );
-
-  Slide addBlankSlide() {
-    return addSlide(
-      SlideBlank(),
-      showSlideNumber: showSlideNumber,
-    );
   }
 
   Future<List<Slide>> addSlidesFromMarkdown(String markdown) async {
@@ -338,5 +146,156 @@ class PowerPoint {
     final data = context.archive.toBytes();
     if (data == null) return null;
     return Uint8List.fromList(data);
+  }
+}
+
+extension PowerPointUtils on PowerPoint {
+  Slide addTitleSlide({
+    TextValue? title,
+    TextValue? author,
+  }) =>
+      addSlide(SlideTitle(
+        title: title,
+        author: author,
+      ));
+
+  Slide addTitleAndPhotoSlide({
+    TextValue? title,
+    ImageReference? image,
+    TextValue? author,
+    TextValue? subtitle,
+  }) =>
+      addSlide(SlideTitleAndPhoto(
+        title: title,
+        subtitle: subtitle,
+        image: image,
+        author: author,
+      ));
+
+  Slide addTitleAndPhotoAltSlide({
+    ImageReference? image,
+    TextValue? title,
+    TextValue? author,
+    TextValue? subtitle,
+  }) {
+    return addSlide(SlideTitleAndPhotoAlt(
+      title: title,
+      subtitle: subtitle,
+      author: author,
+      image: image,
+    ));
+  }
+
+  Slide addTitleAndBulletsSlide({
+    TextValue? title,
+    List<TextValue> bullets = const [],
+    TextValue? author,
+    TextValue? subtitle,
+  }) =>
+      addSlide(TitleAndBullets(
+        bullets: bullets,
+        title: title,
+        subtitle: subtitle,
+        author: author,
+      ));
+
+  Slide addBulletsSlide({
+    List<TextValue> bullets = const [],
+  }) =>
+      addSlide(Bullets(
+        bullets: bullets,
+      ));
+
+  Slide addTitleBulletsAndPhotoSlide({
+    TextValue? title,
+    List<TextValue> bullets = const [],
+    ImageReference? image,
+    TextValue? notes,
+    TextValue? author,
+    TextValue? subtitle,
+    bool? showSlideNumber,
+  }) =>
+      addSlide(SlideTitleBulletsAndPhoto(
+        title: title,
+        subtitle: subtitle,
+        author: author,
+        bullets: bullets,
+        image: image,
+      ));
+
+  Slide addSectionSlide({
+    TextValue? section,
+  }) =>
+      addSlide(SlideSection(
+        section: section,
+      ));
+
+  Slide addTitleOnlySlide({
+    TextValue? title,
+    TextValue? subtitle,
+  }) =>
+      addSlide(SlideTitleOnly(
+        title: title,
+        subtitle: subtitle,
+      ));
+
+  Slide addAgendaSlide({
+    TextValue? title,
+    TextValue? subtitle,
+    TextValue? topics,
+  }) =>
+      addSlide(SlideAgenda(
+        title: title,
+        subtitle: subtitle,
+        topics: topics,
+      ));
+
+  Slide addStatementSlide({
+    TextValue? statement,
+  }) =>
+      addSlide(SlideStatement(
+        statement: statement,
+      ));
+
+  Slide addBigFactSlide({
+    TextValueLine? fact,
+    TextValue? information,
+  }) =>
+      addSlide(SlideBigFact(
+        fact: fact,
+        information: information,
+      ));
+
+  Slide addQuoteSlide({
+    TextValueLine? quote,
+    TextValue? attribution,
+  }) =>
+      addSlide(SlideQuote(
+        quote: quote,
+        attribution: attribution,
+      ));
+
+  Slide addPhoto3UpSlide({
+    ImageReference? image1,
+    ImageReference? image2,
+    ImageReference? image3,
+  }) =>
+      addSlide(SlidePhoto3Up(
+        image1: image1,
+        image2: image2,
+        image3: image3,
+      ));
+
+  Slide addPhotoSlide({
+    ImageReference? image,
+  }) =>
+      addSlide(SlidePhoto(
+        image: image,
+      ));
+
+  Slide addBlankSlide() {
+    return addSlide(
+      SlideBlank(),
+    );
   }
 }

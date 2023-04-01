@@ -1,3 +1,7 @@
-## 1.0.0
+## 0.1.0
 
-- Initial version.
+- Added slide templates from keynote
+- Added md2pptx command line tool
+- Added support for background color
+- Added support for background image
+- Added support for speaker notes
