@@ -175,7 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     await pres.addWidgetSlide(
-      Center(
+      (size) => Center(
         child: Container(
           padding: const EdgeInsets.all(30.0),
           decoration: BoxDecoration(

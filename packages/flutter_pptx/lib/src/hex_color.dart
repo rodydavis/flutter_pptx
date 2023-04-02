@@ -11,7 +11,7 @@ extension HexColor on Color {
 
   /// Prefixes a hash sign if [leadingHashSign] is set to `true` (default is `true`).
   String toHex({
-    bool leadingHashSign = true,
+    bool leadingHashSign = false,
     bool includeAlpha = false,
   }) {
     final sb = StringBuffer();

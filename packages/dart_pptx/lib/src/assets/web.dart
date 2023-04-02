@@ -29,6 +29,7 @@ class Assets {
       setCache(path, bytes);
       return bytes;
     }
+    print('Failed to get image data: $path');
     return null;
   }
 

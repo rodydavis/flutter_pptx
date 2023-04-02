@@ -19,8 +19,8 @@ platforms:
   web:
 
 funding:
- - https://www.buymeacoffee.com/rodydavis
- - https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSH3GVC49GNNJ
+  - https://www.buymeacoffee.com/rodydavis
+  - https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSH3GVC49GNNJ
 
 dependencies:
   archive: ^3.3.6

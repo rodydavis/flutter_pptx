@@ -23,7 +23,7 @@ void main() {
       pres.addTitleAndPhotoSlide(
         title: 'Slide two'.toTextValue(),
         image: ImageReference(
-          path: './samples/images/sample_gif.gif',
+          path: './test/images/sample_gif.gif',
           name: 'Sample Gif',
         ),
       );
@@ -31,7 +31,7 @@ void main() {
       pres.addTitleAndPhotoAltSlide(
         title: 'Slide three'.toTextValue(),
         image: ImageReference(
-          path: './samples/images/sample_jpg.jpg',
+          path: './test/images/sample_jpg.jpg',
           name: 'Sample Jpg',
         ),
       );
@@ -63,7 +63,7 @@ void main() {
       pres.addTitleBulletsAndPhotoSlide(
         title: 'Slide five'.toTextValue(),
         image: ImageReference(
-          path: './samples/images/sample_jpg.jpg',
+          path: './test/images/sample_jpg.jpg',
           name: 'Sample Jpg',
         ),
         bullets: [
@@ -118,22 +118,22 @@ void main() {
 
       pres.addPhoto3UpSlide(
         image1: ImageReference(
-          path: './samples/images/sample_gif.gif',
+          path: './test/images/sample_gif.gif',
           name: 'Sample Gif',
         ),
         image2: ImageReference(
-          path: './samples/images/sample_jpg.jpg',
+          path: './test/images/sample_jpg.jpg',
           name: 'Sample Jpg',
         ),
         image3: ImageReference(
-          path: './samples/images/sample_png.png',
+          path: './test/images/sample_png.png',
           name: 'Sample Png',
         ),
       );
 
       pres.addPhotoSlide(
         image: ImageReference(
-          path: './samples/images/sample_gif.gif',
+          path: './test/images/sample_gif.gif',
           name: 'Sample Gif',
         ),
       );
@@ -144,21 +144,21 @@ void main() {
 
       pres.addBlankSlide()
         ..background.image = ImageReference(
-          path: './samples/images/sample_gif.gif',
+          path: './test/images/sample_gif.gif',
           name: 'Sample Gif',
         );
 
-      await pres.addWidgetSlide(Center(
-        child: Container(
-            padding: const EdgeInsets.all(30.0),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.blueAccent, width: 5.0),
-              color: Colors.redAccent,
-            ),
-            child: const Text("This is an invisible widget")),
-      ));
+      await pres.addWidgetSlide((size) => Center(
+            child: Container(
+                padding: const EdgeInsets.all(30.0),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blueAccent, width: 5.0),
+                  color: Colors.redAccent,
+                ),
+                child: const Text("This is an invisible widget")),
+          ));
 
-      pres.showSlideNumber = true;
+      pres.showSlideNumbers = true;
 
       final bytes = await pres.save();
       if (bytes != null) {
@@ -180,7 +180,7 @@ void main() {
           }
         }
 
-        await saveFile('./samples/pptx/sample.pptx', bytes: bytes);
+        await saveFile('./build/sample.pptx', bytes: bytes);
       }
 
       expect(bytes != null && bytes.isNotEmpty, true);

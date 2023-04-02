@@ -10,23 +10,24 @@ class FlutterPowerPoint extends PowerPoint {
   var context = FlutterPresentationContext();
 
   Future<Slide> addWidgetSlide(
-    Widget child, {
+    Widget Function(Size size) builder, {
     Duration delay = const Duration(seconds: 1),
     double? pixelRatio,
     BuildContext? context,
     Size? targetSize,
   }) async {
     final ctx = this.context as FlutterPresentationContext;
+    final size = targetSize ??
+        Size(
+          Util.ptToPixle(layout.width),
+          Util.ptToPixle(layout.height),
+        );
     final bytes = await ctx.screenshotController.captureFromWidget(
-      child,
+      builder(size),
       delay: delay,
       pixelRatio: pixelRatio,
       context: context,
-      targetSize: targetSize ??
-          Size(
-            Util.ptToPixle(layout.width),
-            Util.ptToPixle(layout.height),
-          ),
+      targetSize: size,
     );
     final image = ImageReference.fromBytes(
       bytes,
