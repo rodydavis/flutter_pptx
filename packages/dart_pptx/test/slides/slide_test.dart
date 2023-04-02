@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dart_pptx/dart_pptx.dart';
 import 'package:test/test.dart';
 
+import '../utils/broken_image.dart';
 import '../utils/check_pptx.dart';
 import '../utils/save_pptx.dart';
 import '../utils/xml.dart';
@@ -47,6 +48,37 @@ void main() {
       final content = getXml(files['ppt/slides/_rels/slide1.xml.rels']!);
 
       expect(content, contains('<Relationship Id="rId1"'));
+    });
+
+    test('background', () async {
+      String content = getXml(files['ppt/slides/slide1.xml']!);
+      const bgColor = 'FF0000';
+      final slideImage = ImageReference(
+        path: BROKEN_IMAGE,
+        name: 'image.png',
+      );
+      const imageTag = 'blipFill';
+
+      expect(content.indexOf(bgColor), -1);
+      expect(content.indexOf(imageTag), -1);
+
+      final slide = pres.slides[0] as SlideBlank;
+      slide.background.color = bgColor;
+
+      await save();
+      content = getXml(files['ppt/slides/slide1.xml']!);
+
+      expect(content.indexOf(bgColor), isNot(-1));
+      expect(content.indexOf(imageTag), -1);
+
+      slide.background.image = slideImage;
+      slide.background.color = null;
+
+      await save();
+      content = getXml(files['ppt/slides/slide1.xml']!);
+
+      expect(content.indexOf(bgColor), -1);
+      expect(content.indexOf(imageTag), isNot(-1));
     });
 
     test('speaker notes', () async {
