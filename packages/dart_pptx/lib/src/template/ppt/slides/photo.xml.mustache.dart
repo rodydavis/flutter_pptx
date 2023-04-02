@@ -26,7 +26,12 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:grpSpPr>
             <p:pic>
                 <p:nvPicPr>
+                    {{#image}}
                     <p:cNvPr id="{{new-id}}" name="{{image.name}}" descr="{{image.description}}"/>
+                    {{/image}}
+                    {{^image}}
+                    <p:cNvPr id="{{new-id}}" name="Image" descr="Image"/>
+                    {{/image}}
                     <p:cNvPicPr>
                         <a:picLocks noChangeAspect="1"/>
                     </p:cNvPicPr>

@@ -17,13 +17,11 @@ class SlideTitleBulletsAndPhoto extends Slide {
     this.subtitle,
     super.speakerNotes,
     super.slideNumber,
-    this.author,
   });
 
   List<TextValue> bullets;
   ImageReference? image;
   TextValue? title;
-  TextValue? author;
   TextValue? subtitle;
 
   @override

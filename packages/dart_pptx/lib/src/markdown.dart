@@ -33,7 +33,7 @@ Future<List<Slide>> createSlidesFromMarkdown(String source) async {
     if (title != null || subtitle != null) {
       if (subtitle != null) {
         if (content != null) {
-          items.add(TitleAndBullets(
+          items.add(SlideTitleAndBullets(
             title: title?.toTextValue(),
             subtitle: subtitle.toTextValue(),
             bullets: [content.toTextValue()],

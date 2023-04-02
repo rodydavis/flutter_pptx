@@ -38,7 +38,7 @@ void main() {
         sb.writeln('Content');
         final slides = await createSlidesFromMarkdown(sb.toString());
         expect(slides.length, 1);
-        expect(slides[0].runtimeType, TitleAndBullets);
+        expect(slides[0].runtimeType, SlideTitleAndBullets);
       });
       test('title and subtitle', () async {
         final sb = StringBuffer();

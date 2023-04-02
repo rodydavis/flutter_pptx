@@ -175,13 +175,11 @@ extension PowerPointUtils on PowerPoint {
   Slide addTitleAndPhotoAltSlide({
     ImageReference? image,
     TextValue? title,
-    TextValue? author,
     TextValue? subtitle,
   }) {
     return addSlide(SlideTitleAndPhotoAlt(
       title: title,
       subtitle: subtitle,
-      author: author,
       image: image,
     ));
   }
@@ -189,14 +187,12 @@ extension PowerPointUtils on PowerPoint {
   Slide addTitleAndBulletsSlide({
     TextValue? title,
     List<TextValue> bullets = const [],
-    TextValue? author,
     TextValue? subtitle,
   }) =>
-      addSlide(TitleAndBullets(
+      addSlide(SlideTitleAndBullets(
         bullets: bullets,
         title: title,
         subtitle: subtitle,
-        author: author,
       ));
 
   Slide addBulletsSlide({
@@ -210,15 +206,11 @@ extension PowerPointUtils on PowerPoint {
     TextValue? title,
     List<TextValue> bullets = const [],
     ImageReference? image,
-    TextValue? notes,
-    TextValue? author,
     TextValue? subtitle,
-    bool? showSlideNumber,
   }) =>
       addSlide(SlideTitleBulletsAndPhoto(
         title: title,
         subtitle: subtitle,
-        author: author,
         bullets: bullets,
         image: image,
       ));

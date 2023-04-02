@@ -23,7 +23,6 @@ Map<String, dynamic> _$SlideTitleAndPhotoAltToJson(
       'hasNotes': instance.hasNotes,
       'image': instance.image?.toJson(),
       'title': instance.title?.toJson(),
-      'author': instance.author?.toJson(),
       'subtitle': instance.subtitle?.toJson(),
       'layoutId': instance.layoutId,
       'imageRefs':

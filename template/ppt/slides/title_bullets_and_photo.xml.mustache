@@ -47,7 +47,12 @@
             </p:sp>
             <p:pic>
                 <p:nvPicPr>
-                    <p:cNvPr id="{{new-id}}" name="Sea against sky at sunset" descr="Sea against sky at sunset"/>
+                    {{#image}}
+                    <p:cNvPr id="{{new-id}}" name="{{image.name}}" descr="{{image.description}}"/>
+                    {{/image}}
+                    {{^image}}
+                    <p:cNvPr id="{{new-id}}" name="Image" descr="Image"/>
+                    {{/image}}
                     <p:cNvPicPr>
                         <a:picLocks noChangeAspect="1"/>
                     </p:cNvPicPr>

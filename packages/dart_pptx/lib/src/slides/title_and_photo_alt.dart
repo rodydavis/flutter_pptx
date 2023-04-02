@@ -16,12 +16,10 @@ class SlideTitleAndPhotoAlt extends Slide {
     this.subtitle,
     super.speakerNotes,
     super.slideNumber,
-    this.author,
   });
 
   ImageReference? image;
   TextValue? title;
-  TextValue? author;
   TextValue? subtitle;
 
   @override

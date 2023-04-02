@@ -7,26 +7,24 @@ import 'bullets.dart';
 part 'title_and_bullets.g.dart';
 
 @JsonSerializable(createFactory: false)
-class TitleAndBullets extends SlideBullets {
-  TitleAndBullets({
+class SlideTitleAndBullets extends SlideBullets {
+  SlideTitleAndBullets({
     required super.bullets,
     super.name = 'Title and Bullets',
     this.title,
     this.subtitle,
     super.speakerNotes,
     super.slideNumber,
-    this.author,
   });
 
   TextValue? title;
-  TextValue? author;
   TextValue? subtitle;
 
   @override
   int get layoutId => 4;
 
   @override
-  Map<String, dynamic> toJson() => _$TitleAndBulletsToJson(this);
+  Map<String, dynamic> toJson() => _$SlideTitleAndBulletsToJson(this);
 
   @override
   String get source => template;

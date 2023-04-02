@@ -6,7 +6,8 @@ part of 'title_and_bullets.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Map<String, dynamic> _$TitleAndBulletsToJson(TitleAndBullets instance) =>
+Map<String, dynamic> _$SlideTitleAndBulletsToJson(
+        SlideTitleAndBullets instance) =>
     <String, dynamic>{
       'index': instance.index,
       'isLast': instance.isLast,
@@ -24,7 +25,6 @@ Map<String, dynamic> _$TitleAndBulletsToJson(TitleAndBullets instance) =>
           instance.imageRefs.map((k, e) => MapEntry(k.toString(), e?.toJson())),
       'bullets': instance.bullets.map((e) => e.toJson()).toList(),
       'title': instance.title?.toJson(),
-      'author': instance.author?.toJson(),
       'subtitle': instance.subtitle?.toJson(),
       'layoutId': instance.layoutId,
       'source': instance.source,
