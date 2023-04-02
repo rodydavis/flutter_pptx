@@ -62,9 +62,7 @@ void main() {
       relativePath = '$relativePath.dart';
       final filename = relativePath.split('.').first;
       String name = filename.snakeCase;
-      // Remove brackets
-      name = name.replaceAll('[', '');
-      name = name.replaceAll(']', '');
+      name = alias(name);
       sb.writeln('import \'${relativePath.substring(1)}\' as $name;');
     }
   }
@@ -77,9 +75,7 @@ void main() {
       String filename = relativePath.split('.').first;
       final orgFilename = relativePath.substring(1).replaceAll('.dart', '');
       String name = filename.snakeCase;
-      // Remove brackets
-      name = name.replaceAll('[', '');
-      name = name.replaceAll(']', '');
+      name = alias(name);
       sb.writeln('  \'$orgFilename\': $name.template,');
     }
   }
@@ -89,4 +85,14 @@ void main() {
   final outputFile = File('${outputDir.path}/template.dart');
   outputFile.createSync(recursive: true);
   outputFile.writeAsStringSync(sb.toString());
+}
+
+String alias(String value) {
+  String name = value;
+  name = name.replaceAll('[', '');
+  name = name.replaceAll(']', '');
+  if (name.startsWith('_')) {
+    name = name.substring(1);
+  }
+  return name;
 }

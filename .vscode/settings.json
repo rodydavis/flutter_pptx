@@ -1,6 +1,14 @@
 {
     "cSpell.words": [
-        "rels"
+        "aabbcc",
+        "ffaabbcc",
+        "officedocument",
+        "openxmlformats",
+        "pixle",
+        "presentationml",
+        "recase",
+        "rels",
+        "spreadsheetml"
     ],
     "files.exclude": {
         "**/*.freezed.dart": true,

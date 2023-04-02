@@ -1,3 +1,4 @@
+/// Flutter PPTX
 library flutter_pptx;
 
 export 'src/context.dart';

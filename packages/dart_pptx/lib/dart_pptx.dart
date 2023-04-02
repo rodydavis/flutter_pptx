@@ -1,6 +1,4 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
+/// Pure Dart library for creating PowerPoint presentations.
 library dart_pptx;
 
 export 'src/context.dart';

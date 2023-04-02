@@ -3,7 +3,7 @@
 
 import 'docProps/app.xml.mustache.dart' as doc_props_app;
 import 'docProps/core.xml.mustache.dart' as doc_props_core;
-import '[Content_Types].xml.mustache.dart' as _content_types;
+import '[Content_Types].xml.mustache.dart' as content_types;
 import '_rels/.rels.dart' as rels;
 import 'ppt/comments/comment.xml.mustache.dart' as ppt_comments_comment;
 import 'ppt/viewProps.xml.dart' as ppt_view_props;
@@ -71,7 +71,7 @@ import 'ppt/media/image1.png.dart' as ppt_media_image1;
 final templates = {
   'docProps/app.xml.mustache': doc_props_app.template,
   'docProps/core.xml.mustache': doc_props_core.template,
-  '[Content_Types].xml.mustache': _content_types.template,
+  '[Content_Types].xml.mustache': content_types.template,
   '_rels/.rels': rels.template,
   'ppt/comments/comment.xml.mustache': ppt_comments_comment.template,
   'ppt/viewProps.xml': ppt_view_props.template,
