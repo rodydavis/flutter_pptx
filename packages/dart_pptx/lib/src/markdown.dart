@@ -18,68 +18,110 @@ Future<List<Slide>> createSlidesFromMarkdown(String source) async {
   final sections = markdown.split('---');
   for (final section in sections) {
     final lines = section.split('\n');
-    String? title, subtitle, content;
+    String? title, subtitle;
+    List<ImageReference> images = [];
+    ImageReference? backgroundImage;
+    String? speakerNotes;
+    List<String> bullets = [];
 
     for (final line in lines) {
       if (line.startsWith('# ')) {
         title = line.substring(2);
       } else if (line.startsWith('## ')) {
         subtitle = line.substring(3);
-      } else {
-        content = line.trim();
+      } else if (line.startsWith('![')) {
+        final alt = line.substring(2, line.indexOf(']'));
+        final url = line.substring(line.indexOf('(') + 1, line.indexOf(')'));
+        final isBackground = line.contains('{.background}');
+        if (isBackground) {
+          backgroundImage = ImageReference(
+            path: url,
+            name: alt.isEmpty ? 'Background Image' : alt,
+          );
+        } else {
+          images.add(ImageReference(
+            path: url,
+            name: alt.isEmpty ? 'Image' : alt,
+          ));
+        }
+      } else if (line.startsWith('* ') || line.startsWith('- ')) {
+        bullets.add(line.substring(2));
       }
     }
 
-    if (title != null || subtitle != null) {
+    if (section.contains('<!--')) {
+      final firstIdx = section.indexOf('<!--');
+      final lastIdx = section.indexOf('-->');
+      if (lastIdx > 0) {
+        speakerNotes = section.substring(firstIdx + 4, lastIdx).trim();
+      }
+    }
+
+    Slide? slide;
+
+    if (images.length == 3) {
+      // Photo 3 Up
+      slide = SlidePhoto3Up(
+        image1: images[0],
+        image2: images[1],
+        image3: images[2],
+      );
+    } else if (images.isNotEmpty) {
+      // Image slides
+      if (title != null) {
+        // Title and Photo
+        slide = SlideTitleAndPhoto(
+          title: title.toTextValue(),
+          subtitle: subtitle?.toTextValue(),
+          image: images[0],
+        );
+      } else {
+        // Photo
+        slide = SlidePhoto(
+          image: images[0],
+        );
+      }
+    } else if (title != null || subtitle != null) {
       if (subtitle != null) {
-        if (content != null) {
-          items.add(SlideTitleAndBullets(
+        if (bullets.isNotEmpty) {
+          slide = SlideTitleAndBullets(
             title: title?.toTextValue(),
             subtitle: subtitle.toTextValue(),
-            bullets: [content.toTextValue()],
-          ));
+            bullets: bullets.map((e) => e.toTextValue()).toList(),
+          );
         } else {
-          items.add(SlideTitleOnly(
+          slide = SlideTitleOnly(
             title: title?.toTextValue(),
             subtitle: subtitle.toTextValue(),
-          ));
+          );
         }
       } else {
         final isBig = title != null && title.contains('{.big}');
         if (isBig) {
           title = title.replaceAll('{.big}', '').trim();
         }
-        if (content != null) {
-          if (isBig) {
-            items.add(SlideBigFact(
-              fact: title?.toTextLine(),
-              information: content.toTextValue(),
-            ));
-          } else {
-            items.add(SlideTitleOnly(
-              title: title?.toTextValue(),
-              subtitle: content.toTextValue(),
-            ));
-          }
+        if (isBig) {
+          slide = SlideStatement(
+            statement: title?.toTextValue(),
+          );
         } else {
-          if (isBig) {
-            items.add(SlideStatement(
-              statement: title?.toTextValue(),
-            ));
-          } else {
-            items.add(SlideTitle(
-              title: title?.toTextValue(),
-            ));
-          }
+          slide = SlideTitle(
+            title: title?.toTextValue(),
+          );
         }
       }
-    } else if (content != null) {
-      items.add(SlideSection(
-        section: content.toTextValue(),
-      ));
     } else {
-      items.add(SlideBlank());
+      slide = SlideBlank();
+      // slide.background.color = '000000';
     }
+
+    if (backgroundImage != null) {
+      slide.background.image = backgroundImage;
+    }
+    if (speakerNotes != null) {
+      slide.speakerNotes = TextValue.uniform(speakerNotes);
+    }
+    items.add(slide);
   }
   return items;
 }

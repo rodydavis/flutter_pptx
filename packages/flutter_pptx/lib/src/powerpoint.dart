@@ -33,9 +33,6 @@ class FlutterPowerPoint extends PowerPoint {
       name: 'widget',
       description: 'image created from a widget',
     );
-    return addSlide(
-      SlideBlank()..background.image = image,
-      showSlideNumber: showSlideNumber,
-    );
+    return addSlide(SlideBlank()..background.image = image);
   }
 }

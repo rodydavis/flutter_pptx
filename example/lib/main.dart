@@ -187,7 +187,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
 
-    pres.showSlideNumber = true;
+    pres.showSlideNumbers = true;
 
     return pres;
   }
