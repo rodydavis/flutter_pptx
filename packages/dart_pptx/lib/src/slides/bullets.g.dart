@@ -6,7 +6,8 @@ part of 'bullets.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Map<String, dynamic> _$BulletsToJson(Bullets instance) => <String, dynamic>{
+Map<String, dynamic> _$SlideBulletsToJson(SlideBullets instance) =>
+    <String, dynamic>{
       'index': instance.index,
       'isLast': instance.isLast,
       'rId': instance.rId,

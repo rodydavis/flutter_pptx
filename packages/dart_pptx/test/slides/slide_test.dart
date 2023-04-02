@@ -8,7 +8,7 @@ import '../utils/save_pptx.dart';
 import '../utils/xml.dart';
 
 void main() {
-  group('Title only slide tests', () {
+  group('Slide tests', () {
     var pres = PowerPoint();
     var files = <String, List<int>>{};
     final tempDir = Directory.systemTemp.createTempSync('dart_pptx_test');
@@ -22,7 +22,7 @@ void main() {
 
     setUp(() async {
       pres = PowerPoint();
-      pres.addTitleOnlySlide();
+      pres.addBlankSlide();
       await save();
     });
 
@@ -35,34 +35,38 @@ void main() {
       final slide = pres.slides[0];
 
       expect(slide, isNotNull);
-      expect(slide.runtimeType, SlideTitleOnly);
     });
 
-    test('ppt/slides/slide1.xml', () async {
-      const title = 'SLIDE_TITLE';
-      const subtitle = 'SLIDE_SUBTITLE';
-      String content = getXml(files['ppt/slides/slide1.xml']!);
+    test('ppt/slides/slide1.xml', () {
+      final content = getXml(files['ppt/slides/slide1.xml']!);
 
       expect(content, contains('<p:sld'));
-      expect(content.indexOf(title), -1);
-      expect(content.indexOf(subtitle), -1);
-
-      final slide = pres.slides[0] as SlideTitleOnly;
-      slide.title = TextValue.uniform(title);
-      slide.subtitle = TextValue.uniform(subtitle);
-
-      await save();
-      content = getXml(files['ppt/slides/slide1.xml']!);
-
-      expect(content.indexOf(title), isNot(-1));
-      expect(content.indexOf(subtitle), isNot(-1));
     });
 
-    test('ppt/slides/_rels/slide1.xml.rels', () {
+    test('ppt/slides/_rels/slide1.xml.rels', () async {
       final content = getXml(files['ppt/slides/_rels/slide1.xml.rels']!);
 
       expect(content, contains('<Relationship Id="rId1"'));
-      expect(content, contains('slideLayout8.xml"'));
+    });
+
+    test('speaker notes', () async {
+      String slideContent = getXml(files['ppt/slides/_rels/slide1.xml.rels']!);
+      String? noteContent =
+          maybeGetXml(files['ppt/notesSlides/notesSlide1.xml']);
+      const notes = 'SPEAKER_NOTES';
+
+      expect(slideContent, contains('<Relationship Id="rId1"'));
+      expect(slideContent.indexOf('notesSlide1'), -1);
+      expect(noteContent, isNull);
+
+      final slide = pres.slides[0] as SlideBlank;
+      slide.speakerNotes = TextValue.uniform(notes);
+      await save();
+      slideContent = getXml(files['ppt/slides/_rels/slide1.xml.rels']!);
+      noteContent = getXml(files['ppt/notesSlides/notesSlide1.xml']!);
+
+      expect(slideContent.indexOf('notesSlide1'), isNot(-1));
+      expect(noteContent, contains(notes));
     });
 
     test('ppt/presentation.xml', () {

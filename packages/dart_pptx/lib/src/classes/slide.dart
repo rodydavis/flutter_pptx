@@ -72,11 +72,27 @@ abstract class Slide extends Base {
 
   Map<String, dynamic> toMap(Arc arc) {
     final local = generateLocalIds(arc);
-    return {
+    final data = {
       ...toJson(),
       ...local,
       ...lambdaResolver(arc, slide: this),
     };
+    // Replace null with false
+    return replaceNulls(data);
+  }
+
+  Map<String, dynamic> replaceNulls(Map<String, dynamic> data) {
+    final newMap = <String, dynamic>{};
+    for (final entry in data.entries) {
+      if (entry.value == null) {
+        newMap[entry.key] = false;
+      } else if (entry.value is Map<String, dynamic>) {
+        newMap[entry.key] = replaceNulls(entry.value as Map<String, dynamic>);
+      } else {
+        newMap[entry.key] = entry.value;
+      }
+    }
+    return newMap;
   }
 
   String renderTemplate(Arc arc) {

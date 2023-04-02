@@ -10,7 +10,6 @@ Future<Map<String, List<int>>> checkPptx(String path) async {
   final archive = decoder.decodeBytes(bytes);
   final files = archive.files.toList();
   for (final entry in files) {
-    print(entry.name);
     if (entry.isFile) {
       if (entry.isFile) {
         final bytes = entry.content as List<int>;

@@ -26,7 +26,12 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:grpSpPr>
             <p:pic>
                 <p:nvPicPr>
+                    {{#image1}}
                     <p:cNvPr id="{{new-id}}" name="{{image1.name}}" descr="{{image1.description}}"/>
+                    {{/image1}}
+                    {{^image1}}
+                    <p:cNvPr id="{{new-id}}" name="Image 1" descr="Image 1"/>
+                    {{/image1}}
                     <p:cNvPicPr>
                         <a:picLocks noChangeAspect="1"/>
                     </p:cNvPicPr>
@@ -50,7 +55,12 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:pic>
             <p:pic>
                 <p:nvPicPr>
+                    {{#image2}}
                     <p:cNvPr id="{{new-id}}" name="{{image2.name}}" descr="{{image2.description}}"/>
+                    {{/image2}}
+                    {{^image2}}
+                    <p:cNvPr id="{{new-id}}" name="Image 2" descr="Image 2"/>
+                    {{/image2}}
                     <p:cNvPicPr>
                         <a:picLocks noChangeAspect="1"/>
                     </p:cNvPicPr>
@@ -74,7 +84,12 @@ const String template = r'''<?xml version="1.0" encoding="UTF-8"?>
             </p:pic>
             <p:pic>
                 <p:nvPicPr>
+                    {{#image3}}
                     <p:cNvPr id="{{new-id}}" name="{{image3.name}}" descr="{{image3.description}}"/>
+                    {{/image3}}
+                    {{^image3}}
+                    <p:cNvPr id="{{new-id}}" name="Image 3" descr="Image 3"/>
+                    {{/image3}}
                     <p:cNvPicPr>
                         <a:picLocks noChangeAspect="1"/>
                     </p:cNvPicPr>

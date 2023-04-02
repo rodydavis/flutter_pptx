@@ -7,8 +7,8 @@ import '../template/ppt/slides/bullets.xml.mustache.dart';
 part 'bullets.g.dart';
 
 @JsonSerializable(createFactory: false)
-class Bullets extends Slide {
-  Bullets({
+class SlideBullets extends Slide {
+  SlideBullets({
     this.bullets = const [],
     super.name = 'Bullets',
     super.speakerNotes,
@@ -21,7 +21,7 @@ class Bullets extends Slide {
   int get layoutId => 5;
 
   @override
-  Map<String, dynamic> toJson() => _$BulletsToJson(this);
+  Map<String, dynamic> toJson() => _$SlideBulletsToJson(this);
 
   @override
   String get source => template;

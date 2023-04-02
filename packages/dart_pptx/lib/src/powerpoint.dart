@@ -202,7 +202,7 @@ extension PowerPointUtils on PowerPoint {
   Slide addBulletsSlide({
     List<TextValue> bullets = const [],
   }) =>
-      addSlide(Bullets(
+      addSlide(SlideBullets(
         bullets: bullets,
       ));
 

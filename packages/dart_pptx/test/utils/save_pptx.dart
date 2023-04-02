@@ -6,5 +6,4 @@ Future<void> savePptx(String path, List<int> bytes) async {
     file.createSync(recursive: true);
   }
   file.writeAsBytesSync(bytes);
-  print('Saved ${bytes.length} bytes to ${file.path}');
 }

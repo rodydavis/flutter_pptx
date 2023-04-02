@@ -3,12 +3,13 @@ import 'dart:io';
 import 'package:dart_pptx/dart_pptx.dart';
 import 'package:test/test.dart';
 
+import '../utils/broken_image.dart';
 import '../utils/check_pptx.dart';
 import '../utils/save_pptx.dart';
 import '../utils/xml.dart';
 
 void main() {
-  group('Title only slide tests', () {
+  group('Photo 3 up slide tests', () {
     var pres = PowerPoint();
     var files = <String, List<int>>{};
     final tempDir = Directory.systemTemp.createTempSync('dart_pptx_test');
@@ -22,7 +23,7 @@ void main() {
 
     setUp(() async {
       pres = PowerPoint();
-      pres.addTitleOnlySlide();
+      pres.addPhoto3UpSlide();
       await save();
     });
 
@@ -35,34 +36,49 @@ void main() {
       final slide = pres.slides[0];
 
       expect(slide, isNotNull);
-      expect(slide.runtimeType, SlideTitleOnly);
+      expect(slide.runtimeType, SlidePhoto3Up);
     });
 
     test('ppt/slides/slide1.xml', () async {
-      const title = 'SLIDE_TITLE';
-      const subtitle = 'SLIDE_SUBTITLE';
+      const image1Desc = 'IMAGE_1_DESCRIPTION';
+      const image2Desc = 'IMAGE_2_DESCRIPTION';
+      const image3Desc = 'IMAGE_3_DESCRIPTION';
       String content = getXml(files['ppt/slides/slide1.xml']!);
 
       expect(content, contains('<p:sld'));
-      expect(content.indexOf(title), -1);
-      expect(content.indexOf(subtitle), -1);
+      expect(content.indexOf(image1Desc), -1);
+      expect(content.indexOf(image2Desc), -1);
+      expect(content.indexOf(image3Desc), -1);
+      expect(files['ppt/media/image1.png'], isNotNull);
 
-      final slide = pres.slides[0] as SlideTitleOnly;
-      slide.title = TextValue.uniform(title);
-      slide.subtitle = TextValue.uniform(subtitle);
+      final slide = pres.slides[0] as SlidePhoto3Up;
+      slide.image1 = ImageReference(
+        path: BROKEN_IMAGE,
+        name: image1Desc,
+      );
+      slide.image2 = ImageReference(
+        path: BROKEN_IMAGE,
+        name: image2Desc,
+      );
+      slide.image3 = ImageReference(
+        path: BROKEN_IMAGE,
+        name: image3Desc,
+      );
 
       await save();
       content = getXml(files['ppt/slides/slide1.xml']!);
 
-      expect(content.indexOf(title), isNot(-1));
-      expect(content.indexOf(subtitle), isNot(-1));
+      expect(content.indexOf(image1Desc), isNot(-1));
+      expect(content.indexOf(image2Desc), isNot(-1));
+      expect(content.indexOf(image3Desc), isNot(-1));
+      expect(files['ppt/media/image1.png'], isNotNull);
     });
 
     test('ppt/slides/_rels/slide1.xml.rels', () {
       final content = getXml(files['ppt/slides/_rels/slide1.xml.rels']!);
 
       expect(content, contains('<Relationship Id="rId1"'));
-      expect(content, contains('slideLayout8.xml"'));
+      expect(content, contains('slideLayout13.xml"'));
     });
 
     test('ppt/presentation.xml', () {

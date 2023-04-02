@@ -8,7 +8,7 @@ import '../utils/save_pptx.dart';
 import '../utils/xml.dart';
 
 void main() {
-  group('Title only slide tests', () {
+  group('Bullets slide tests', () {
     var pres = PowerPoint();
     var files = <String, List<int>>{};
     final tempDir = Directory.systemTemp.createTempSync('dart_pptx_test');
@@ -22,7 +22,7 @@ void main() {
 
     setUp(() async {
       pres = PowerPoint();
-      pres.addTitleOnlySlide();
+      pres.addBulletsSlide();
       await save();
     });
 
@@ -35,34 +35,30 @@ void main() {
       final slide = pres.slides[0];
 
       expect(slide, isNotNull);
-      expect(slide.runtimeType, SlideTitleOnly);
+      expect(slide.runtimeType, SlideBullets);
     });
 
     test('ppt/slides/slide1.xml', () async {
-      const title = 'SLIDE_TITLE';
-      const subtitle = 'SLIDE_SUBTITLE';
+      const bullets = 'SLIDE_BULLETS';
       String content = getXml(files['ppt/slides/slide1.xml']!);
 
       expect(content, contains('<p:sld'));
-      expect(content.indexOf(title), -1);
-      expect(content.indexOf(subtitle), -1);
+      expect(content.indexOf(bullets), -1);
 
-      final slide = pres.slides[0] as SlideTitleOnly;
-      slide.title = TextValue.uniform(title);
-      slide.subtitle = TextValue.uniform(subtitle);
+      final slide = pres.slides[0] as SlideBullets;
+      slide.bullets = [bullets.toTextValue()];
 
       await save();
       content = getXml(files['ppt/slides/slide1.xml']!);
 
-      expect(content.indexOf(title), isNot(-1));
-      expect(content.indexOf(subtitle), isNot(-1));
+      expect(content.indexOf(bullets), isNot(-1));
     });
 
     test('ppt/slides/_rels/slide1.xml.rels', () {
       final content = getXml(files['ppt/slides/_rels/slide1.xml.rels']!);
 
       expect(content, contains('<Relationship Id="rId1"'));
-      expect(content, contains('slideLayout8.xml"'));
+      expect(content, contains('slideLayout5.xml"'));
     });
 
     test('ppt/presentation.xml', () {

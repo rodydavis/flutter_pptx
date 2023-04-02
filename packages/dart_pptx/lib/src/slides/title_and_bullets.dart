@@ -7,7 +7,7 @@ import 'bullets.dart';
 part 'title_and_bullets.g.dart';
 
 @JsonSerializable(createFactory: false)
-class TitleAndBullets extends Bullets {
+class TitleAndBullets extends SlideBullets {
   TitleAndBullets({
     required super.bullets,
     super.name = 'Title and Bullets',
