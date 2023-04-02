@@ -73,8 +73,13 @@ class PowerPoint {
         context.archive.addBinaryFile(name, bytes);
         continue;
       }
+      String path = name;
+      if (name.contains('/_.')) {
+        // Convert back to hidden files
+        path = name.replaceAll('/_.', '/.');
+      }
       final result = entry.value.trim();
-      context.archive.addFile(entry.key, result);
+      context.archive.addFile(path, result);
     }
 
     final files = <String, String>{};

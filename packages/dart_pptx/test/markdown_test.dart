@@ -38,7 +38,7 @@ void main() {
         sb.writeln('Content');
         final slides = await createSlidesFromMarkdown(sb.toString());
         expect(slides.length, 1);
-        expect(slides[0].runtimeType, SlideTitleAndBullets);
+        expect(slides[0].runtimeType, SlideTitleOnly);
       });
       test('title and subtitle', () async {
         final sb = StringBuffer();
@@ -56,7 +56,7 @@ void main() {
         sb.writeln('Content');
         final slides = await createSlidesFromMarkdown(sb.toString());
         expect(slides.length, 1);
-        expect(slides[0].runtimeType, SlideTitleOnly);
+        expect(slides[0].runtimeType, SlideTitle);
       });
       test('title', () async {
         final sb = StringBuffer();
@@ -79,7 +79,7 @@ void main() {
         sb.writeln('Content');
         final slides = await createSlidesFromMarkdown(sb.toString());
         expect(slides.length, 1);
-        expect(slides[0].runtimeType, SlideSection);
+        expect(slides[0].runtimeType, SlideBlank);
       });
       test('statement', () async {
         final sb = StringBuffer();
@@ -96,7 +96,7 @@ void main() {
         sb.writeln('Info about the fact');
         final slides = await createSlidesFromMarkdown(sb.toString());
         expect(slides.length, 1);
-        expect(slides[0].runtimeType, SlideBigFact);
+        expect(slides[0].runtimeType, SlideStatement);
       });
     });
   });

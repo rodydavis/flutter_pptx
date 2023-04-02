@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:recase/recase.dart';
+import 'package:path/path.dart' as path;
 
 final inputDir = Directory('./template');
 final outputDir = Directory('./packages/dart_pptx/lib/src/template');
@@ -45,6 +46,13 @@ void main() {
 
       String relativePath = file.path.substring(inputDir.path.length);
       relativePath = '$relativePath.dart';
+
+      // Check for . files
+      final filename = path.basename(file.path);
+      if (filename.startsWith('.')) {
+        // Replace . with _
+        relativePath = relativePath.replaceAll(filename, '_$filename');
+      }
       final outputFile = File(outputDir.path + relativePath);
       outputFile.createSync(recursive: true);
       outputFile.writeAsStringSync(sb.toString().trim());
@@ -62,6 +70,9 @@ void main() {
       relativePath = '$relativePath.dart';
       final filename = relativePath.split('.').first;
       String name = filename.snakeCase;
+      if (relativePath.contains('/.')) {
+        relativePath = relativePath.replaceAll('/.', '/_.');
+      }
       name = alias(name);
       sb.writeln('import \'${relativePath.substring(1)}\' as $name;');
     }
