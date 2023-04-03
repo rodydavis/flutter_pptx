@@ -2,6 +2,7 @@
 library flutter_pptx;
 
 export 'src/context.dart';
+export 'src/assets.dart';
 export 'src/hex_color.dart';
 export 'src/image.dart';
 export 'src/powerpoint.dart';

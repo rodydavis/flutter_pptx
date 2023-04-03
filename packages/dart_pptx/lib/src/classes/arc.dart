@@ -57,9 +57,12 @@ class Arc {
 
   List<ImageReference> getImagesForSlide(Slide slide) {
     final related = slide.imageRefs.values.whereNotNull().toList();
-    return images
-        .where((e) => related.map((r) => r.path).contains(e.path))
-        .toList();
+    final results = <ImageReference>[];
+    for (final item in related) {
+      final match = images.firstWhereOrNull((e) => e.path == item.path);
+      if (match != null) results.add(match);
+    }
+    return results;
   }
 
   List<Notes> getNotesForSlide(Slide slide) {

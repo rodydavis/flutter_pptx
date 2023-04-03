@@ -1,5 +1,4 @@
 import 'package:dart_pptx/dart_pptx.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 class FlutterAssets extends Assets {
@@ -12,7 +11,7 @@ class FlutterAssets extends Assets {
       setCache(path, bytes);
       return bytes;
     } catch (e) {
-      debugPrint('Failed to load image: $path');
+      // debugPrint('Failed to load image: $path');
     }
     return super.getImageData(path);
   }

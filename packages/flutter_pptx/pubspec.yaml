@@ -1,6 +1,6 @@
 name: flutter_pptx
 description: A package for creating pptx files from markdown, widgets or slide templates.
-version: 0.1.1
+version: 0.1.1+2
 repository: https://github.com/rodydavis/flutter_pptx
 homepage: https://github.com/rodydavis/flutter_pptx
 

@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:dart_pptx/dart_pptx.dart' show PowerPoint;
 import 'package:flutter_pptx/flutter_pptx.dart';
 // ignore: implementation_imports

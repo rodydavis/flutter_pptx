@@ -2,7 +2,8 @@
 /// See `bin/copy.dart` for more information.
 
 /// Path: ./template/docProps/app.xml.mustache
-const String template = r'''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+const String template =
+    r'''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties"
     xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">
     <TotalTime>0</TotalTime>
