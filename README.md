@@ -1,6 +1,6 @@
 # Flutter PPTX
 
-A Flutter plugin for creating PowerPoint presentations.
+A Flutter package for creating PowerPoint presentations.
 
 | Package | Pub |
 |---------|-----|
