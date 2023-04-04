@@ -84,10 +84,11 @@ packages:
   dart_pptx:
     dependency: transitive
     description:
-      path: "../packages/dart_pptx"
-      relative: true
-    source: path
-    version: "1.0.0"
+      name: dart_pptx
+      sha256: "29a33156a95e0c830da67b95328e34dfac834044ad884e2dd28f3a5ee07cebd5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.1"
   fake_async:
     dependency: transitive
     description:
@@ -131,7 +132,7 @@ packages:
       path: "../packages/flutter_pptx"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.1.1+2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -484,5 +485,5 @@ packages:
     source: hosted
     version: "1.0.0"
 sdks:
-  dart: ">=3.0.0-171.0.dev <4.0.0"
+  dart: ">=2.19.2 <4.0.0"
   flutter: ">=3.0.0"

@@ -26,14 +26,25 @@ class Arc {
           slideIndex: i,
         ));
       }
+      if (slide.background.image != null) {
+        // Fix for background image being duplicated
+        ImageReference image = slide.background.image!;
+        final existingIdx = this.images.indexWhere((e) => e == image);
+        if (existingIdx > 0) {
+          image = this.images[existingIdx];
+          slide.background.image = image;
+        }
+        slide.imageRefs[0] = image;
+      }
       final images = slide.imageRefs.values.toList();
       for (var j = 0; j < images.length; j++) {
         final image = images[j];
-        if (image == null) continue;
-        final existingIdx = this.images.indexWhere((e) {
-          return e.path == image.path;
-        });
-        if (existingIdx == -1) this.images.add(image);
+        if (image != null) {
+          final existingIdx = this.images.indexWhere((e) => e == image);
+          if (existingIdx == -1) {
+            this.images.add(image);
+          }
+        }
       }
     }
     for (var i = 0; i < notes.length; i++) {
@@ -59,7 +70,7 @@ class Arc {
     final related = slide.imageRefs.values.whereNotNull().toList();
     final results = <ImageReference>[];
     for (final item in related) {
-      final match = images.firstWhereOrNull((e) => e.path == item.path);
+      final match = images.firstWhereOrNull((e) => e == item);
       if (match != null) results.add(match);
     }
     return results;

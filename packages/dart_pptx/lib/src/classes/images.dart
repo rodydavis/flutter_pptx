@@ -20,6 +20,9 @@ class ImageReference extends Base {
     this.description,
   });
 
+  @JsonKey(includeToJson: false)
+  Uint8List? bytes;
+
   static ImageReference fromBytes(
     Uint8List bytes, {
     String name = 'image',
@@ -42,4 +45,13 @@ class ImageReference extends Base {
 
   @override
   Map<String, dynamic> toJson() => _$ImageReferenceToJson(this);
+
+  @override
+  bool operator ==(covariant ImageReference other) {
+    if (identical(this, other)) return true;
+    return other.path == path && other.name == name && other.description == description;
+  }
+
+  @override
+  int get hashCode => path.hashCode ^ name.hashCode ^ description.hashCode;
 }

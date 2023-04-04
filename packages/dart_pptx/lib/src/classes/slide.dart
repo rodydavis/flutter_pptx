@@ -31,7 +31,8 @@ abstract class Slide extends Base {
 
   bool get hasNotes => speakerNotes != null;
 
-  Map<int, ImageReference?> get imageRefs => {0: background.image};
+  @JsonKey(includeToJson: false)
+  late Map<int, ImageReference?> imageRefs = {0: background.image};
 
   @override
   Map<String, dynamic> toJson() => _$SlideToJson(this);

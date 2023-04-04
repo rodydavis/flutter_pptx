@@ -1,3 +1,7 @@
+## 0.1.2
+
+- Fix for images being duplicated in the same slide
+
 ## 0.1.1
 
 - Fixing hidden files not uploading to pub.dev

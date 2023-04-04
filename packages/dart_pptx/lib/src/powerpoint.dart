@@ -132,7 +132,7 @@ class PowerPoint {
     final futures = <Future>[];
     for (final item in arc.images) {
       futures.add(Future.sync(() async {
-        final bytes = await context.assets.getImageData(item.path);
+        final bytes = await context.assets.getImageData(item);
         if (bytes != null) {
           final imgName = 'image${item.order}.${item.ext}';
           // final fileName = imgName ?? path.basename(item.path);
