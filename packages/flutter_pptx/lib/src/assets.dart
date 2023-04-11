@@ -2,6 +2,7 @@ import 'package:dart_pptx/dart_pptx.dart';
 import 'package:flutter/services.dart';
 
 class FlutterAssets extends Assets {
+ 
   @override
   Future<Uint8List?> getImageData(ImageReference img) async {
     final path = img.path;

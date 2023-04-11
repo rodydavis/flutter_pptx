@@ -1,12 +1,15 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
+import 'package:http/retry.dart';
 import 'package:image_size_getter/image_size_getter.dart';
 
 import '../classes/images.dart';
 
 class Assets {
+  http.Client client = RetryClient(http.Client());
   final cache = <ImageReference>[];
 
   bool hasCache(ImageReference img) {
@@ -42,7 +45,7 @@ class Assets {
       return img.bytes;
     }
     if (path.startsWith('http')) {
-      final response = await http.get(Uri.parse(path));
+      final response = await client.get(Uri.parse(path));
       if (response.statusCode == 200) {
         final bytes = response.bodyBytes;
         setCache(img, bytes);
