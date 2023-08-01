@@ -91,7 +91,9 @@ class OutputFileStream extends OutputStreamBase {
         flush();
 
         if (_bufferPosition + len < _buffer.length) {
-          for (int i = 0, j = _bufferPosition, k = stream.offset; i < len; ++i, ++j, ++k) {
+          for (int i = 0, j = _bufferPosition, k = stream.offset;
+              i < len;
+              ++i, ++j, ++k) {
             _buffer[j] = stream.buffer[k];
           }
           _bufferPosition += len;
@@ -103,7 +105,8 @@ class OutputFileStream extends OutputStreamBase {
       if (_bufferPosition > 0) {
         flush();
       }
-      _fp.writeFromSync(stream.buffer, stream.offset, stream.offset + stream.length);
+      _fp.writeFromSync(
+          stream.buffer, stream.offset, stream.offset + stream.length);
       _length += stream.length;
     } else {
       var bytes = stream.toUint8List();

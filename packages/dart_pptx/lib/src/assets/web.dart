@@ -13,7 +13,8 @@ class Assets {
   final cache = <ImageReference>[];
 
   bool hasCache(ImageReference img) {
-    return cache.contains(img) && cache.firstWhere((e) => e == img).bytes != null;
+    return cache.contains(img) &&
+        cache.firstWhere((e) => e == img).bytes != null;
   }
 
   Uint8List? getCache(ImageReference img) {

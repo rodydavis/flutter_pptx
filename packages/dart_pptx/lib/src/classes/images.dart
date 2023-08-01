@@ -49,7 +49,9 @@ class ImageReference extends Base {
   @override
   bool operator ==(covariant ImageReference other) {
     if (identical(this, other)) return true;
-    return other.path == path && other.name == name && other.description == description;
+    return other.path == path &&
+        other.name == name &&
+        other.description == description;
   }
 
   @override
