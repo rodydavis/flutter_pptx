@@ -23,20 +23,20 @@ funding:
   - https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WSH3GVC49GNNJ
 
 dependencies:
-  archive: ^3.3.6
-  collection: ^1.17.0
-  file: ^6.1.4
-  http: ^0.13.5
+  archive: ^3.4.2
+  collection: ^1.18.0
+  file: ^7.0.0
+  http: ^1.1.0
   image_size_getter: ^2.1.2
-  json_annotation: ^4.8.0
+  json_annotation: ^4.8.1
   mustache_template: ^2.0.0
-  path: ^1.8.2
+  path: ^1.8.3
   recase: ^4.1.0
 
 dev_dependencies:
   lints: ^2.0.0
   test: ^1.21.0
   flutter_lints: ^2.0.0
-  build_runner: ^2.3.3
-  json_serializable: ^6.6.1
+  build_runner: ^2.4.6
+  json_serializable: ^6.7.1
   build_version: ^2.1.1

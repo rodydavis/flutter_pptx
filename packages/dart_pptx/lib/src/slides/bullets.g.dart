@@ -20,8 +20,6 @@ Map<String, dynamic> _$SlideBulletsToJson(SlideBullets instance) =>
       'notesId': instance.notesId,
       'background': instance.background.toJson(),
       'hasNotes': instance.hasNotes,
-      'imageRefs':
-          instance.imageRefs.map((k, e) => MapEntry(k.toString(), e?.toJson())),
       'bullets': instance.bullets.map((e) => e.toJson()).toList(),
       'layoutId': instance.layoutId,
       'source': instance.source,

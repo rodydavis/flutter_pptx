@@ -22,4 +22,5 @@ Map<String, dynamic> _$ImageReferenceToJson(ImageReference instance) =>
       'isAsset': instance.isAsset,
       'isFile': instance.isFile,
       'ext': instance.ext,
+      'hashCode': instance.hashCode,
     };

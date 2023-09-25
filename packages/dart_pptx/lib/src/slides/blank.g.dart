@@ -20,8 +20,6 @@ Map<String, dynamic> _$SlideBlankToJson(SlideBlank instance) =>
       'notesId': instance.notesId,
       'background': instance.background.toJson(),
       'hasNotes': instance.hasNotes,
-      'imageRefs':
-          instance.imageRefs.map((k, e) => MapEntry(k.toString(), e?.toJson())),
       'layoutId': instance.layoutId,
       'source': instance.source,
     };
