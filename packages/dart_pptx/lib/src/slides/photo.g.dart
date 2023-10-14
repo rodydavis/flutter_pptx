@@ -22,7 +22,5 @@ Map<String, dynamic> _$SlidePhotoToJson(SlidePhoto instance) =>
       'hasNotes': instance.hasNotes,
       'image': instance.image?.toJson(),
       'layoutId': instance.layoutId,
-      'imageRefs':
-          instance.imageRefs.map((k, e) => MapEntry(k.toString(), e?.toJson())),
       'source': instance.source,
     };

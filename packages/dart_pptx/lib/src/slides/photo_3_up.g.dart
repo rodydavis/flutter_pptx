@@ -24,7 +24,5 @@ Map<String, dynamic> _$SlidePhoto3UpToJson(SlidePhoto3Up instance) =>
       'image2': instance.image2?.toJson(),
       'image3': instance.image3?.toJson(),
       'layoutId': instance.layoutId,
-      'imageRefs':
-          instance.imageRefs.map((k, e) => MapEntry(k.toString(), e?.toJson())),
       'source': instance.source,
     };

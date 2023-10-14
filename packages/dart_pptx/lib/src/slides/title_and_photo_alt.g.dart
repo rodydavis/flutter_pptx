@@ -25,7 +25,5 @@ Map<String, dynamic> _$SlideTitleAndPhotoAltToJson(
       'title': instance.title?.toJson(),
       'subtitle': instance.subtitle?.toJson(),
       'layoutId': instance.layoutId,
-      'imageRefs':
-          instance.imageRefs.map((k, e) => MapEntry(k.toString(), e?.toJson())),
       'source': instance.source,
     };

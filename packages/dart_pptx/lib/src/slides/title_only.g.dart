@@ -20,8 +20,6 @@ Map<String, dynamic> _$SlideTitleOnlyToJson(SlideTitleOnly instance) =>
       'notesId': instance.notesId,
       'background': instance.background.toJson(),
       'hasNotes': instance.hasNotes,
-      'imageRefs':
-          instance.imageRefs.map((k, e) => MapEntry(k.toString(), e?.toJson())),
       'title': instance.title?.toJson(),
       'subtitle': instance.subtitle?.toJson(),
       'layoutId': instance.layoutId,

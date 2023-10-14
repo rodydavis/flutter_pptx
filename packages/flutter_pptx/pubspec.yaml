@@ -16,7 +16,7 @@ dependencies:
   flutter:
     sdk: flutter
   dart_pptx: ^0.1.2+1
-  screenshot: ^1.3.0
+  screenshot: ^2.1.0
 
 dev_dependencies:
   flutter_test:
